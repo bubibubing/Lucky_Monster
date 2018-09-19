@@ -1,11 +1,11 @@
 # Lucky_Monster
 ## Django Rest framework
 - [QuickStart](http://www.django-rest-framework.org/#quickstart)
-- [Django Tutorial](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
+- [Django Tutorials](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
 ## Virtual Enviroment
-Virtualenv creates an environment that has its own installation directories, that doesn’t share libraries with other virtualenv environments
+Virtualenv creates an environment that has its own installation directories, that doesn’t share libraries with other virtualenv environments.
 
-For the packages you want to install, please add to the requirements.txt. ```$ pip install -r requirements.txt``` will install all the packages specified in the requirements.txt
+For the packages you want to install, please add to the requirements.txt. ```$ pip install -r requirements.txt``` will install all the packages specified in the requirements.txt.
 ### Start the virtual envirment
 #### Unix-like System
 ```
