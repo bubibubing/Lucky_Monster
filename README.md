@@ -12,8 +12,9 @@ For the packages you want to install, please add to the requirements.txt. ```$ p
 $ virtualenv --no-site-packages --distribute .env && source .env/bin/activate && pip install -r requirements.txt
 ```
 #### Windows
-To be updated😂
-
+```
+$ virtualenv --no-site-packages --distribute .env && .env/Scripts/activate && pip install -r requirements.txt
+```
 ## Run Server
 ```
 python manage.py runserver 0.0.0.0:8000
