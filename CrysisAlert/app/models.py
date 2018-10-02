@@ -43,7 +43,7 @@ class Assistance(models.Model):
 
     crisis = models.ForeignKey('Crisis', on_delete=models.CASCADE)
     type_of_assistance = models.CharField(max_length=1, choices=ASSISTANCE_TYPE_CHOICE)
-    agencies = models.ManyToManyField('Agencies', through='InfoDispatch')
+    agencies = models.ManyToManyField('Agency', through='InfoDispatch')
 
 
 class InfoDispatch(models.Model):
