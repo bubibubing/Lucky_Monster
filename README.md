@@ -1,21 +1,8 @@
 # Lucky_Monster
-## Django Rest framework
-- [QuickStart](http://www.django-rest-framework.org/#quickstart)
-- [Django Tutorials](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
-## Virtual Enviroment
-Virtualenv creates an environment that has its own installation directories, that doesn’t share libraries with other virtualenv environments.
-
-For the packages you want to install, please add to the requirements.txt. ```$ pip install -r requirements.txt``` will install all the packages specified in the requirements.txt.
-### Start the virtual envirment
-#### Unix-like System
-```
-$ virtualenv --no-site-packages --distribute .env && source .env/bin/activate && pip install -r requirements.txt
-```
-#### Windows
-```
-$ virtualenv --no-site-packages --distribute .env && .env/Scripts/activate && pip install -r requirements.txt
-```
-## Run Server
-```
-python manage.py runserver 0.0.0.0:8000
-```
+## DJ-Nexmo
+This project uses dj-nexmo for sending sms to relevant agnecies. Therefore, dj-demo needs to be installed.
+## How to Install
+Currently, dj-nexmo only supports Python 3.3+, and Django 2.0+.
+	1.	pip install dj-nexmo
+	2.	Add "djnexmo" to INSTALLED_APPS in your settings.
+	3.	Run python manage.py migrate djnexmo to create the necessary models.
