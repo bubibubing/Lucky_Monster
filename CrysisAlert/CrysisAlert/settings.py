@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'app',
     'api',
-    'CrysisAlert'
+    'CrysisAlert',
+    'social_post'
 ]
 
 MIDDLEWARE = [
