@@ -2,9 +2,13 @@ from django.db import models
 
 # Create your models here.
 class Crisis(models.Model):
-    
-    crisis_type = models.CharField(max_length=50)
-    
+    crisis_type = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.crisis_type
+
+    class Meta:
+        app_label = "app"
 
 class CrisisReport(models.Model):
     '''
@@ -13,25 +17,29 @@ class CrisisReport(models.Model):
 
     STATUS_CHOICES = (
         ('U', 'Unhandled'),
-        ('I', 'In Progress'),
+        ('I', 'In_Progress'),
         ('S', 'Solved')
     )
 
-    witness_first_name = models.CharField(max_length=20)
-    witness_last_name = models.CharField(max_length=20)
+    name = models.CharField(max_length=50)
     mobile_number = models.CharField(max_length=8)
 
     street_name = models.CharField(max_length=150)
     crisis_type = models.ForeignKey('Crisis', on_delete=models.CASCADE)
     description = models.TextField()
-    injured_people_num = models.IntegerField()
+    injured_people_num = models.IntegerField(blank=True, null=True)
 
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='U')
     create_date_time = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
-    def get_witness_name(self):
-        return "{} {}".format(self.witness_first_name, self.witness_last_name)
+    class Meta:
+        app_label = "app"
+        ordering = ('last_modified',)
+
+    def __str__(self):
+        return "%s %s | %s" % (self.id, self.name, self.create_date_time.strftime('%B %d %Y %H:%M:%S'))
+
 
 class Assistance(models.Model):
     ASSISTANCE_TYPE_CHOICE = (
@@ -43,20 +51,32 @@ class Assistance(models.Model):
 
     crisis = models.ForeignKey('Crisis', on_delete=models.CASCADE)
     type_of_assistance = models.CharField(max_length=1, choices=ASSISTANCE_TYPE_CHOICE)
-    agencies = models.ManyToManyField('Agency', through='InfoDispatch')
+    agencies = models.ManyToManyField('Agency')
 
+    class Meta:
+        app_label = "app"
+        # ordering = ('crisis.id')
 
-class InfoDispatch(models.Model):
-    assistance_type = models.ForeignKey(Assistance, on_delete=models.CASCADE)
-    agencies = models.ForeignKey('Agency', on_delete=models.CASCADE)
-    notes = models.CharField(max_length=50)
-    
+    def __str__(self):
+        return '%s %s' % (self.crisis, self.get_type_of_assistance_display())
+
 
 class Agency(models.Model):
     name = models.CharField(max_length=50)
-    contact_num = models.CharField(max_length=6)
+    contact_num = models.CharField(max_length=8)
+
+    class Meta:
+        app_label = "app"
+
+    def __str__(self):
+        return self.name
 
 
-class Facilities(Agency):
+class Facility(Agency):
     location = models.CharField(max_length=50)
 
+    class Meta:
+        app_label = "app"
+
+    def __str__(self):
+        return self.name
