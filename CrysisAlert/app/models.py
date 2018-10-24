@@ -4,6 +4,8 @@ from django.db import models
 class Crisis(models.Model):
     
     crisis_type = models.CharField(max_length=50)
+    def __str__(self):
+        return self.crisis_type
     
 
 class CrisisReport(models.Model):
@@ -34,15 +36,8 @@ class CrisisReport(models.Model):
         return "{} {}".format(self.witness_first_name, self.witness_last_name)
 
 class Assistance(models.Model):
-    ASSISTANCE_TYPE_CHOICE = (
-        ('E', 'Emergency Ambulance'),
-        ('R', 'Rescue and Evacuation'),
-        ('F', 'Fire-Fighting'),
-        ('G', "Gas Leak Control")
-    )
-
     crisis = models.ForeignKey('Crisis', on_delete=models.CASCADE)
-    type_of_assistance = models.CharField(max_length=1, choices=ASSISTANCE_TYPE_CHOICE)
+    type_of_assistance = models.CharField(max_length=21)
     agencies = models.ManyToManyField('Agency', through='InfoDispatch')
 
 
@@ -54,9 +49,14 @@ class InfoDispatch(models.Model):
 
 class Agency(models.Model):
     name = models.CharField(max_length=50)
-    contact_num = models.CharField(max_length=6)
+    contact_num = models.CharField(max_length=11)
+
+    def __str__(self):
+        return self.name
 
 
 class Facilities(Agency):
     location = models.CharField(max_length=50)
+    def __str__(self):
+        return self.location
 
