@@ -2,11 +2,21 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import generics
 from rest_framework import permissions
-
+from rest_framework import views
+from rest_framework import status
+from rest_framework.response import Response
 from django.contrib.auth.models import User
 from api.permissions import IsOwnerOrReadOnly
-from api.serializers import ReportViewSerializer, CrisisSerializer, AgencySerializer, AssistanceSerializer, OperatorAccountSerializer, ReportUpdateCreateSerializer
 from app.models import CrisisReport, Assistance, Agency, Facility
+from api.serializers import (
+    ReportViewSerializer, 
+    CrisisSerializer, 
+    AgencySerializer, 
+    AssistanceSerializer, 
+    OperatorAccountSerializer, 
+    ReportUpdateCreateSerializer, 
+    UserSerializer
+)
 
 
 # Create your views here.
@@ -17,10 +27,10 @@ class ReportViewSet(generics.ListAPIView):
     def get_queryset(self):
         queryset = CrisisReport.objects.all()
         crisis_type = self.request.query_params.get('crisis_type', None)
-        status = self.request.query_params.get('status', None)
+        crisis_status = self.request.query_params.get('status', None)
 
         if status is not None:
-            queryset = queryset.filter(status=status)
+            queryset = queryset.filter(status=crisis_status)
 
         if crisis_type is not None:
             queryset = queryset.filter(crisis_type__crisis_type=crisis_type)
@@ -37,6 +47,16 @@ class ReportUpdateCreateView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)
 
+
+class UserCreate(views.APIView):
+    def post(self, request, format='json'):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class OperatorAccountList(generics.ListAPIView):

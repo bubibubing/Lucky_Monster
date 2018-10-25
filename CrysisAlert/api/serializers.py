@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
 from app.models import Crisis, CrisisReport, Agency, Assistance
 
@@ -9,6 +10,31 @@ class OperatorAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'reports',)
+
+
+class UserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(
+            required=True,
+            validators=[UniqueValidator(queryset=User.objects.all())]
+        )
+
+    username = serializers.CharField(
+            validators=[UniqueValidator(queryset=User.objects.all())],
+            max_length=50,
+        )
+
+    password = serializers.CharField(min_length=8, write_only=True)
+
+    def create(self, validated_data):
+        user = User.objects.create_user(username=validated_data['username'], 
+                                        email=validated_data['email'], 
+                                        password=validated_data['password'])
+        return user
+
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'password')
 
 
 class CrisisSerializer(serializers.ModelSerializer):
@@ -38,6 +64,7 @@ class ReportViewSerializer(serializers.ModelSerializer):
             'create_date_time',
         )
 
+
 class ReportUpdateCreateSerializer(serializers.ModelSerializer):
     creator = serializers.ReadOnlyField(source="creator.username")
     
@@ -46,11 +73,11 @@ class ReportUpdateCreateSerializer(serializers.ModelSerializer):
         exclude = ('last_modified',)
 
 
-
 class AgencySerializer(serializers.ModelSerializer):
     class Meta:
         model = Agency
         fields = ('id', 'contact_num',)
+
 
 class AssistanceSerializer(serializers.ModelSerializer):
 
