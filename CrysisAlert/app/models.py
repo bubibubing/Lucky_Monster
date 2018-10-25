@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import auth
 
 # Create your models here.
 class Crisis(models.Model):
@@ -25,13 +26,15 @@ class CrisisReport(models.Model):
     mobile_number = models.CharField(max_length=8)
 
     street_name = models.CharField(max_length=150)
-    crisis_type = models.ForeignKey('Crisis', on_delete=models.CASCADE)
+    crisis_type = models.ForeignKey('Crisis', related_name="crisis" ,on_delete=models.CASCADE)
     description = models.TextField()
     injured_people_num = models.IntegerField(blank=True, null=True)
 
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='U')
     create_date_time = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    creator = models.ForeignKey('auth.User', related_name="reports", on_delete=models.CASCADE)
+
 
     class Meta:
         app_label = "app"
