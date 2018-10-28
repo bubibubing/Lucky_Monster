@@ -1,10 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.models import User
 from app.models import Crisis, CrisisReport, Agency, Assistance
-
-PASSWORD_MIN_LENGTH = 8
 
 class OperatorAccountSerializer(serializers.ModelSerializer):
     reports = serializers.PrimaryKeyRelatedField(many=True, queryset=CrisisReport.objects.all())
@@ -26,15 +23,12 @@ class UserSerializer(serializers.ModelSerializer):
             max_length=50,
         )
 
-    password = serializers.CharField(min_length=PASSWORD_MIN_LENGTH, write_only=True)
+    password = serializers.CharField(min_length=8, write_only=True)
 
     def create(self, validated_data):
-        user = User.objects.create_user(
-                username=validated_data['username'], 
-                email=validated_data['email'], 
-                password=validated_data['password']
-            )
-
+        user = User.objects.create_user(username=validated_data['username'], 
+                                        email=validated_data['email'], 
+                                        password=validated_data['password'])
         return user
 
 
@@ -42,37 +36,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email', 'password')
 
-
-class PasswordChangeSerializer():
-    """
-    Change Password Serializer
-    """
-    old_password = serializers.CharField(
-            min_length=PASSWORD_MIN_LENGTH,
-            required=True,
-        )
-
-    # Password
-    password1 = serializers.CharField(
-            min_length=PASSWORD_MIN_LENGTH,
-            required=True,
-        )
-
-    # Confirmation password
-    password2 = serializers.CharField(
-            min_length=PASSWORD_MIN_LENGTH,
-            required=True,
-        )
-
-
-    def validate(self, data):
-        if not validate_password(data):
-            raise serializers.ValidationError({'Passowrd': 'Old password not ccorrect'})
-
-        if data['password1'] != data['passowrd2']:
-            raise serializers.ValidationError({'Password': 'Confirmation not ccorrect'})
-
-        return data
 
 class CrisisSerializer(serializers.ModelSerializer):
     class Meta:
