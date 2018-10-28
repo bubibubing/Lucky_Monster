@@ -15,13 +15,13 @@ from api.serializers import (
     AssistanceSerializer, 
     OperatorAccountSerializer, 
     ReportUpdateCreateSerializer, 
-    UserSerializer
+    UserSerializer,
 )
 
 
 # Create your views here.
 class ReportViewSet(generics.ListAPIView):
-    #queryset = CrisisReport.objects.all()
+    queryset = CrisisReport.objects.all()
     serializer_class = ReportViewSerializer
 
     def get_queryset(self):
@@ -29,9 +29,8 @@ class ReportViewSet(generics.ListAPIView):
         crisis_type = self.request.query_params.get('crisis_type', None)
         crisis_status = self.request.query_params.get('status', None)
 
-        if status is not None:
+        if crisis_status is not None:
             queryset = queryset.filter(status=crisis_status)
-
         if crisis_type is not None:
             queryset = queryset.filter(crisis_type__crisis_type=crisis_type)
 
@@ -40,7 +39,6 @@ class ReportViewSet(generics.ListAPIView):
 class ReportUpdateCreateView(viewsets.ModelViewSet):
     queryset = CrisisReport.objects.all()
     serializer_class = ReportUpdateCreateSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                          IsOwnerOrReadOnly,)
 
