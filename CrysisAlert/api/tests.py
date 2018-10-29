@@ -133,6 +133,70 @@ class UserAccountTest(APITestCase):
         self.assertEqual(len(response.data['email']), 1)
 
 
+class UserLoginTest(APITestCase):
+    def setUp(self):
+        # Create a user account
+        self.test_user = User.objects.create_user(
+            "testuser", 
+            "test@example.com", 
+            "testpassword"
+        )
+
+        # URL for creating an account
+        self.login_url = reverse('login')
+
+    def test_successful_login(self):
+        data = {
+            "username": 'testuser',
+            "password": 'testpassword',
+        }
+
+        response = self.client.post(self.login_url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(response.data["Login"])
+
+    def test_login_with_wrong_password(self):
+        data = {
+            "username": 'testuser',
+            "password": 'PASSWORD',
+        }
+
+        response = self.client.post(self.login_url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertFalse(response.data["Login"])
+
+
+    def test_login_with_nonexisted_account(self):
+        data = {
+            "username": 'USERACCOUNT',
+            "password": 'PASSWORD',
+        }
+
+        response = self.client.post(self.login_url, data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        self.assertFalse(response.data["Login"])
+
+
+class UserPasswordChangeTest(APITestCase):
+    def setUp(self):
+        # Create a user account
+        self.test_user = User.objects.create_user(
+            "testuser", 
+            "test@example.com", 
+            "testpassword"
+        )
+
+        # URL for creating an account
+        self.password_change_url = reverse('change_passoword')
+
+    def test_successful_change_password(self):
+        data = {
+            "username": 'USERACCOUNT',
+            "password": 'PASSWORD',
+        }
+
+        response = self.client.post(self.password_change_url, data, format="json")
+
 
 
 

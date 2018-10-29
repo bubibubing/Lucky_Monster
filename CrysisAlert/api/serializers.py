@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
+from django.contrib.auth import password_validation 
 from app.models import Crisis, CrisisReport, Agency, Assistance
 
 PASSWORD_MIN_LENGTH = 8
@@ -39,7 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'password')
 
 
-class PasswordChangeSerializer():
+class PasswordChangeSerializer(serializers.ModelSerializer):
     """
     Change Password Serializer
     """
@@ -60,17 +61,18 @@ class PasswordChangeSerializer():
             required=True,
         )
 
-
     def validate(self, data):
-        if not validate_password(data):
-            raise serializers.ValidationError({'Passowrd': 'Old password not ccorrect'})
+        if not self.context['request'].user.check_password(data['old_password']):
+            raise serializers.ValidationError({'old_password': 'Wrong password.'})
 
-        if data['password1'] != data['passowrd2']:
+        if data['password1'] != data['password2']:
             raise serializers.ValidationError({'Password': 'Confirmation not ccorrect'})
 
         return data
-
-
+    
+    class Meta:
+        model = User
+        fields = ('id', 'old_password', 'password1', 'password2')
 
 
 class CrisisSerializer(serializers.ModelSerializer):

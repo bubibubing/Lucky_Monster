@@ -9,6 +9,7 @@ from api.views import (
         UserCreateView,
         UserLoginView,
         UserLogoutView,
+        UserPasswordChangeView,
     )
 
 router = DefaultRouter()
@@ -21,6 +22,7 @@ urlpatterns = [
     url(r'^users/create$', UserCreateView.as_view(), name="create_account"),
     url(r'^users/login$', UserLoginView.as_view(), name="login"),
     url(r'users/logout$', UserLogoutView.as_view(), name="logout"),
+    url(r'users/changepassword', UserPasswordChangeView.as_view(), name="change_password"),
 	path('operators/', OperatorAccountList.as_view()),
 	path('operators/<int:pk>/', AccountDetailView.as_view()),
 ]
