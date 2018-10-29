@@ -5,3 +5,4 @@ Markdown==2.6.11
 pytz==2018.5
 tweepy==3.6.0
 psycopg2==2.7.5
+django-cors-headers==2.4.0

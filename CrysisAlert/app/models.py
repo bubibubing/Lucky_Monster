@@ -27,6 +27,7 @@ class CrisisReport(models.Model):
 
     street_name = models.CharField(max_length=150)
     crisis_type = models.ForeignKey('Crisis', related_name="crisis" ,on_delete=models.CASCADE)
+    assistance = models.ManyToManyField('Assistance', related_name='assistance')
     description = models.TextField()
     injured_people_num = models.IntegerField(blank=True, null=True)
 
@@ -52,7 +53,7 @@ class Assistance(models.Model):
         ('G', "Gas Leak Control")
     )
 
-    crisis = models.ForeignKey('Crisis', on_delete=models.CASCADE)
+    #crisis = models.ForeignKey('Crisis', on_delete=models.CASCADE)
     type_of_assistance = models.CharField(max_length=1, choices=ASSISTANCE_TYPE_CHOICE)
     agencies = models.ManyToManyField('Agency')
 
@@ -61,7 +62,7 @@ class Assistance(models.Model):
         # ordering = ('crisis.id')
 
     def __str__(self):
-        return '%s %s' % (self.crisis, self.get_type_of_assistance_display())
+        return self.get_type_of_assistance_display()
 
 
 class Agency(models.Model):
