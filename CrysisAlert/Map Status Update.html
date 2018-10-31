@@ -404,7 +404,8 @@ function reloadMap() {
 		var apiReq2 = fetch('https://api.data.gov.sg/v1/environment/relative-humidity?date_time='+curTime).then(function(response){return response.json()});
 		var apiReq3 = fetch('https://data.gov.sg/api/action/datastore_search?resource_id=4ee17930-4780-403b-b6d4-b963c7bb1c09').then(function(response){return response.json()});
 		//var apiReq4 = fetch('WHATEVER API URL HERE').then(function(response){return response.json()});
-		var apiReq4 = fetch('http://172.21.148.165:8000/api/crisis_view/?format=json').then(function(response) { return response.json()});
+		
+		//var apiReq4 = fetch('http://172.21.148.165:8000/api/crisis_view/?format=json').then(function(response) { return response.json()});
 		var apiReq4 = fetch('http://172.21.148.165/fire-sample.json').then(function(response) { return response.json()});
 		
 		var combData= {"locations":{},"temperatures":{},"humidity":{},"crisisevents":{}};
@@ -491,7 +492,7 @@ function reloadMap() {
 				
 				if(fireFilter) {
 					if(type.toLowerCase() == "fire") {
-						var firemessage = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + values[3][x]['crisis_type'] + "</td></tr><tr><th>Location: </th><td>" + values[3][x]['street_name'] + "</td></tr><tr><th>Time: </th><td>" + values[3][x]['datetime'] + "</td></tr><tr><th>Dept: </th><td>" + values[3][x]['assistance'] + "</td></tr><tr><th>Description: </th><td>" + values[3][x]['description'] + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + values[3][x]['name'] + "</td></tr></table>";
+						var firemessage = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + values[3][x]['crisis_type'] + "</td></tr><tr><th>Location: </th><td>" + values[3][x]['street_name'] + "</td></tr><tr><th>Time: </th><td>" + values[3][x]['create_date_time'] + "</td></tr><tr><th>Dept: </th><td>" + values[3][x]['assistance'] + "</td></tr><tr><th>Description: </th><td>" + values[3][x]['description'] + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + values[3][x]['name'] + "</td></tr></table>";
 
 						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + values[3][x]['street_name'].replace(/ /g, "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
 							lati = e["features"][0]["geometry"]["coordinates"][1];
