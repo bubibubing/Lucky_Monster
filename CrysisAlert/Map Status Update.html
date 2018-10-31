@@ -13,6 +13,10 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>-->
+<!-- <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' /> -->
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.min.js'></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" defer>
@@ -189,7 +193,6 @@ html, body, #map {
 </head>
 
 <body>
-<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
 <div id="header">
 	<h2 style="font-weight: normal; margin: 0; font-family: Roboto, Tahoma, Arial, Serif;">Lucky Monster's Map Status Update</h2>
 </div>
@@ -360,8 +363,7 @@ function reloadMap() {
 		popup(mark(centreOfPolygon.lat, centreOfPolygon.lng, DengueIcon), message);
 	}
 	
-	function addFire(lat, lon) {
-		var message = 'Fire!';
+	function addFire(lat, lon, message) {
 		popup(mark(lat, lon, FireIcon), message);
 	}
 	
@@ -460,11 +462,13 @@ function reloadMap() {
 			
 			if(fireFilter) {
 				//values[3];
+				//https://api.mapbox.com/geocoding/v5/mapbox.places/<ADDRESS>.json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA
 				var assistance, datetime, type, description, casualties, mobile, name, status, address;
 				
 				for(var x = 0; x < crisis.length; x++) {
 					type = values[3][x]['crisis_type'];
 					if(type.toLowerCase() == "fire") {
+						
 						assistance = values[3][x]['assistance'];
 						datetime = values[3][x]['create_date_time'];
 						
@@ -475,7 +479,14 @@ function reloadMap() {
 						status = values[3][x]['status'];
 						address = values[3][x]['street_name'];
 						
-						addFire(1.1241, 103.124512, "Fire");
+						var lati, longi;
+						
+						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address.replace(" ", "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
+							lati = e["features"][0]["geometry"]["coordinates"][1];
+							longi = a["features"][0]["geometry"]["coordinates"][0];
+						});
+						
+						addFire(lati, longi, "Fire!");
 					}
 				}
 			}
