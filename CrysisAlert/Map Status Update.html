@@ -481,9 +481,9 @@ function reloadMap() {
 						
 						var lati, longi;
 						
-						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address.replace(" ", "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
+						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address.replace(/ /g, "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
 							lati = e["features"][0]["geometry"]["coordinates"][1];
-							longi = a["features"][0]["geometry"]["coordinates"][0];
+							longi = e["features"][0]["geometry"]["coordinates"][0];
 						});
 						
 						addFire(lati, longi, "Fire!");
