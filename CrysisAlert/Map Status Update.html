@@ -502,7 +502,7 @@ function reloadMap() {
 
 					}
 				}
-				else if(gasLeakFilter) {
+				if(gasLeakFilter) {
 					if(type.toLowerCase() == "gas leak") {
 						var gasmessage = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</td></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Description: </th><td>" + description + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
 
