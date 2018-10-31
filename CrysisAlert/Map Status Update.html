@@ -411,7 +411,7 @@ function reloadMap() {
 		//var apiReq4 = fetch('WHATEVER API URL HERE').then(function(response){return response.json()});
 		
 		//var apiReq4 = fetch('http://172.21.148.165:8000/api/crisis_view/?format=json').then(function(response) { return response.json()});
-		var apiReq4 = fetch('http://172.21.148.165/fire-sample.json').then(function(response) { return response.json()});
+		var apiReq4 = fetch('http://172.21.148.165/sample.json').then(function(response) { return response.json()});
 		
 		var combData= {"locations":{},"temperatures":{},"humidity":{},"crisisevents":{}};
 		
@@ -565,7 +565,7 @@ function reloadMap() {
 							success: function(e){ 
 								lati = e["features"][0]["geometry"]["coordinates"][1];
 								longi = e["features"][0]["geometry"]["coordinates"][0];
-								addDiesease(lati, longi, message);
+								addDisease(lati, longi, message);
 							} 
 						});
 
