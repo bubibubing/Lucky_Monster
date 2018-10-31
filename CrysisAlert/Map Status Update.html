@@ -76,14 +76,10 @@ function toggleTemperatureFilter(e) {
 	if(temperatureFilter) {
 		temperatureFilter = false;
 		e.checked = false;
-		/*e.classList.remove("filterOn");
-		e.classList.add("filterOff");*/
 	}
 	else {
 		temperatureFilter = true;
 		e.checked = true;
-		/*e.classList.remove("filterOff");
-		e.classList.add("filterOn");*/
 	}
 	reloadMap();
 }
@@ -91,14 +87,10 @@ function toggleBombShelterFilter(e) {
 	if(bombShelterFilter) {
 		bombShelterFilter = false;
 		e.checked = false;
-		/*e.classList.remove("filterOn");
-		e.classList.add("filterOff");*/
 	}
 	else {
 		bombShelterFilter = true;
 		e.checked = true;
-		/*e.classList.remove("filterOff");
-		e.classList.add("filterOn");*/
 	}
 	reloadMap();
 }
@@ -181,18 +173,13 @@ html, body, #map {
 	color: white;
 	cursor: pointer;
 }
-#panel input.filterOff {
-	background: red;
-}
-#panel input.filterOn {
-	background: green;
-}
-
+#panel input.filterOff { background: red; }
+#panel input.filterOn { background: green; }
 #footer {
 	position: fixed;
 	bottom: 2.5%;
 	background: white;
-	z-index:999;
+	z-index: 999;
 	width: auto;
 	padding: 10px 25% 10px 20px;
 	margin: 0 0 0 1%;
@@ -206,24 +193,34 @@ html, body, #map {
 <div id="header">
 	<h2 style="font-weight: normal; margin: 0; font-family: Roboto, Tahoma, Arial, Serif;">Lucky Monster's Map Status Update</h2>
 </div>
-
 <div id="panel">
 	<h4 style="margin:2px 0; font: normal 16pt/1em monospace; text-align: left; padding-bottom: 5px; border-bottom: 1px solid black;">Filters</h4>
 	<br>
-	<input type="checkbox" name="fireFilter" id="fireFilter" onClick="toggleFireFilter(this);"> <label for="fireFilter">Fires</label><br>
-	<input type="checkbox" name="gasLeakFilter" id="gasLeakFilter" onClick="toggleGasLeakFilter(this);"> <label for="gasLeakFilter">Gas Leak</label><br>
-	<input type="checkbox" name="diseaseFilter" id="diseaseFilter" onClick="toggleDiseaseFilter(this);"> <label for="diseaseFilter">Diseases</label><br>
-	<input type="checkbox" name="dengueFilter" id="dengueFilter" onClick="toggleDengueFilter(this);"> <label for="dengueFilter">Dengue</label> <br>
-	<input type="checkbox" name="othersFilter" id="othersFilter" onClick="toggleOthersFilter(this);"> <label for="othersFilter">Others</label><br>
+	<input type="checkbox" name="fireFilter" id="fireFilter" onClick="toggleFireFilter(this);">
+	<label for="fireFilter">Fires</label>
+	<br>
+	<input type="checkbox" name="gasLeakFilter" id="gasLeakFilter" onClick="toggleGasLeakFilter(this);">
+	<label for="gasLeakFilter">Gas Leak</label>
+	<br>
+	<input type="checkbox" name="diseaseFilter" id="diseaseFilter" onClick="toggleDiseaseFilter(this);">
+	<label for="diseaseFilter">Diseases</label>
+	<br>
+	<input type="checkbox" name="dengueFilter" id="dengueFilter" onClick="toggleDengueFilter(this);">
+	<label for="dengueFilter">Dengue</label>
+	<br>
+	<input type="checkbox" name="othersFilter" id="othersFilter" onClick="toggleOthersFilter(this);">
+	<label for="othersFilter">Others</label>
+	<br>
 	<hr>
-	<!--<input onClick="toggleTemperatureFilter(this)" type="button" class="filterOn" value="Temperature" /><br><br> -->
-	<input type="checkbox" name="temperatureFilter" id="temperatureFilter" onClick="toggleTemperatureFilter(this);" checked="checked"> <label for="temperatureFilter">Temperature | PSI</label> <br>
-	<!-- <input onClick="toggleBombShelterFilter(this)" type="button" class="filterOff" value="Bomb Shelter" /><br><br> -->
-	<input type="checkbox" name="bombShelterFilter" id="bombShelterFilter" onClick="toggleBombShelterFilter(this);"> <label for="bombShelterFilter">Bomb Shelters</label> <br>
-	<!-- <input onClick="toggleDengueFilter(this)" type="button" class="filterOn" value="Dengue Filter" /><br><br> -->
+	<input type="checkbox" name="temperatureFilter" id="temperatureFilter" onClick="toggleTemperatureFilter(this);" checked="checked">
+	<label for="temperatureFilter">Temperature | PSI</label>
+	<br>
+	<input type="checkbox" name="bombShelterFilter" id="bombShelterFilter" onClick="toggleBombShelterFilter(this);">
+	<label for="bombShelterFilter">Bomb Shelters</label>
+	<br>
+	<!-- <input onClick="toggleDengueFilter(this)" type="button" class="filterOn" value="Dengue Filter" /><br><br> --> 
 	<br>
 </div>
-
 <div id="footer">Last updated: <span id="dateDiv"></span></div>
 <div id="map"> </div>
 <script>
@@ -262,6 +259,7 @@ function reloadMap() {
 	
 	var DengueIcon = new DisasterIcon({iconUrl:'images/dengue.png'/*, shadowUrl:'png'*/});
 	var ShelterIcon = new DisasterIcon({iconUrl:'images/shelter.png'/*, shadowUrl:'png'*/});
+	var FireIcon = new DisasterIcon({iconUrl:'images/fire.png'/*, shadowUrl:'png'*/});
 
 	//put marker on map. put icon = 0 if want to use default icon
 	function mark(lat, long, icon){
@@ -362,6 +360,11 @@ function reloadMap() {
 		popup(mark(centreOfPolygon.lat, centreOfPolygon.lng, DengueIcon), message);
 	}
 	
+	function addFire(lat, lon) {
+		var message = 'Fire!';
+		popup(mark(lat, lon, FireIcon), message);
+	}
+	
 	function currentTime(){
 		var currentTime = new Date();
 		var currentYear = currentTime.getFullYear();
@@ -383,98 +386,104 @@ function reloadMap() {
 	}
 	
 	function getAPIData(){
-	
-	var apiReq1 = fetch('https://api.data.gov.sg/v1/environment/air-temperature?date_time='+curTime).then(function(response){return response.json()});
-	var apiReq2 = fetch('https://api.data.gov.sg/v1/environment/relative-humidity?date_time='+curTime).then(function(response){return response.json()});
-	var apiReq3 = fetch('https://data.gov.sg/api/action/datastore_search?resource_id=4ee17930-4780-403b-b6d4-b963c7bb1c09').then(function(response){return response.json()});
-	//var apiReq4 = fetch('WHATEVER API URL HERE').then(function(response){return response.json()});
-	var apiReq4 = fetch('http://172.21.148.165/fire-sample.json', {mode: 'no-cors'}).then(function(response) { return response.json()});
-	
-	var combData= {"locations":{},"temperatures":{},"humidity":{},"crisisevents":{}};
-	
-	var locationsShelter;
-	
-	Promise.all([apiReq1,apiReq2,apiReq3,apiReq4]).then(function(values){
-	
-		combData["locations"] = values[0].metadata.stations;
-		combData["temperatures"] = values[0].items[0].readings;
-		combData["humidity"] = values[1].items[0].readings;
-		locationsShelter=values[2].result.records;
-		//combData["crisisevents"]=values[3];
+		var apiReq1 = fetch('https://api.data.gov.sg/v1/environment/air-temperature?date_time='+curTime).then(function(response){return response.json()});
+		var apiReq2 = fetch('https://api.data.gov.sg/v1/environment/relative-humidity?date_time='+curTime).then(function(response){return response.json()});
+		var apiReq3 = fetch('https://data.gov.sg/api/action/datastore_search?resource_id=4ee17930-4780-403b-b6d4-b963c7bb1c09').then(function(response){return response.json()});
+		//var apiReq4 = fetch('WHATEVER API URL HERE').then(function(response){return response.json()});
+		var apiReq4 = fetch('http://172.21.148.165/fire-sample.json').then(function(response) { return response.json()});
 		
-		if(bombShelterFilter) {
-			for(var ls=0;ls<locationsShelter.length;ls++)
-			{
-				var lsName=locationsShelter[ls].name;
-				var lsAddress=locationsShelter[ls].address;
-				var finalAddress=lsAddress.replace(lsName,'');
-				
-				console.log(finalAddress);
+		var combData= {"locations":{},"temperatures":{},"humidity":{},"crisisevents":{}};
+		
+		var locationsShelter;
+		
+		Promise.all([apiReq1,apiReq2,apiReq3,apiReq4]).then(function(values) {
+			combData["locations"] = values[0].metadata.stations;
+			combData["temperatures"] = values[0].items[0].readings;
+			combData["humidity"] = values[1].items[0].readings;
+			locationsShelter=values[2].result.records;
+			//combData["crisisevents"]=values[3];
 			
-				$.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + finalAddress, function(data) {
+			if(bombShelterFilter) {
+				for(var ls=0;ls<locationsShelter.length;ls++) {
+					var lsName=locationsShelter[ls].name;
+					var lsAddress=locationsShelter[ls].address;
+					var finalAddress=lsAddress.replace(lsName,'');
 					
-					if(data.length!=0)
-					{
-						var lat1=data[0].lat;
-						var lon1=data[0].lon;
-						/*var lat2=lat1+0.00500000000000;
-						var lon2=lon1+0.005000000000;
-						var imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/US_fallout_shelter_symbol.svg/2000px-US_fallout_shelter_symbol.svg.png';
-						var imageBounds = [[lat1,lon1],[lat2,lon2]];
-						L.imageOverlay(imageUrl, imageBounds).addTo(map);*/
-						mark(lat1, lon1, ShelterIcon);
-					}
-				});
+					console.log(finalAddress);
+				
+					$.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + finalAddress, function(data) {
+						if(data.length!=0) {
+							var lat1=data[0].lat;
+							var lon1=data[0].lon;
+							/*var lat2=lat1+0.00500000000000;
+							var lon2=lon1+0.005000000000;
+							var imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/US_fallout_shelter_symbol.svg/2000px-US_fallout_shelter_symbol.svg.png';
+							var imageBounds = [[lat1,lon1],[lat2,lon2]];
+							L.imageOverlay(imageUrl, imageBounds).addTo(map);*/
+							mark(lat1, lon1, ShelterIcon);
+						}
+					});
+				}
 			}
-		}
-
-		var finalData=[];
-		
-		var combinedData={"id":null,"location_latitude":null,"location_longitude":null,"temperature":null,"humidity":"unknown"};
-		
-		if(temperatureFilter) {
-			for(var i=0;i<combData["temperatures"].length;i++)
-			{
-				for(var j=0;j<combData["locations"].length;j++)
-				{
-					if(combData["temperatures"][i].station_id==combData["locations"][j].id)
-					{
-						combinedData["id"]=combData["temperatures"][i].station_id;
-						combinedData["location_latitude"]=combData["locations"][j].location.latitude;
-						combinedData["location_longitude"]=combData["locations"][j].location.longitude;
-						combinedData["temperature"]=combData["temperatures"][i].value;
-						finalData[i]=combinedData;
-						combinedData={"id":null,"location_latitude":null,"location_longitude":null,"temperature":null,"humidity":"unknown"};
+	
+			var finalData=[];
+			
+			var combinedData={"id":null,"location_latitude":null,"location_longitude":null,"temperature":null,"humidity":"unknown"};
+			
+			if(temperatureFilter) {
+				for(var i=0;i<combData["temperatures"].length;i++) {
+					for(var j=0;j<combData["locations"].length;j++) {
+						if(combData["temperatures"][i].station_id==combData["locations"][j].id) {
+							combinedData["id"]=combData["temperatures"][i].station_id;
+							combinedData["location_latitude"]=combData["locations"][j].location.latitude;
+							combinedData["location_longitude"]=combData["locations"][j].location.longitude;
+							combinedData["temperature"]=combData["temperatures"][i].value;
+							finalData[i]=combinedData;
+							combinedData={"id":null,"location_latitude":null,"location_longitude":null,"temperature":null,"humidity":"unknown"};
+						}
+					}
+				}
+			
+				for(var k=0;k<finalData.length;k++) {
+					for(var j=0;j<combData["humidity"].length;j++){
+						if(finalData[k]["id"]==combData["humidity"][j].station_id){ finalData[k]["humidity"]=combData["humidity"][j].value;}
+					}
+				}
+			
+				for(var l=0;l<finalData.length;l++) {
+					addWeather(finalData[l].location_latitude,finalData[l].location_longitude,finalData[l].temperature,finalData[l].humidity);
+				}
+			}
+			
+			
+			var crisis = values[3];
+			
+			if(fireFilter) {
+				//values[3];
+				var assistance, datetime, type, description, casualties, mobile, name, status, address;
+				
+				for(var x = 0; x < crisis.length; x++) {
+					type = values[3][x]['crisis_type'];
+					if(type.toLowerCase() == "fire") {
+						assistance = values[3][x]['assistance'];
+						datetime = values[3][x]['create_date_time'];
+						
+						description = values[3][x]['description'];
+						casualties = values[3][x]['injured_people_num'];
+						mobile = values[3][x]['mobile_number'];
+						name = values[3][x]['name'];
+						status = values[3][x]['status'];
+						address = values[3][x]['street_name'];
+						
+						addFire(1.1241, 103.124512, "Fire");
 					}
 				}
 			}
-		
-			for(var k=0;k<finalData.length;k++)
-			{
-				for(var j=0;j<combData["humidity"].length;j++)
-				{
-					if(finalData[k]["id"]==combData["humidity"][j].station_id)
-					{
-						finalData[k]["humidity"]=combData["humidity"][j].value;
-					}
-				}
-			}
-		
-			for(var l=0;l<finalData.length;l++)
-			{
-				addWeather(finalData[l].location_latitude,finalData[l].location_longitude,finalData[l].temperature,finalData[l].humidity);
-			}
-		}
-		
-		
-		if(fireFilter) {
-			alert("hi");
-		}
-		
-		return finalData;
-		
-		
-	});
+			
+			return finalData;
+			
+			
+		});
 		
 	}
 	
