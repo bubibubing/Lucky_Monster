@@ -189,6 +189,16 @@ html, body, #map {
 	margin: 0 0 0 1%;
 	font: 10pt monospace;
 }
+
+table.summary {
+}
+table.summary th {
+	text-align:left;
+	padding: 5px 15px 5px 5px ;
+}
+table.summary td {
+	padding: 5px 5px 5px 5px ;
+}
 </style>
 </head>
 
@@ -483,7 +493,7 @@ function reloadMap() {
 						
 						var lati, longi;
 						
-						message = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</th></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
+						message = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</td></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Description: </th><td>" + description + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
 						
 						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address.replace(/ /g, "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
 							lati = e["features"][0]["geometry"]["coordinates"][1];
@@ -515,7 +525,7 @@ function reloadMap() {
 						address = values[3][x]['street_name'];
 						
 						var lati, longi;
-						message = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</th></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
+						message = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</td></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Description: </th><td>" + description + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
 						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address.replace(/ /g, "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
 							lati = e["features"][0]["geometry"]["coordinates"][1];
 							longi = e["features"][0]["geometry"]["coordinates"][0];
