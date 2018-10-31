@@ -492,16 +492,6 @@ function reloadMap() {
 				if(fireFilter) {
 					if(type.toLowerCase() == "fire") {
 						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + addressHTML + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
-							assistance = values[3][x]['assistance'];
-							datetime = values[3][x]['create_date_time'];
-							type = values[3][x]['crisis_type'];
-							description = values[3][x]['description'];
-							casualties = values[3][x]['injured_people_num'];
-							mobile = values[3][x]['mobile_number'];
-							name = values[3][x]['name'];
-							status = values[3][x]['status'];
-							address = values[3][x]['street_name'];
-							
 							lati = e["features"][0]["geometry"]["coordinates"][1];
 							longi = e["features"][0]["geometry"]["coordinates"][0];
 							
@@ -514,16 +504,6 @@ function reloadMap() {
 				else if(gasLeakFilter) {
 					if(type.toLowerCase() == "gas leak") {
 						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + addressHTML + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
-							assistance = values[3][x]['assistance'];
-							datetime = values[3][x]['create_date_time'];
-							type = values[3][x]['crisis_type'];
-							description = values[3][x]['description'];
-							casualties = values[3][x]['injured_people_num'];
-							mobile = values[3][x]['mobile_number'];
-							name = values[3][x]['name'];
-							status = values[3][x]['status'];
-							address = values[3][x]['street_name'];
-							
 							lati = e["features"][0]["geometry"]["coordinates"][1];
 							longi = e["features"][0]["geometry"]["coordinates"][0];
 							
