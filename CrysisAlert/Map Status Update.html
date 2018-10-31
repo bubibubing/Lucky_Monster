@@ -16,6 +16,10 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" defer>
+var fireFilter = false;
+var gasLeakFilter = false;
+var diseaseFilter = false;
+var othersFilter = false;
 var temperatureFilter = true;
 var bombShelterFilter = false;
 var dengueFilter = false;
@@ -24,6 +28,50 @@ $(document).ready(function(e) {
 	reloadMap();
 	
 });
+function toggleFireFilter(e) {
+	if(fireFilter) {
+		fireFilter = false;
+		e.checked = false;
+	}
+	else {
+		fireFilter = true;
+		e.checked = true;
+	}
+	reloadMap();
+}
+function toggleGasLeakFilter(e) {
+	if(gasLeakFilter) {
+		gasLeakFilter = false;
+		e.checked = false;
+	}
+	else {
+		gasLeakFilter = true;
+		e.checked = true;
+	}
+	reloadMap();
+}
+function toggleDiseaseFilter(e) {
+	if(diseaseFilter) {
+		diseaseFilter = false;
+		e.checked = false;
+	}
+	else {
+		diseaseFilter = true;
+		e.checked = true;
+	}
+	reloadMap();
+}
+function toggleOthersFilter(e) {
+	if(othersFilter) {
+		othersFilter = false;
+		e.checked = false;
+	}
+	else {
+		othersFilter = true;
+		e.checked = true;
+	}
+	reloadMap();
+}
 function toggleTemperatureFilter(e) {
 	if(temperatureFilter) {
 		temperatureFilter = false;
@@ -119,6 +167,7 @@ html, body, #map {
 	right: 1%;
 	width: auto;
 	height : 90%;
+	height : auto;
 	/*margin-left: -180px;*/
 	margin: 0 auto;
 	background-color: #FFF;
@@ -160,14 +209,20 @@ html, body, #map {
 </div>
 
 <div id="panel">
-	<h4 style="margin:2px 0; font: normal 16pt/1em monospace; text-align: left;">Filters</h4><hr><br>
+	<h4 style="margin:2px 0; font: normal 16pt/1em monospace; text-align: left; padding-bottom: 5px; border-bottom: 1px solid black;">Filters</h4>
+	<br>
+	<input type="checkbox" name="fireFilter" id="fireFilter" onClick="toggleFireFilter(this);"> <label for="fireFilter">Fires</label><br>
+	<input type="checkbox" name="gasLeakFilter" id="gasLeakFilter" onClick="toggleGasLeakFilter(this);"> <label for="gasLeakFilter">Gas Leak</label><br>
+	<input type="checkbox" name="diseaseFilter" id="diseaseFilter" onClick="toggleDiseaseFilter(this);"> <label for="diseaseFilter">Diseases</label><br>
+	<input type="checkbox" name="dengueFilter" id="dengueFilter" onClick="toggleDengueFilter(this);"> <label for="dengueFilter">Dengue</label> <br>
+	<input type="checkbox" name="othersFilter" id="othersFilter" onClick="toggleOthersFilter(this);"> <label for="othersFilter">Others</label><br>
+	<hr>
 	<!--<input onClick="toggleTemperatureFilter(this)" type="button" class="filterOn" value="Temperature" /><br><br> -->
-	<input type="checkbox" name="temperatureFilter" id="temperatureFilter" onClick="toggleTemperatureFilter(this);" checked="checked"> <label for="temperatureFilter">Temperature</label> <br><br>
+	<input type="checkbox" name="temperatureFilter" id="temperatureFilter" onClick="toggleTemperatureFilter(this);" checked="checked"> <label for="temperatureFilter">Temperature | PSI</label> <br>
 	<!-- <input onClick="toggleBombShelterFilter(this)" type="button" class="filterOff" value="Bomb Shelter" /><br><br> -->
-	<input type="checkbox" name="bombShelterFilter" id="bombShelterFilter" onClick="toggleBombShelterFilter(this);"> <label for="bombShelterFilter">Bomb Shelter</label> <br><br>
+	<input type="checkbox" name="bombShelterFilter" id="bombShelterFilter" onClick="toggleBombShelterFilter(this);"> <label for="bombShelterFilter">Bomb Shelters</label> <br>
 	<!-- <input onClick="toggleDengueFilter(this)" type="button" class="filterOn" value="Dengue Filter" /><br><br> -->
-	<input type="checkbox" name="dengueFilter" id="dengueFilter" onClick="toggleDengueFilter(this);"> <label for="dengueFilter">Dengue</label> <br><br>
-	</span>
+	<br>
 </div>
 
 <div id="footer">Last updated: <span id="dateDiv"></span></div>
