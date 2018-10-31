@@ -405,6 +405,7 @@ function reloadMap() {
 		var apiReq3 = fetch('https://data.gov.sg/api/action/datastore_search?resource_id=4ee17930-4780-403b-b6d4-b963c7bb1c09').then(function(response){return response.json()});
 		//var apiReq4 = fetch('WHATEVER API URL HERE').then(function(response){return response.json()});
 		var apiReq4 = fetch('http://172.21.148.165:8000/api/crisis_view/?format=json').then(function(response) { return response.json()});
+		var apiReq4 = fetch('http://172.21.148.165/fire-sample.json').then(function(response) { return response.json()});
 		
 		var combData= {"locations":{},"temperatures":{},"humidity":{},"crisisevents":{}};
 		
