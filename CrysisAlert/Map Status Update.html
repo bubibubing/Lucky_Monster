@@ -508,7 +508,6 @@ function reloadMap() {
 							success: function(e){ 
 								lati = e["features"][0]["geometry"]["coordinates"][1];
 								longi = e["features"][0]["geometry"]["coordinates"][0];
-								console.log(data);
 								addFire(lati, longi, firemessage);
 							} 
 						});
