@@ -263,6 +263,7 @@ function reloadMap() {
 	var DengueIcon = new DisasterIcon({iconUrl:'images/dengue.png'/*, shadowUrl:'png'*/});
 	var ShelterIcon = new DisasterIcon({iconUrl:'images/shelter.png'/*, shadowUrl:'png'*/});
 	var FireIcon = new DisasterIcon({iconUrl:'images/fire.png'/*, shadowUrl:'png'*/});
+	var GasLeakIcon = new DisasterIcon({iconUrl:'images/disease.png'/*, shadowUrl:'png'*/});
 
 	//put marker on map. put icon = 0 if want to use default icon
 	function mark(lat, long, icon){
@@ -354,7 +355,6 @@ function reloadMap() {
 	function addWeather(lat,longitude,temperature,humidity){
 		L.marker(new L.LatLng(lat,longitude),{icon:createLabelIcon("textLabelclass",temperature+"°C | " + humidity +"%")}).addTo(map);
 	}
-	
 	function addDengueCase(arrayLatLng, noOfCases){
 		var polygon = L.polygon(arrayLatLng, {color: 'red'});
 		var centreOfPolygon=polygon.getBounds().getCenter();
@@ -362,9 +362,11 @@ function reloadMap() {
 		var message = '<b>' + noOfCases + '</b> Dengue ' + ( (noOfCases==1) ? 'Case' : 'Cases');
 		popup(mark(centreOfPolygon.lat, centreOfPolygon.lng, DengueIcon), message);
 	}
-	
 	function addFire(lat, lon, message) {
 		popup(mark(lat, lon, FireIcon), message);
+	}
+	function addGasLeak(lat, lon, message) {
+		popup(mark(lat, lon, GasLeakIcon), message);
 	}
 	
 	function currentTime(){
@@ -466,28 +468,57 @@ function reloadMap() {
 				var assistance, datetime, type, description, casualties, mobile, name, status, address;
 				
 				for(var x = 0; x < crisis.length; x++) {
-					type = values[3][x]['crisis_type'];
+					type = values[4][x]['crisis_type'];
 					if(type.toLowerCase() == "fire") {
 						
-						assistance = values[3][x]['assistance'];
-						datetime = values[3][x]['create_date_time'];
+						assistance = values[4][x]['assistance'];
+						datetime = values[4][x]['create_date_time'];
 						
-						description = values[3][x]['description'];
-						casualties = values[3][x]['injured_people_num'];
-						mobile = values[3][x]['mobile_number'];
-						name = values[3][x]['name'];
-						status = values[3][x]['status'];
-						address = values[3][x]['street_name'];
+						description = values[4][x]['description'];
+						casualties = values[4][x]['injured_people_num'];
+						mobile = values[4][x]['mobile_number'];
+						name = values[4][x]['name'];
+						status = values[4][x]['status'];
+						address = values[4][x]['street_name'];
 						
 						var lati, longi;
-						
-						console.log("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address.replace(/ /g, "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA");
 						
 						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address.replace(/ /g, "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
 							lati = e["features"][0]["geometry"]["coordinates"][1];
 							longi = e["features"][0]["geometry"]["coordinates"][0];
 							
 							addFire(lati, longi, "Fire!");
+						});
+						
+					}
+				}
+			}
+			if(gasLeakFilter) {
+				//values[3];
+				//https://api.mapbox.com/geocoding/v5/mapbox.places/<ADDRESS>.json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA
+				var assistance, datetime, type, description, casualties, mobile, name, status, address;
+				
+				for(var x = 0; x < crisis.length; x++) {
+					type = values[4][x]['crisis_type'];
+					if(type.toLowerCase() == "gas leak") {
+						
+						assistance = values[4][x]['assistance'];
+						datetime = values[4][x]['create_date_time'];
+						
+						description = values[4][x]['description'];
+						casualties = values[4][x]['injured_people_num'];
+						mobile = values[4][x]['mobile_number'];
+						name = values[4][x]['name'];
+						status = values[4][x]['status'];
+						address = values[4][x]['street_name'];
+						
+						var lati, longi;
+						
+						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address.replace(/ /g, "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
+							lati = e["features"][0]["geometry"]["coordinates"][1];
+							longi = e["features"][0]["geometry"]["coordinates"][0];
+							
+							addGasLeak(lati, longi, "GasLeak!");
 						});
 						
 					}
