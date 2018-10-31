@@ -489,6 +489,8 @@ function reloadMap() {
 				
 				addressHTML = address.replace(/ /g, "%20");
 				
+				var message = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</td></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Description: </th><td>" + description + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
+				
 				if(fireFilter) {
 					if(type.toLowerCase() == "fire") {
 						var firemessage = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</td></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Description: </th><td>" + description + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
@@ -497,7 +499,7 @@ function reloadMap() {
 							lati = e["features"][0]["geometry"]["coordinates"][1];
 							longi = e["features"][0]["geometry"]["coordinates"][0];
 							
-							addFire(lati, longi, firemessage);
+							addFire(lati, longi, message);
 						});
 
 					}
@@ -510,7 +512,7 @@ function reloadMap() {
 							lati = e["features"][0]["geometry"]["coordinates"][1];
 							longi = e["features"][0]["geometry"]["coordinates"][0];
 							
-							addGasLeak(lati, longi, gasmessage);
+							addGasLeak(lati, longi, message);
 						});
 
 					}
