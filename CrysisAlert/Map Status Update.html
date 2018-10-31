@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Map Status Update</title>
+<meta charset="utf-8" />
+
+<!-- https://cdnjs.com/libraries/leaflet-plugins -->
+
+<!--LEAFLET-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>-->
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" defer>
+var temperatureFilter = true;
+var bombShelterFilter = false;
+var dengueFilter = false;
+$(document).ready(function(e) {
+	
+	reloadMap();
+	
+});
+function toggleTemperatureFilter(e) {
+	if(temperatureFilter) {
+		temperatureFilter = false;
+		e.checked = false;
+		/*e.classList.remove("filterOn");
+		e.classList.add("filterOff");*/
+	}
+	else {
+		temperatureFilter = true;
+		e.checked = true;
+		/*e.classList.remove("filterOff");
+		e.classList.add("filterOn");*/
+	}
+	reloadMap();
+}
+function toggleBombShelterFilter(e) {
+	if(bombShelterFilter) {
+		bombShelterFilter = false;
+		e.checked = false;
+		/*e.classList.remove("filterOn");
+		e.classList.add("filterOff");*/
+	}
+	else {
+		bombShelterFilter = true;
+		e.checked = true;
+		/*e.classList.remove("filterOff");
+		e.classList.add("filterOn");*/
+	}
+	reloadMap();
+}
+function toggleDengueFilter(e) {
+	if(dengueFilter) {
+		dengueFilter = false;
+		e.checked = false;
+		/*e.classList.remove("filterOn");
+		e.classList.add("filterOff");*/
+	}
+	else {
+		dengueFilter = true;
+		bombShelterFilter = true;
+		e.checked = true;
+		/*e.classList.remove("filterOff");
+		e.classList.add("filterOn");*/
+	}
+	reloadMap();
+}
+</script>
+<style type='text/css'>
+body {
+	padding: 0;
+	margin: 0;
+}
+html, body, #map {
+	height: 100%;
+	width: 100%;
+}
+.textLabelclass {
+	font-size: 2em;
+	white-space: nowrap;
+	font-weight: 300;
+	text-shadow: 0 0 0.1em black, 0 0 0.1em black, 0 0 0.1em black, 0 0 0.1em black, 0 0 0.1em;
+	color: white;
+}
+#header {
+	position: absolute;
+	top: 0;
+	left: 5%;
+	width: 70%;
+	margin: 0 auto 0;
+	background-color: #FFF;
+	padding: 10px 0 10px 20px;
+	border: 1px solid #999;
+	border-top: none;
+	z-index: 99999;
+}
+#panel {
+	/*position: absolute;
+	top: 5px;
+	left: 50%;
+	margin-left: -180px;
+	margin: 0 auto 0 -300px;
+	background-color: #FFF;
+	padding: 5px;
+	border: 1px solid #999;
+	z-index: 99999;*/
+	/* remove <br> inside panel if using this */
+
+
+	/* new */
+	position: fixed;
+	top: 5px;
+	left: inherit;
+	right: 1%;
+	width: auto;
+	height : 90%;
+	/*margin-left: -180px;*/
+	margin: 0 auto;
+	background-color: #FFF;
+	padding: 10px 1% 10px 1%;
+	border: 1px solid #999;
+	border-width: 1px 0px 1px 1px;
+	border-right: 1px solid #999;
+	z-index: 99999;
+	text-align: left;
+}
+#panel input {
+	color: white;
+	cursor: pointer;
+}
+#panel input.filterOff {
+	background: red;
+}
+#panel input.filterOn {
+	background: green;
+}
+
+#footer {
+	position: fixed;
+	bottom: 2.5%;
+	background: white;
+	z-index:999;
+	width: auto;
+	padding: 10px 25% 10px 20px;
+	margin: 0 0 0 1%;
+	font: 10pt monospace;
+}
+</style>
+</head>
+
+<body>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+<div id="header">
+	<h2 style="font-weight: normal; margin: 0; font-family: Roboto, Tahoma, Arial, Serif;">Lucky Monster's Map Status Update</h2>
+</div>
+
+<div id="panel">
+	<h4 style="margin:2px 0; font: normal 16pt/1em monospace; text-align: left;">Filters</h4><hr><br>
+	<!--<input onClick="toggleTemperatureFilter(this)" type="button" class="filterOn" value="Temperature" /><br><br> -->
+	<input type="checkbox" name="temperatureFilter" id="temperatureFilter" onClick="toggleTemperatureFilter(this);" checked="checked"> <label for="temperatureFilter">Temperature</label> <br><br>
+	<!-- <input onClick="toggleBombShelterFilter(this)" type="button" class="filterOff" value="Bomb Shelter" /><br><br> -->
+	<input type="checkbox" name="bombShelterFilter" id="bombShelterFilter" onClick="toggleBombShelterFilter(this);"> <label for="bombShelterFilter">Bomb Shelter</label> <br><br>
+	<!-- <input onClick="toggleDengueFilter(this)" type="button" class="filterOn" value="Dengue Filter" /><br><br> -->
+	<input type="checkbox" name="dengueFilter" id="dengueFilter" onClick="toggleDengueFilter(this);"> <label for="dengueFilter">Dengue</label> <br><br>
+	</span>
+</div>
+
+<div id="footer">Last updated: <span id="dateDiv"></span></div>
+<div id="map"> </div>
+<script>
+function updateDate() {
+	document.getElementById("dateDiv").innerText = new Date();
+}
+updateDate();
+function reloadMap() {
+	document.getElementById('map').outerHTML = "<div id='map' style='width: 100%; height: 100%;'></div>";
+	
+	var map = L.map('map').setView([1.3701, 103.8298], 12);
+	mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+	L.tileLayer(
+		'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; ' + mapLink + ' Contributors',
+		maxZoom: 18,
+	}).addTo(map);
+	
+	var createLabelIcon = function(labelClass,labelText){
+		return L.divIcon({ 
+		className: labelClass,
+		html: labelText
+		})
+	}
+	
+	//icon class. Ex: FireIcon = new DisasterIcon({iconUrl:'png', shadowUrl:'png'});
+	var DisasterIcon = L.Icon.extend({
+		options: {
+	        iconSize:     [50, 50],
+			shadowSize:   [50, 64],
+			iconAnchor:   [22, 94],
+			shadowAnchor: [4, 62],
+			popupAnchor:  [-3, -76]
+		}
+	});
+	
+	var DengueIcon = new DisasterIcon({iconUrl:'images/dengue.png'/*, shadowUrl:'png'*/});
+	var ShelterIcon = new DisasterIcon({iconUrl:'images/shelter.png'/*, shadowUrl:'png'*/});
+
+	//put marker on map. put icon = 0 if want to use default icon
+	function mark(lat, long, icon){
+		if (icon == 0){
+			return L.marker([lat, long]).addTo(map);
+		}
+		else{
+			return L.marker([lat, long], {icon:icon}).addTo(map);
+		}
+	}
+	
+	//draw circle on map
+	function circle(lat, long, color, opacity, radius){
+		return L.circle([lat, long], {
+	    color: color,
+	    fillColor: '#f03',
+	    fillOpacity: opacity,
+	    radius: radius
+		}).addTo(map);
+	}
+	
+	//draw polygon on map. Enter lats, longs sequentially as the parameter
+	function polygon(){
+		/*console.log(arguments);*/
+		var a = [];
+		for (var i = 0; i < arguments.length/2; i++){
+			a.push([arguments[2*i], arguments[2*i + 1]]);
+		}
+		return L.polygon(a).addTo(map);
+	}
+	
+	//pop up
+	function popup(object, msg){
+		object.bindPopup(msg);
+	}
+	
+	/*var someFeatures = [{
+		"type": "Feature",
+		"properties": {
+			"name": "Fire Alert",
+			"type": "fire",
+			"show_on_map": true
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-104.99404, 39.75621]
+		}
+	}, {
+		"type": "Feature",
+		"properties": {
+			"name": "Crime Alert",
+			"type": "crime",
+			"show_on_map": true
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-104.98404, 39.74621]
+		}
+	}];
+	
+	var markers = show(someFeatures);
+	
+	function show(features){
+		return L.geoJSON(features, {
+			filter: function(feature, layer) {
+				return feature.properties.show_on_map;
+			}
+			, onEachFeature: function (feature, layer) {
+				layer.bindPopup(feature.properties.name);
+			}
+			, pointToLayer: icons
+		}).addTo(map);
+	};
+	
+	function oldAddDengueCase(arrayLatLng, noOfCases){
+		// create a red polygon from an array of LatLng points
+		var latlngs = arrayLatLng;
+		var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+		var centreOfPolygon=polygon.getBounds().getCenter();
+		var marker = L.marker(centreOfPolygon).addTo(map).bindPopup(noOfCases+' Dengue Cases').openPopup();	
+		var icon = marker.options.icon;
+		icon.options.iconSize = [20, 30];
+		marker.setIcon(icon);
+		
+		// zoom the map to the polygon
+		// map.fitBounds(polygon.getBounds());
+	}*/
+	
+	function addWeather(lat,longitude,temperature,humidity){
+		L.marker(new L.LatLng(lat,longitude),{icon:createLabelIcon("textLabelclass",temperature+"°C | " + humidity +"%")}).addTo(map);
+	}
+	
+	function addDengueCase(arrayLatLng, noOfCases){
+		var polygon = L.polygon(arrayLatLng, {color: 'red'});
+		var centreOfPolygon=polygon.getBounds().getCenter();
+		
+		var message = '<b>' + noOfCases + '</b> Dengue ' + ( (noOfCases==1) ? 'Case' : 'Cases');
+		popup(mark(centreOfPolygon.lat, centreOfPolygon.lng, DengueIcon), message);
+	}
+	
+	function currentTime(){
+		var currentTime = new Date();
+		var currentYear = currentTime.getFullYear();
+		var currentMonth = currentTime.getMonth() + 1;
+		var currentDate = currentTime.getDate();
+		var currentHour=currentTime.getHours();
+		var currentMinute=currentTime.getMinutes();
+		var currentSecond=currentTime.getSeconds();
+		
+		var currentTimeString = currentYear+"-";
+		
+		currentTimeString += (currentMonth<10) ? ("0"+currentMonth+"-") : (currentMonth+"-");
+		currentTimeString += (currentDate<10) ? ("0"+currentDate+"T") : (currentDate+"T");
+		currentTimeString += (currentHour<10) ? ("0"+currentHour+"%3A") : (currentHour+"%3A");
+		currentTimeString += (currentMinute<10) ? ("0"+currentMinute+"%3A") : (currentMinute+"%3A");
+		currentTimeString += (currentSecond<10) ? ("0"+currentSecond) : currentSecond;
+	
+		return currentTimeString;
+	}
+	
+	function getAPIData(){
+	
+	var apiReq1 = fetch('https://api.data.gov.sg/v1/environment/air-temperature?date_time='+curTime).then(function(response){return response.json()});
+	var apiReq2 = fetch('https://api.data.gov.sg/v1/environment/relative-humidity?date_time='+curTime).then(function(response){return response.json()});
+	var apiReq3 = fetch('https://data.gov.sg/api/action/datastore_search?resource_id=4ee17930-4780-403b-b6d4-b963c7bb1c09').then(function(response){return response.json()});
+	//var apiReq4 = fetch('WHATEVER API URL HERE').then(function(response){return response.json()});
+	
+	var combData= {"locations":{},"temperatures":{},"humidity":{},"crisisevents":{}};
+	
+	var locationsShelter;
+	
+	Promise.all([apiReq1,apiReq2,apiReq3/*,apiReq4*/]).then(function(values){
+	
+		combData["locations"] = values[0].metadata.stations;
+		combData["temperatures"] = values[0].items[0].readings;
+		combData["humidity"] = values[1].items[0].readings;
+		locationsShelter=values[2].result.records;
+		//combData["crisisevents"]=values[3];
+		
+		if(bombShelterFilter) {
+			for(var ls=0;ls<locationsShelter.length;ls++)
+			{
+				var lsName=locationsShelter[ls].name;
+				var lsAddress=locationsShelter[ls].address;
+				var finalAddress=lsAddress.replace(lsName,'');
+				
+				console.log(finalAddress);
+			
+				$.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + finalAddress, function(data) {
+					
+					if(data.length!=0)
+					{
+						var lat1=data[0].lat;
+						var lon1=data[0].lon;
+						/*var lat2=lat1+0.00500000000000;
+						var lon2=lon1+0.005000000000;
+						var imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/US_fallout_shelter_symbol.svg/2000px-US_fallout_shelter_symbol.svg.png';
+						var imageBounds = [[lat1,lon1],[lat2,lon2]];
+						L.imageOverlay(imageUrl, imageBounds).addTo(map);*/
+						mark(lat1, lon1, ShelterIcon);
+					}
+				});
+			}
+		}
+
+		var finalData=[];
+		
+		var combinedData={"id":null,"location_latitude":null,"location_longitude":null,"temperature":null,"humidity":"unknown"};
+		
+		if(temperatureFilter) {
+			for(var i=0;i<combData["temperatures"].length;i++)
+			{
+				for(var j=0;j<combData["locations"].length;j++)
+				{
+					if(combData["temperatures"][i].station_id==combData["locations"][j].id)
+					{
+						combinedData["id"]=combData["temperatures"][i].station_id;
+						combinedData["location_latitude"]=combData["locations"][j].location.latitude;
+						combinedData["location_longitude"]=combData["locations"][j].location.longitude;
+						combinedData["temperature"]=combData["temperatures"][i].value;
+						finalData[i]=combinedData;
+						combinedData={"id":null,"location_latitude":null,"location_longitude":null,"temperature":null,"humidity":"unknown"};
+					}
+				}
+			}
+		
+			for(var k=0;k<finalData.length;k++)
+			{
+				for(var j=0;j<combData["humidity"].length;j++)
+				{
+					if(finalData[k]["id"]==combData["humidity"][j].station_id)
+					{
+						finalData[k]["humidity"]=combData["humidity"][j].value;
+					}
+				}
+			}
+		
+			for(var l=0;l<finalData.length;l++)
+			{
+				addWeather(finalData[l].location_latitude,finalData[l].location_longitude,finalData[l].temperature,finalData[l].humidity);
+			}
+		}
+		
+		return finalData;
+		
+		
+	});
+		
+	}
+	
+	function getDengueCases(){
+		addDengueCase([[1.38975986241412,103.892253449306],[1.39156858970772,103.892253494158],[1.39156854384845,103.894050650222],[1.38975981661448,103.894050604001],[1.38975986241412,103.892253449306]],1);
+		addDengueCase([[1.28485427372252,103.818570703766],[1.28666300347133,103.818570693377],[1.28666301329895,103.82036777397],[1.28485428353633,103.820367783095],[1.28485427372252,103.818570703766]],2);
+		addDengueCase([[1.3156026696112,103.849121243904],[1.31741139890878,103.849121255281],[1.31741138679789,103.850918357624],[1.31560265751694,103.850918344952],[1.3156026696112,103.849121243904]],1);
+		addDengueCase([[1.29751541005929,103.841932778072],[1.29932413966707,103.841932784184],[1.29932413286814,103.843729873708],[1.29751540326983,103.843729866319],[1.29751541005929,103.841932778072]],1);
+		addDengueCase([[1.26857572295372,103.822164932681],[1.27038445295843,103.82216492492],[1.27038446014618,103.823961994218],[1.26857573013123,103.82396200073],[1.26857572295372,103.822164932681]],1);
+		addDengueCase([[1.3011327348952,103.805990974813],[1.30294146426412,103.805990955326],[1.30294148324604,103.807788047242],[1.30113275385076,103.807788065449],[1.3011327348952,103.805990974813]],1);
+		addDengueCase([[1.31379354353945,103.78622274399],[1.31560227231695,103.786222710087],[1.3156023058112,103.788019810623],[1.31379357698763,103.788019843233],[1.31379354353945,103.78622274399]],1);
+		addDengueCase([[1.31741144604341,103.829353128868],[1.31922017537936,103.829353125996],[1.31922017761907,103.83115022971],[1.31741144828004,103.831150231285],[1.31741144604341,103.829353128868]],1);
+		addDengueCase([[1.35720012217124,103.960543548866],[1.35900884643459,103.960543643435],[1.35900875051914,103.962340771607],[1.35720002638349,103.962340675702],[1.35720012217124,103.960543548866]],1);
+		addDengueCase([[1.32645400340596,103.906628777961],[1.32826273112406,103.906628831215],[1.32826267683125,103.908425939925],[1.32645394918711,103.908425885365],[1.32645400340596,103.906628777961]],1);
+		addDengueCase([[1.36624393201017,103.956949755527],[1.36805265638721,103.956949848037],[1.36805256254218,103.958746983166],[1.36624383828926,103.958746889312],[1.36624393201017,103.956949755527]],1);
+		addDengueCase([[1.373481223639,103.895847333129],[1.3752899510605,103.89584738016],[1.37528990301461,103.897644523853],[1.37348117565632,103.89764447547],[1.373481223639,103.895847333129]],1);
+		addDengueCase([[1.34996550265816,103.955151806571],[1.35177422740229,103.955151896649],[1.35177413601266,103.956949019861],[1.34996541139086,103.956948928454],[1.34996550265816,103.955151806571]],1);
+		addDengueCase([[1.33188023960258,103.904831826543],[1.333688967313,103.904831878704],[1.33368891411876,103.906628991414],[1.3318801864805,103.906628937942],[1.33188023960258,103.904831826543]],1);
+		addDengueCase([[1.36262911582357,103.885064245412],[1.36443784375105,103.885064284023],[1.36443780418978,103.886861419975],[1.36262907631476,103.886861380023],[1.36262911582357,103.885064245412]],1);
+		addDengueCase([[1.34815712911933,103.9479632332],[1.34996585436186,103.947963317849],[1.34996576844076,103.949760440205],[1.34815704331339,103.949760354228],[1.34815712911933,103.9479632332]],1);
+		addDengueCase([[1.37167239899303,103.899441568078],[1.37348112631379,103.899441617747],[1.37348107561141,103.901238759958],[1.37167234835744,103.901238708939],[1.37167239899303,103.899441568078]],1);
+		addDengueCase([[1.38975956697668,103.903036376539],[1.39156829388563,103.9030364296],[1.39156823975978,103.904833585275],[1.3897595129212,103.904833530847],[1.38975956697668,103.903036376539]],1);
+		addDengueCase([[1.35358543653146,103.886861181057],[1.35539416454243,103.886861220744],[1.35539412390153,103.888658349954],[1.35358539594482,103.888658308935],[1.35358543653146,103.886861181057]],1);
+		addDengueCase([[1.43497850959782,103.797003508899],[1.43678723678133,103.797003480344],[1.43678726482671,103.798800671828],[1.43497853760788,103.798800698971],[1.43497850959782,103.797003508899]],1);
+		addDengueCase([[1.43497879640211,103.829352933971],[1.43678752394727,103.829352930842],[1.43678752638665,103.83115012267],[1.43497879883842,103.831150124386],[1.43497879640211,103.829352933971]],1);
+		addDengueCase([[1.43317007126149,103.8311501261],[1.43497879883842,103.831150124386],[1.43497879985397,103.832947314803],[1.43317007227575,103.832947315107],[1.43317007126149,103.8311501261]],2);
+		addDengueCase([[1.44402217341421,103.798800562915],[1.44583090048895,103.798800535602],[1.44583092727942,103.80059773421],[1.44402220017115,103.800597760102],[1.44402217341421,103.798800562915]],1);
+		addDengueCase([[1.43859625146368,103.82935292771],[1.44040497895131,103.829352924573],[1.44040498139684,103.831150119232],[1.43859625390614,103.831150120952],[1.43859625146368,103.82935292771]],1);
+		addDengueCase([[1.38795102157724,103.770046934474],[1.38975974875066,103.770046886361],[1.38975979651736,103.77184404097],[1.38795106928175,103.771844087717],[1.38795102157724,103.770046934474]],1);
+		addDengueCase([[1.42774387684593,103.825758576894],[1.42955260449418,103.825758570971],[1.42955260975205,103.827555757149],[1.42774388209715,103.827555761667],[1.42774387684593,103.825758576894]],1);
+		addDengueCase([[1.3156020619037,103.890454560442],[1.3174107903655,103.890454601605],[1.31741074825528,103.892251703097],[1.31560201985131,103.892251660639],[1.3156020619037,103.890454560442]],1);
+		addDengueCase([[1.34815946684929,103.876078317915],[1.34996819522929,103.87607834948],[1.34996816277054,103.87787547499],[1.34815943443404,103.877875442098],[1.34815946684929,103.876078317915]],1);
+		addDengueCase([[1.30474904765281,103.913816511616],[1.30655777538044,103.913816569136],[1.30655771680084,103.915613661986],[1.30474898915433,103.915613603182],[1.30474904765281,103.913816511616]],1);
+		addDengueCase([[1.30836701844441,103.895845681281],[1.3101757468324,103.895845726081],[1.31017570106206,103.897642822223],[1.30836697273727,103.897642776134],[1.30836701844441,103.895845681281]],1);
+		addDengueCase([[1.33730469198393,103.949759840794],[1.33911341727262,103.949759926078],[1.33911333071668,103.951557040382],[1.33730460554494,103.951556953781],[1.33730469198393,103.949759840794]],1);
+		addDengueCase([[1.3373049898046,103.723323274955],[1.33911371549623,103.723323194371],[1.33911379599269,103.725120309187],[1.33730507019229,103.725120388455],[1.3373049898046,103.723323274955]],1);
+		addDengueCase([[1.33911182714865,103.687380923298],[1.34092055026202,103.687380816242],[1.34092065741908,103.689177929858],[1.33911193416112,103.689178035596],[1.33911182714865,103.687380923298]],1);
+		addDengueCase([[1.34092055026202,103.687380816242],[1.34272927334857,103.687380709041],[1.34272938065022,103.689177823977],[1.34092065741908,103.689177929858],[1.34092055026202,103.687380816242]],1);
+		addDengueCase([[1.37709771522615,103.741292910265],[1.37890644132698,103.741292840838],[1.3789065105641,103.743089986059],[1.37709778437242,103.743090054129],[1.37709771522615,103.741292910265]],1);
+		addDengueCase([[1.34634975294199,103.752076804418],[1.34815848002455,103.752076744494],[1.34815853970859,103.753873867422],[1.34634981254593,103.753873926021],[1.34634975294199,103.752076804418]],1);
+	}
+	
+	var curTime = currentTime();
+	/*console.log(curTime);*/
+	getAPIData();
+	if(dengueFilter) {getDengueCases();}
+	updateDate();
+}
+</script>
+</body>
+</html>
