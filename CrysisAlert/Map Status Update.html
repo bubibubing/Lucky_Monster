@@ -472,40 +472,73 @@ function reloadMap() {
 			
 			var crisis = values[3];
 			
-			if(fireFilter) {
-				//values[3];
-				//https://api.mapbox.com/geocoding/v5/mapbox.places/<ADDRESS>.json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA
-				var assistance, datetime, type, description, casualties, mobile, name, status, address;
-				var lati, longi;
+			var assistance, datetime, type, description, casualties, mobile, name, status, address;
+			var lati, longi;
+			
+			for(var x = 0; x < crisis.length; x++) {
+				assistance = values[3][x]['assistance'];
+				datetime = values[3][x]['create_date_time'];
+				type = values[3][x]['crisis_type'];
+				description = values[3][x]['description'];
+				casualties = values[3][x]['injured_people_num'];
+				mobile = values[3][x]['mobile_number'];
+				name = values[3][x]['name'];
+				status = values[3][x]['status'];
+				address = values[3][x]['street_name'];
 				
-				for(var x = 0; x < crisis.length; x++) {
-					type = values[3][x]['crisis_type'];
+				addressHTML = address.replace(/ /g, "%20");
+				
+				if(fireFilter) {
 					if(type.toLowerCase() == "fire") {
-						assistance = values[3][x]['assistance'];
-						datetime = values[3][x]['create_date_time'];
-						
-						description = values[3][x]['description'];
-						casualties = values[3][x]['injured_people_num'];
-						mobile = values[3][x]['mobile_number'];
-						name = values[3][x]['name'];
-						status = values[3][x]['status'];
-						address = values[3][x]['street_name'];
-							
-						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + address.replace(/ /g, "%20") + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
+						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + addressHTML + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
+							assistance = values[3][x]['assistance'];
+							datetime = values[3][x]['create_date_time'];
+							type = values[3][x]['crisis_type'];
+							description = values[3][x]['description'];
+							casualties = values[3][x]['injured_people_num'];
+							mobile = values[3][x]['mobile_number'];
+							name = values[3][x]['name'];
+							status = values[3][x]['status'];
+							address = values[3][x]['street_name'];
 							
 							lati = e["features"][0]["geometry"]["coordinates"][1];
 							longi = e["features"][0]["geometry"]["coordinates"][0];
 							
-							message = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</td></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Description: </th><td>" + description + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
-							addFire(lati, longi, message);
+							var firemessage = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</td></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Description: </th><td>" + description + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
+							addFire(lati, longi, firemessage);
 						});
-						
+
+					}
+				}
+				else if(gasLeakFilter) {
+					if(type.toLowerCase() == "gas leak") {
+						$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + addressHTML + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
+							assistance = values[3][x]['assistance'];
+							datetime = values[3][x]['create_date_time'];
+							type = values[3][x]['crisis_type'];
+							description = values[3][x]['description'];
+							casualties = values[3][x]['injured_people_num'];
+							mobile = values[3][x]['mobile_number'];
+							name = values[3][x]['name'];
+							status = values[3][x]['status'];
+							address = values[3][x]['street_name'];
+							
+							lati = e["features"][0]["geometry"]["coordinates"][1];
+							longi = e["features"][0]["geometry"]["coordinates"][0];
+							
+							var gasmessage = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</td></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Description: </th><td>" + description + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
+							addFire(lati, longi, gasmessage);
+						});
+
 					}
 				}
 			}
-			if(gasLeakFilter) {
-				//values[3];
+			
+			/*if(fireFilter) {
 				//https://api.mapbox.com/geocoding/v5/mapbox.places/<ADDRESS>.json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA
+				
+			}*/
+			/*if(gasLeakFilter) {
 				var assistance, datetime, type, description, casualties, mobile, name, status, address;
 				var lati, longi;
 								
@@ -534,7 +567,7 @@ function reloadMap() {
 						
 					}
 				}
-			}
+			}*/
 			
 			return finalData;
 			
