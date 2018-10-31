@@ -470,7 +470,6 @@ function reloadMap() {
 						if(finalData[k]["id"]==combData["humidity"][j].station_id){ finalData[k]["humidity"]=combData["humidity"][j].value;}
 					}
 				}
-			
 				for(var l=0;l<finalData.length;l++) {
 					addWeather(finalData[l].location_latitude,finalData[l].location_longitude,finalData[l].temperature,finalData[l].humidity);
 				}
@@ -544,7 +543,6 @@ function reloadMap() {
 								addGasLeak(lati, longi, message);
 							} 
 						});
-
 					}
 				}
 				if(diseaseFilter) {
@@ -568,7 +566,6 @@ function reloadMap() {
 								addDisease(lati, longi, message);
 							} 
 						});
-
 					}
 				}
 			}
