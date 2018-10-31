@@ -388,12 +388,13 @@ function reloadMap() {
 	var apiReq2 = fetch('https://api.data.gov.sg/v1/environment/relative-humidity?date_time='+curTime).then(function(response){return response.json()});
 	var apiReq3 = fetch('https://data.gov.sg/api/action/datastore_search?resource_id=4ee17930-4780-403b-b6d4-b963c7bb1c09').then(function(response){return response.json()});
 	//var apiReq4 = fetch('WHATEVER API URL HERE').then(function(response){return response.json()});
+	var apiReq4 = fetch('http://172.21.148.165/fire-sample.json', {mode: 'no-cors'}).then(function(response) { return response.json()});
 	
 	var combData= {"locations":{},"temperatures":{},"humidity":{},"crisisevents":{}};
 	
 	var locationsShelter;
 	
-	Promise.all([apiReq1,apiReq2,apiReq3/*,apiReq4*/]).then(function(values){
+	Promise.all([apiReq1,apiReq2,apiReq3,apiReq4]).then(function(values){
 	
 		combData["locations"] = values[0].metadata.stations;
 		combData["temperatures"] = values[0].items[0].readings;
@@ -463,6 +464,11 @@ function reloadMap() {
 			{
 				addWeather(finalData[l].location_latitude,finalData[l].location_longitude,finalData[l].temperature,finalData[l].humidity);
 			}
+		}
+		
+		
+		if(fireFilter) {
+			alert("hi");
 		}
 		
 		return finalData;
