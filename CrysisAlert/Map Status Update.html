@@ -275,6 +275,7 @@ function reloadMap() {
 	var ShelterIcon = new DisasterIcon({iconUrl:'images/shelter.png'/*, shadowUrl:'png'*/});
 	var FireIcon = new DisasterIcon({iconUrl:'images/fire.png'/*, shadowUrl:'png'*/});
 	var GasLeakIcon = new DisasterIcon({iconUrl:'images/disease.png'/*, shadowUrl:'png'*/});
+	var DiseaseIcon = new DisasterIcon({iconUrl:'images/biohazard.png'/*, shadowUrl:'png'*/});
 
 	//put marker on map. put icon = 0 if want to use default icon
 	function mark(lat, long, icon){
@@ -379,6 +380,9 @@ function reloadMap() {
 	function addGasLeak(lat, lon, message) {
 		popup(mark(lat, lon, GasLeakIcon), message);
 	}
+	function addDisease(lat, lon, message) {
+		popup(mark(lat, lon, DiseaseIcon), message);
+	}
 	
 	function currentTime(){
 		var currentTime = new Date();
@@ -407,7 +411,7 @@ function reloadMap() {
 		//var apiReq4 = fetch('WHATEVER API URL HERE').then(function(response){return response.json()});
 		
 		//var apiReq4 = fetch('http://172.21.148.165:8000/api/crisis_view/?format=json').then(function(response) { return response.json()});
-		var apiReq4 = fetch('http://172.21.148.165/fire-sample.json').then(function(response) { return response.json()});
+		var apiReq4 = fetch('http://172.21.148.165/sample.json').then(function(response) { return response.json()});
 		
 		var combData= {"locations":{},"temperatures":{},"humidity":{},"crisisevents":{}};
 		
@@ -466,7 +470,6 @@ function reloadMap() {
 						if(finalData[k]["id"]==combData["humidity"][j].station_id){ finalData[k]["humidity"]=combData["humidity"][j].value;}
 					}
 				}
-			
 				for(var l=0;l<finalData.length;l++) {
 					addWeather(finalData[l].location_latitude,finalData[l].location_longitude,finalData[l].temperature,finalData[l].humidity);
 				}
@@ -540,7 +543,29 @@ function reloadMap() {
 								addGasLeak(lati, longi, message);
 							} 
 						});
+					}
+				}
+				if(diseaseFilter) {
+					if(type.toLowerCase() == "disease") {
+						//var gasmessage = "<table class=\"summary\"><tr><th colspan=\"2\" scope=\"col\" style=\"font-size: 1.25em;\">Summary</th></tr><tr><th scope=\"col\">Type: </th><td scope=\"col\">" + type + "</td></tr><tr><th>Location: </th><td>" + address + "</td></tr><tr><th>Time: </th><td>" + datetime + "</td></tr><tr><th>Dept: </th><td>" + assistance + "</td></tr><tr><th>Description: </th><td>" + description + "</td></tr><tr><th colspan=\"2\">&nbsp;</th></tr><tr><th>Reported by: </th><td>" + name + "</td></tr></table>";
 
+						/*$.getJSON("https://api.mapbox.com/geocoding/v5/mapbox.places/" + addressHTML + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", function(e) {
+							lati = e["features"][0]["geometry"]["coordinates"][1];
+							longi = e["features"][0]["geometry"]["coordinates"][0];
+							
+							addGasLeak(lati, longi, message);
+						});*/
+						
+						$.ajax({ 
+							url: "https://api.mapbox.com/geocoding/v5/mapbox.places/" + addressHTML + ".json?limit=1&access_token=pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA", 
+							dataType: 'json', 
+							async: false, 
+							success: function(e){ 
+								lati = e["features"][0]["geometry"]["coordinates"][1];
+								longi = e["features"][0]["geometry"]["coordinates"][0];
+								addDisease(lati, longi, message);
+							} 
+						});
 					}
 				}
 			}
