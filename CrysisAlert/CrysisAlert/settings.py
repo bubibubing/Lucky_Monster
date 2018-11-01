@@ -25,7 +25,7 @@ SECRET_KEY = 'y_vw24s3apc#qcs=3umd3626j_fcryobzmp&^j^b%eb9f*w7kr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["172.21.148.165",]
+ALLOWED_HOSTS = ["172.21.148.165", "localhost"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'app',
     'api',
@@ -63,6 +64,17 @@ MIDDLEWARE_CLASSES = (
 )
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+        #'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    )
+}
 
 ROOT_URLCONF = 'CrysisAlert.urls'
 
