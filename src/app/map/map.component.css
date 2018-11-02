@@ -1,0 +1,13 @@
+.map {
+    height: 100%;
+    width: 75%;
+    padding: 0;
+    float: right;
+}
+ .crisis-list {
+    height: 100%;
+    width: 25%;
+    float: left;
+    overflow: auto;
+}
+

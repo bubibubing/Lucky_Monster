@@ -1,0 +1,17 @@
+<div *ngFor="let layer of checked_layers" [leafletLayer]="layer.val"></div>
+<div class="dropdown" (click)="forceFocus()" (mouseenter)="show=true" 
+    (mouseleave)="show=false" [ngClass]="{'expanded': show}">
+    <mat-card class="dropdown-bt">Layer</mat-card>
+    <mat-card-content class="dropdown-content">
+        <mat-checkbox *ngFor="let item of checked_names1; let i = index"
+        [ngModel]="item[1]"
+        (ngModelChange)="onClickCheckbox1(i)"
+        class="checkbox">{{item[0]}}</mat-checkbox>
+        <mat-checkbox *ngFor="let item of checked_names2; let i = index"
+        [ngModel]="item[1]"
+        (ngModelChange)="onClickCheckbox2(i)"
+        class="checkbox">{{item[0]}}</mat-checkbox>
+    </mat-card-content>
+</div>
+
+

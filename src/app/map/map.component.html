@@ -1,0 +1,14 @@
+<div class="crisis-list">
+    <app-crisis-list [selected]="selected" [checked]="checked" (clicked)="receiveSelect($event)"></app-crisis-list>
+</div>
+<div class="map" 
+    leaflet 
+    [leafletOptions]="options" 
+    [leafletLayersControl]="layersControl"
+    (leafletClick)="mapClick()"
+    [(leafletZoom)]="zoom"
+    [(leafletCenter)]="center">
+    <app-crisis-layer (selectEvent)="receiveSelect($event)"
+        (checkEvent)="receiveCheck($event)"></app-crisis-layer>
+</div>
+

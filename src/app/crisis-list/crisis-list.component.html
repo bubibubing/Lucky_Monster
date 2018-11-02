@@ -1,0 +1,18 @@
+<div class="crisis-detail">
+  <app-crisis-detail [crisis]="selected"></app-crisis-detail>
+</div>
+<div class="crisis-list">
+  <!-- <ul>
+    <li *ngFor="let crisis of checked" (click)="onClick(crisis)">
+      <p>Summary: {{crisis.summary}}</p>
+      <p>Address: {{crisis.address}}</p>
+    </li>
+  </ul> -->
+  <div *ngFor="let crisis of checked" (click)="onClick(crisis)" class="crisis-card">
+    <div class="header"><div class="header-text"><p>{{crisis.name}}</p></div></div>
+    <div class="content">
+      <p>{{crisis.description}}</p>
+      <p>{{crisis.street_name}}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+.dropdown-bt{
+    position: absolute;
+    opacity: 0.8;
+    text-align: center;
+    font-size: 1.3em;
+    right: 5rem;
+    top: 1rem;
+    z-index: 1000;
+    width: 120px;
+    padding: 5px;
+    transition: border-radius .3s ease;
+}
+
+.dropdown {
+    position: relative;
+    float: right;
+}
+
+.expanded .dropdown-bt{
+    border-radius: 4px 4px 0 0;
+}
+
+.dropdown-content {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    top: 3.05rem;
+    right: 5rem;
+    width: 129.8px;
+    transition: all .3s ease;
+    transform-origin: 50% 0%;
+    transform: scaleY(0.01);
+    border-radius: 0 0 4px 4px;
+}
+
+.expanded .dropdown-content {
+    transform: scaleY(1);
+    opacity: 0.8;
+    visibility: visible;
+}
+
+.expanded .dropdown-bt{
+    opacity: 0.95;
+}
+
+.dropdown-content mat-checkbox {
+    color: black;
+    padding: 6px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content .checkbox:nth-child(4) {
+    position: relative;
+}
+
+.dropdown-content .checkbox:nth-child(4)::after {
+    content: '';
+    height: 0;
+    border-bottom: 1px solid #CCC;
+    width: 60%;
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    display: block;
+}
+

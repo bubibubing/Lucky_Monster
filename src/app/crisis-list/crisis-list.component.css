@@ -1,0 +1,36 @@
+.crisis-list{
+    text-align: center;
+}
+.crisis-card {
+    background: #FFA726;
+    border-radius: 2px;
+    display: inline-block;
+    min-height: 100px;
+    margin: 0.5rem auto;
+    position: relative;
+    width: 90%;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.12), 1px 2px 2px rgba(0,0,0,0.24);
+    text-align: left;
+    transition: all 0.3s cubic-bezier(.25,.5,.25,1);
+}
+  .crisis-card:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.22);
+  }
+
+  .crisis-card .header{
+      background: #EF6C00;
+      min-height:30px;
+      text-align: left;
+  }
+  .crisis-card .header div{
+    padding:1px 10px;
+    font-weight: 600;
+  }
+
+.crisis-card .content p{
+    margin: 10px;
+}
+
+.crisis-card:hover{
+    cursor: pointer;
+}
