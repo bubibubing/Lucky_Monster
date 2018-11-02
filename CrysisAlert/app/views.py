@@ -5,29 +5,63 @@ import nexmo
 import facebook
 from twython import Twython
 import tweepy
+from django.core.mail import send_mail
+import threading
+from datetime import datetime,timedelta
+from django.utils import timezone
+from dateutil import tz
 
 def sms(request):
 	context=locals()
-	template = 'sms.html' 
+	template = 'sms.html'
+	to_zone = tz.gettz('Asia/Singapore')
+	time = timezone.now().astimezone(to_zone)-timedelta(minutes=30)
+	
+	# timer = threading.Timer(1, hour_timer)
+	# timer.start()
 	if request.method =='POST':
 		actionType = 'Fire-Fighting'
 		info = getInfo(actionType)
-		if info == None:
-			messages.error(request,'Invaild required type.')
-		else:
-			s = sendSMS(info)
-			f = facebookPost(info)
-			t = twitterPost(info)
-			if s == False:
-				messages.error(request,'Fail to sent SMS to the relevant agency.')
-			elif t == False:
-				messages.error(request,'Fail to psot on Twitter.')
-			else:
-				messages.success(request, 'SMS has sent to relevant agencies. Also, the crisis alert have been put up to Facebook and Twitter.')
+		report = getCrisis(time)
+		
+		#get crisis report detail
+		no_of_crisis = len(report)
+		print(no_of_crisis)
+		for r in report:
+				print((r.create_date_time).astimezone(to_zone))
+
+		# if info == None:
+		# 	messages.error(request,'Invaild required type.')
+		# else:
+		# 	s = sendSMS(info)
+		# 	f = facebookPost(info)
+		# 	t = twitterPost(info)
+		# 	if s == False:
+		# 		messages.error(request,'Fail to sent SMS to the relevant agency.')
+		# 	elif f == False:
+		# 		messages.error(request,'Fail to psot on Facebook.')
+		# 	elif t == False:
+		# 		messages.error(request,'Fail to psot on Twitter.')
+		# 	else:
+		# 		messages.success(request, 'SMS has sent to relevant agencies. Also, the crisis alert have been put up to Facebook and Twitter.')
 
 		return render(request,template,context)
 	else:
 		return render(request,template,context)
+
+def getCrisis(time):
+	'''
+	This method gets all crisis report within last 30 minutes
+
+	Args:
+        actionType (string): The require action of the crisis event
+
+    Returns:
+        report (QuerySet): crisis report within last 30 minutes
+    '''
+	report = CrisisReport.objects.filter(create_date_time__gte=time)
+	return report
+
 
 def getInfo(actionType):
 	'''
@@ -130,6 +164,22 @@ def twitterPost(info):
 		return True
 	return False
 
+# Send crisis report through email.
+# def send_email():
+# 	# Get crisis records which happened or was modified 30min ago from database.
+# 	'''
+# 	crisis_report = CrisisReport.objects.filter(create_date_time >= datetime.datetime.now() - datetime.timedelta(seconds=1800)
+# 		or last_modified >= datetime.datetime.now() - datetime.timedelta(seconds=1800))
+# 	if crisis_report is None:
+# 		crisis_report = 'No updated crisis in this half hour.'
+# 	'''
+# 	send_mail(
+# 		'Crisis Report',
+# 		"Hello World",
+# 		'primeminister3003@gmail.com',
+# 		['crisisalertlm@gmail.com'],
+# 		fail_silently=False,)
+
 
 def facebook_api(fcfg):
 	'''
@@ -166,3 +216,11 @@ def twitter_api(tcfg):
 
 	tapi = tweepy.API(auth)
 	return tapi
+
+# Set a timer that sends email every half an hour.
+# 30min = 1800s
+# def hour_timer():
+# 	send_email()
+# 	global timer
+#     timer = threading.Timer(1800, hour_timer)
+# 	timer.start()
