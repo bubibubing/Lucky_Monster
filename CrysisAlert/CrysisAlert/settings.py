@@ -63,7 +63,6 @@ MIDDLEWARE_CLASSES = (
     #...
 )
 
-CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -96,6 +95,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CrysisAlert.wsgi.application'
+
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Database
