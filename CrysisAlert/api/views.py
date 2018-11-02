@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from api.permissions import IsOwnerOrReadOnly
-from app.models import CrisisReport, Assistance, Agency, Facility
+from app.models import CrisisReport, Assistance, Agency, Facility, Crisis
 from api.serializers import (
     ReportViewSerializer, 
     CrisisSerializer, 
@@ -36,6 +36,11 @@ class ReportViewSet(generics.ListAPIView):
             queryset = queryset.filter(crisis_type__crisis_type=crisis_type)
 
         return queryset
+
+
+class CrsiisViewSet(generics.ListAPIView):
+    queryset = Crisis.objects.all()
+    serializer_class = CrisisSerializer
 
 
 class ReportUpdateCreateView(viewsets.ModelViewSet):
