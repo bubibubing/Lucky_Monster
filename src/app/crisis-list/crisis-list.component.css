@@ -10,7 +10,7 @@
     min-height: 100px;
     margin: 0.5rem auto;
     position: relative;
-    width: 90%;
+    width: 100%;
     box-shadow: 2px 3px 5px rgba(0,0,0,0.12), 1px 2px 5px rgba(0,0,0,0.24) ;
     text-align: left;
     transition: all 0.3s cubic-bezier(.25,.5,.25,1);

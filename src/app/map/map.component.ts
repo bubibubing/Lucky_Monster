@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
   }
 
-  streetMap =  tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+  streetMap =  tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
     attribution: '&copy; OpenStreetMap contributors',
     detectRetina: true,
     zoomOffset:-1,
