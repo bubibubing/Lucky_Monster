@@ -4,7 +4,6 @@
 <div class="map" 
     leaflet 
     [leafletOptions]="options" 
-    [leafletLayersControl]="layersControl"
     (leafletClick)="mapClick()"
     (leafletMapReady)="onMapReady($event)"
     [(leafletZoom)]="zoom"
