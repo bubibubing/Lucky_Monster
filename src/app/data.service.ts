@@ -47,9 +47,11 @@ export class DataService {
         if(c.crisis_type === t.id){
           c.type = t.crisis_type;
         }
-      })
+      });
+      c.datetime = new Date(c.create_date_time);
     });
-    const promises = crisis.map(c =>this.http.get<Point[]>(this.mapQueryApi+c.street_name).toPromise());
+    const promises = crisis.map(c =>
+      this.http.get<Point[]>(this.mapQueryApi+c.street_name+" singapore").toPromise());
     const arrs = await Promise.all(promises);
     arrs.forEach((points, i)=>{
       const loc = points[0];

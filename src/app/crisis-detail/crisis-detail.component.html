@@ -1,7 +1,19 @@
-<div *ngIf="crisis">
-  <p>name: {{crisis.name}}</p>
-  <p>type: {{crisis.type}}</p>
-  <p>address: {{crisis.address}}</p>
-  <p>detail: {{crisis.detail}}</p>
-  <p>department: {{crisis.department}}</p>
+<div *ngIf="crisis" [@slideInOut] class="crisis-card">
+  <div class="header"><div class="header-text"><p>{{crisis.type}}</p></div></div>
+  <div class="content">
+      <div><span>Location</span><span>{{crisis.street_name}}</span></div>
+      <div><span>Description</span><span>{{crisis.description}}</span></div>
+      <div><span>Casualty</span><span>{{crisis.injured_people_num}}</span></div>
+      <div><span>Status</span><span>{{crisis.status}}</span></div>
+      <div><span>Time</span><span>{{crisis.datetime|date:'dd/mm/yyyy hh:mm'}}</span></div>
+      <div><span>Assistance</span><ul><li *ngFor="let a of crisis.assistance">{{a}}</li></ul></div>
+      <div><span>Reported By</span><span>{{crisis.name}}</span></div>
+      <!-- <div><div class="label"><p>Location</p></div><div class="info"><p>{{crisis.street_name}}</p></div></div>
+      <div><div class="label"><p>Description</p></div><div class="info"><p>{{crisis.description}}</p></div></div>
+      <div><div class="label"><p>Casualty</p></div><div class="info"><p>{{crisis.injured_people_num}}</p></div></div>
+      <div><div class="label"><p>Status</p></div><div class="info"><p>{{crisis.status}}</p></div></div>
+      <div><div class="label"><p>Time</p></div><div class="info"><p>{{crisis.datetime|date:'dd/mm/yyyy hh:mm'}}</p></div></div>
+      <div><div class="label"><p>Assistance</p></div><div class="info"><p *ngFor="let a of crisis.assistance">{{a}}</p></div></div>
+      <div><div class="label"><p>Reported by</p></div><div class="info"><p>{{crisis.name}}</p></div></div> -->
+  </div>
 </div>

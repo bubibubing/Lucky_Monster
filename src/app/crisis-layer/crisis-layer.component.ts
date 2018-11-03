@@ -3,12 +3,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { Crisis } from '../data/crisis';
-import { Marker, LayerGroup, icon, Icon, marker, layerGroup, Layer, divIcon } from 'leaflet';
+import { Marker, LayerGroup, icon, Icon, marker, layerGroup, Layer, divIcon, Point } from 'leaflet';
 import { DataService } from '../data.service';
 import { CustomMarker } from '../map/custom-marker';
 import { Temperature } from '../data/weather';
 import { Shelter } from '../data/shelter';
 import { Psi } from '../data/psi';
+import { Util } from './icon-util';
 
 @Component({
   selector: 'app-crisis-layer',
@@ -22,7 +23,7 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   shelters:Shelter[] =[];
   psis:Psi[] = [];
   checked:Crisis[] = [];
-  selected:Crisis;
+  @Input() selected:Crisis;
 
   fireMarkers:CustomMarker[] = [];
   gasLeakMarkers:CustomMarker[] = [];
@@ -53,13 +54,6 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   checked_layers = [{val:this.fireLayer}, {val:this.gasLeakLayer}, {val:this.diseaseLayer}, {val:this.otherLayer}, 
     {val:this.empty}, {val:this.empty}, {val:this.empty}];
 
-  icon:Icon = icon({
-    iconSize: [ 25, 41 ],
-    iconAnchor: [ 13, 41 ],
-    iconUrl: 'leaflet/marker-icon.png',
-    shadowUrl: 'leaflet/marker-shadow.png'
-  })
-
   @Output() selectEvent:EventEmitter<Crisis> = new EventEmitter();
   @Output() checkEvent:EventEmitter<Crisis[]> = new EventEmitter();
   
@@ -76,16 +70,6 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   }
   
   async getCrises(){
-    // this.dataService.getCrises().subscribe(crises => {
-    //   crises.forEach(c => {
-    //     this.checked.push(c);
-    //     this.crises.push(c);
-    //   });
-    //   this.checkEvent.emit(this.checked);
-    //   this.initCrisisLayers();
-      // console.log("checked crisis init");
-      // console.log(this.checked);
-    // });
     const arrs = await this.dataService.getCrisisAndType();
     const c_ = await this.dataService.parseCrisisAndType(arrs[0],arrs[1]);
     c_.forEach(c => this.crises.push(c));
@@ -119,25 +103,24 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   }
 
   initCrisisLayers():void{
-    // this.emptyAll();
     this.crises.forEach( crisis => {
       var marker:CustomMarker = new CustomMarker(crisis.location, crisis.id).bindPopup(crisis.description);
       marker.on("click", ()=>{this.onClickMarker(marker)});
       switch(crisis.type){
         case "Fire":
-          this.fireMarkers.push(marker.setIcon(this.icon));
+          this.fireMarkers.push(marker.setIcon(Util.fireIcon));
           this.crisisByType[0].push(crisis);
           break;
         case "Gas Leak":
-          this.gasLeakMarkers.push(marker.setIcon(this.icon));
+          this.gasLeakMarkers.push(marker.setIcon(Util.gasLeakIcon));
           this.crisisByType[1].push(crisis);
           break;
         case "Disease":
-          this.diseaseMarkers.push(marker.setIcon(this.icon));
+          this.diseaseMarkers.push(marker.setIcon(Util.diseaseIcon));
           this.crisisByType[2].push(crisis);
           break;
         default:
-          this.otherMarkers.push(marker.setIcon(this.icon));
+          this.otherMarkers.push(marker.setIcon(Util.icon));
           this.crisisByType[3].push(crisis);
       };
     });
@@ -154,21 +137,21 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   
   initTempLayer(){
     this.temps.forEach(temp =>{
-      this.tempMarkers.push(marker(temp.location, {icon:divIcon({html:temp.value.toString()+" °C"})}))
+      this.tempMarkers.push(marker(temp.location, {icon:divIcon({html:temp.value.toString()+" °C", className:"temperature", iconSize:new Point(50,20)})}))
     });
     this.tempLayer = layerGroup(this.tempMarkers);
   }
 
   initShelterLayer(){
     this.shelters.forEach(shelter =>{
-      this.shelterMarkers.push(marker(shelter.location, {icon:this.icon}).bindPopup(shelter.name + ":" + shelter.description));
+      this.shelterMarkers.push(marker(shelter.location, {icon:Util.shelterIcon}).bindPopup(shelter.name + ":" + shelter.description));
     });
     this.shelterLayer = layerGroup(this.shelterMarkers);
   }
 
   initPsiLayer(){
     this.psis.forEach(psi =>{
-      this.psiMarkers.push(marker(psi.location, {icon:divIcon({html:psi.value.toString()})}));
+      this.psiMarkers.push(marker(psi.location, {icon:divIcon({html:psi.value.toString(), className:"psi", iconSize:new Point(30,30)})}));
     });
     // console.log(this.psis);
     this.psiLayer = layerGroup(this.psiMarkers);
@@ -176,11 +159,10 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
 
   onClickMarker(marker:CustomMarker){
     this._ngZone.run(()=>{
-        this.selected = this.crises.find(
+        const c = this.crises.find(
         (c)=>c.id===marker.id
         );
-        this.selectEvent.emit(this.selected);
-        // console.log(this.selected);
+        this.selectEvent.emit(c);
       });
   }
 
@@ -207,13 +189,10 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
     if(this.checked_names2[index][1]===true){
       this.checked_names2[index][1]=false;
       this.checked_layers[index+this.checked_names1.length].val = this.empty;
-      // console.log(this.checked_layers[index+this.checked_names1.length]);
     }
     else{
       this.checked_names2[index][1]=true;
       this.checked_layers[index+this.checked_names1.length].val = layerGroup(this.markers[index+this.checked_names1.length].val);
-      // console.log(this.checked_layers[index+this.checked_names1.length].val);
-      // console.log(this.markers[index].val);
     }
   }
 

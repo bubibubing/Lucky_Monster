@@ -1,13 +1,27 @@
 .map {
+    position: fixed;
     height: 100%;
-    width: 75%;
+    width: 100%;
     padding: 0;
     float: right;
 }
  .crisis-list {
+    background: rgba(194,194,194, 0.9);
+    padding: .5rem 0;
+    position:fixed;
     height: 100%;
     width: 25%;
     float: left;
     overflow: auto;
+    z-index: 2000;
+}
+
+.crisis-list::-webkit-scrollbar{
+    width: 6px;
+}
+
+.crisis-list::-webkit-scrollbar-thumb {
+    background-color: #606060;
+    border-radius: 3px;
 }
 

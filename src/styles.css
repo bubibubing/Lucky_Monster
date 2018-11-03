@@ -10,6 +10,34 @@ html, body {
     visibility: hidden;
 }
 
+.temperature {
+    background: #818181;
+    opacity: 0.8;
+    font-size: 0.8rem;
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    vertical-align: middle;
+    padding: 5px 0;
+    border-radius: 10px;
+    color: white;
+}
+
+.psi{
+    background: white;
+    opacity: 0.8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    vertical-align: middle;
+    border-radius: 15px;
+    color: black;
+}
+
 * {
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }

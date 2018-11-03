@@ -1,3 +1,63 @@
-div {
-    float: left;
+.crisis-card {
+    background: #FFA726;
+    color: black;
+    border-radius: 4px;
+    display: inline-block;
+    min-height: 100px;
+    margin: 0.5rem auto;
+    position: relative;
+    width: 90%;
+    box-shadow: 2px 3px 5px rgba(0,0,0,0.12), 1px 2px 5px rgba(0,0,0,0.24) ;
+    text-align: left;
+    transition: all 0.3s cubic-bezier(.25,.5,.25,1);
 }
+  .crisis-card:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.22);
+  }
+.header{
+    background: #EF6C00;
+    border-radius: 4px 4px 0 0;
+    min-height:30px;
+    text-align: left;
+}
+.header div{
+  padding:1px 10px;
+  font-weight: 600;
+}
+
+.content div {
+    min-height: 2.5rem;
+    padding: 10px;
+}
+
+.content div:nth-child(odd) {
+    background: #ffa726;
+}
+
+.content div:nth-child(even) {
+    background: #ffcc80;
+}
+
+.content div:last-child{
+    border-radius: 0 0 4px 4px;
+}
+
+.content span {
+    display: block;
+}
+
+.content span:first-child {
+    font-weight: bold;
+}
+
+.content div > :last-child {
+    font-size: .9em;
+    margin-top: 5px;
+}
+
+.content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+

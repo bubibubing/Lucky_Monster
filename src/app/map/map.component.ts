@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { tileLayer, latLng, Marker, marker, icon, Icon, layerGroup, Layer, LayerGroup, map, LatLng } from 'leaflet'; 
+import { tileLayer, latLng, Marker, marker, icon, Icon, layerGroup, Layer, LayerGroup, map, LatLng, Map, control, ControlOptions } from 'leaflet'; 
 import { DataService } from '../data.service';
 import { Crisis } from '../data/crisis';
 import { CustomMarker } from './custom-marker';
@@ -14,39 +14,28 @@ export class MapComponent implements OnInit {
 
   selected:Crisis;
   checked:Crisis[];
-  zoom:number;
+  zoom:number = 11;
   center: LatLng;
-
-  icon:Icon = icon({
-    iconSize: [ 25, 41 ],
-    iconAnchor: [ 13, 41 ],
-    iconUrl: 'leaflet/marker-icon.png',
-    shadowUrl: 'leaflet/marker-shadow.png'
-  })
 
   constructor(private dataService:DataService, private _ngZone:NgZone) { }
 
   ngOnInit() {
-    // this.initMap();
   }
 
-  // initMap():void{
-  //   this.options.layers = [this.streetMap];
-  // }
-
-  streetMap =  tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  streetMap =  tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors',
-    detectRetina: true
+    detectRetina: true,
+    zoomOffset:-1,
+    tileSize:512
   })
-
-  // layersControl = {overlays: {}};
 
   options = {
     layers: [this.streetMap],
     zoom: 11,
-    center: latLng([1.2904753, 103.8520359]),
-    doubleClickZoom: false
-  };
+    center: latLng([1.320, 103.815]),
+    doubleClickZoom: false,
+    zoomControl:false
+    };
 
   mapClick(){
     // this._ngZone.run(()=>this.selected = null);
@@ -55,13 +44,20 @@ export class MapComponent implements OnInit {
 
   receiveSelect(selected:Crisis){
     this.selected = selected;
-    this.zoom = 14;
-    this.center = latLng(selected.location);
+    if(this.zoom<15){
+      this.zoom = 15;
+    }
+    this.center = latLng(selected.location[0], selected.location[1]-0.007);
     // console.log(selected);
   }
 
   receiveCheck(checked:Crisis[]){
     // console.log(checked);
     this.checked = checked;
+  }
+
+  onMapReady(map:Map){
+    control.zoom({position:'topright'}).addTo(map);
+    console.log("113")
   }
 }

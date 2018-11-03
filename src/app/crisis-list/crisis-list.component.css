@@ -1,15 +1,17 @@
-.crisis-list{
+
+.crisis-list, .crisis-detail{
+    color: white;
     text-align: center;
 }
 .crisis-card {
-    background: #FFA726;
-    border-radius: 2px;
+    background: #00796b;
+    border-radius: 4px;
     display: inline-block;
     min-height: 100px;
     margin: 0.5rem auto;
     position: relative;
     width: 90%;
-    box-shadow: 1px 2px 3px rgba(0,0,0,0.12), 1px 2px 2px rgba(0,0,0,0.24);
+    box-shadow: 2px 3px 5px rgba(0,0,0,0.12), 1px 2px 5px rgba(0,0,0,0.24) ;
     text-align: left;
     transition: all 0.3s cubic-bezier(.25,.5,.25,1);
 }
@@ -18,7 +20,8 @@
   }
 
   .crisis-card .header{
-      background: #EF6C00;
+      background: #004c40;
+      border-radius: 4px 4px 0 0;
       min-height:30px;
       text-align: left;
   }
@@ -33,4 +36,15 @@
 
 .crisis-card:hover{
     cursor: pointer;
+}
+
+.scrollbar {
+    background-color: #F5F5F5;
+    float: right;
+    height: 300px;
+    margin-bottom: 25px;
+    margin-left: 22px;
+    margin-top: 40px;
+    width: 65px;
+    overflow-y: scroll;
 }
