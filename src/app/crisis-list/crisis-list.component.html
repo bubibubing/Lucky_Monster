@@ -2,7 +2,7 @@
   <app-crisis-detail [crisis]="selected"></app-crisis-detail>
 </div>
 <div class="crisis-list">
-  <div *ngFor="let crisis of checked" (click)="onClick(crisis)" class="crisis-card">
+  <div *ngFor="let crisis of checked" (click)="onClick(crisis)" class="crisis-card" [@slideInOut]>
     <div class="header"><div class="header-text"><p>{{crisis.type}}</p></div></div>
     <div class="content">
       <p>{{crisis.description}}</p>

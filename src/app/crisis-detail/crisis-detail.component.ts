@@ -12,11 +12,11 @@ import { trigger, transition, style, animate } from '@angular/animations';
   animations: [
     trigger('slideInOut', [
       transition(':enter', [
-        style({transform: 'translateY(-100%)'}),
-        animate('80ms ease', style({transform: 'translateY(0%)'}))
+        style({transform: 'translateY(-50%)', opacity: 0}),
+        animate('0.2s ease', style({transform: 'translateY(0%)', opacity:1}))
       ]),
       transition(':leave', [
-        animate('80ms ease', style({transform: 'translateY(-100%)'}))
+        animate('0.2s ease', style({transform: 'translateY(-50%)', opacity:0}))
       ])
     ])
   ]

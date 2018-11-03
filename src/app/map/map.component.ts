@@ -40,6 +40,7 @@ export class MapComponent implements OnInit {
   mapClick(){
     // this._ngZone.run(()=>this.selected = null);
     this.selected = null;
+    // console.log("click");
   }
 
   receiveSelect(selected:Crisis){

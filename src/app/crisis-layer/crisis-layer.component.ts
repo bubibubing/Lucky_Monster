@@ -132,7 +132,9 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
     console.log(this);
     this.checked_layers = [{val:this.fireLayer}, {val:this.gasLeakLayer}, {val:this.diseaseLayer}, {val:this.otherLayer}, 
       {val:this.empty}, {val:this.empty}, {val:this.empty}];
-    this.checkEvent.emit(this.crises);
+    this.checked = this. crises;
+    this.checked.sort((a, b)=> a.type>b.type?1:-1);
+    this.checkEvent.emit(this.checked);
   }
   
   initTempLayer(){
@@ -182,6 +184,7 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
         this.checked = this.checked.concat(this.crisisByType[i]);
       }
     });
+    this.checked.sort((a, b)=> a.type>b.type?1:-1);
     this.checkEvent.emit(this.checked);
   }
 
