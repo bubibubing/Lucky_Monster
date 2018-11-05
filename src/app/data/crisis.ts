@@ -8,7 +8,7 @@ export class Crisis{
     status:string;
     create_date_time:string;
     crisis_type:number;
-    assistance:number[];
+    assistance:string[];
     datetime?:Date;
     type?:string;
     location?:[number, number];

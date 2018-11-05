@@ -14,6 +14,7 @@ export class MapComponent implements OnInit {
 
   selected:Crisis;
   checked:Crisis[];
+  checkReady:boolean;
   zoom:number = 11;
   center: LatLng;
 
@@ -38,23 +39,31 @@ export class MapComponent implements OnInit {
     };
 
   mapClick(){
-    // this._ngZone.run(()=>this.selected = null);
     this.selected = null;
-    // console.log("click");
   }
 
-  receiveSelect(selected:Crisis){
+  receiveMapSelect(selected:Crisis){
     this.selected = selected;
     if(this.zoom<15){
       this.zoom = 15;
+      this.center = latLng(selected.location[0], selected.location[1]-0.007);
     }
-    this.center = latLng(selected.location[0], selected.location[1]-0.007);
     // console.log(selected);
+  }
+
+  receiveListSelect(selected:Crisis){
+    this.selected = selected;
+    this.zoom = 15;
+    this.center = latLng(selected.location[0], selected.location[1]-0.007);
   }
 
   receiveCheck(checked:Crisis[]){
     // console.log(checked);
     this.checked = checked;
+  }
+
+  onCheckReady(ready:boolean){
+    this.checkReady = ready;
   }
 
   onMapReady(map:Map){

@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, OnChanges, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, AfterViewInit, ElementRef, Inject } from '@angular/core';
 import { CustomMarker } from '../map/custom-marker';
 import { DataService } from '../data.service';
 import { CrisisDetail } from '../data/crisis-detail';
 import { Crisis } from '../data/crisis';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -12,11 +13,11 @@ import { trigger, transition, style, animate } from '@angular/animations';
   animations: [
     trigger('slideInOut', [
       transition(':enter', [
-        style({transform: 'translateY(-50%)', opacity: 0}),
-        animate('0.2s ease', style({transform: 'translateY(0%)', opacity:1}))
+        style({transform: 'translateY(-20%)', opacity: 0}),
+        animate('0.15s ease', style({transform: 'translateY(0%)', opacity:1}))
       ]),
       transition(':leave', [
-        animate('0.2s ease', style({transform: 'translateY(-50%)', opacity:0}))
+        animate('0.15s ease', style({transform: 'translateY(-20%)', opacity:0}))
       ])
     ])
   ]

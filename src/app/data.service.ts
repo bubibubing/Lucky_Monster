@@ -19,6 +19,7 @@ export class DataService {
 
   crisisTypeApi = "http://172.21.148.165:8000/api/crisis_type";
   crisisApi = "http://172.21.148.165:8000/api/crisis_reports";
+  // crisisApi = "http://172.21.148.165/sample.json";
   weatherApi = "https://api.data.gov.sg/v1/environment/air-temperature";
   psiApi = "https://api.data.gov.sg/v1/environment/psi";
   shelterApi="https://data.gov.sg/api/action/datastore_search?resource_id=4ee17930-4780-403b-b6d4-b963c7bb1c09";
@@ -38,6 +39,7 @@ export class DataService {
 
   async getCrisisAndType():Promise<[CrisisType[], Crisis[]]>{
     const arrs = await Promise.all([this.getCrisisType().toPromise(), this.getCrisis().toPromise()]);
+    await new Promise(resolve => setTimeout(resolve, 500));
     return arrs;
   }
 

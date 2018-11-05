@@ -1,5 +1,7 @@
 <div class="crisis-list">
-    <app-crisis-list [selected]="selected" [checked]="checked" (clicked)="receiveSelect($event)"></app-crisis-list>
+    <app-crisis-list *ngIf="checkReady"
+    [selected]="selected" [checked]="checked" (clicked)="receiveListSelect($event)"></app-crisis-list>
+    <div class="loader" *ngIf="!checkReady"></div>
 </div>
 <div class="map" 
     leaflet 
@@ -8,8 +10,9 @@
     (leafletMapReady)="onMapReady($event)"
     [(leafletZoom)]="zoom"
     [(leafletCenter)]="center">
-    <app-crisis-layer (selectEvent)="receiveSelect($event)"
+    <app-crisis-layer (selectEvent)="receiveMapSelect($event)"
         (checkEvent)="receiveCheck($event)"
+        (checkReadyEvent)="onCheckReady($event)"
         [selected]="selected"></app-crisis-layer>
 </div>
 
