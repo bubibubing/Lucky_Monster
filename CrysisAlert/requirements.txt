@@ -1,0 +1,12 @@
+Django==2.1.1
+django-filter==2.0.0
+djangorestframework==3.8.2
+Markdown==2.6.11
+pytz==2018.5
+python==3.5
+DJ-Nexmo==0.0.1
+tweepy==3.6.0
+psycopg2==2.7.5
+django-cors-headers==2.4.0
+coreapi==2.3.3
+Pygments==2.2.0
