@@ -1,21 +1,27 @@
 # Lucky_Monster
-## Django Rest framework
-- [QuickStart](http://www.django-rest-framework.org/#quickstart)
-- [Django Tutorials](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
-## Virtual Enviroment
-Virtualenv creates an environment that has its own installation directories, that doesn’t share libraries with other virtualenv environments.
+## SMS
+This project uses dj-nexmo for sending sms to relevant agnecies. Therefore, dj-demo needs to be installed.
+### Installation Guide
+Currently, dj-nexmo only supports Python 3.3+, and Django 2.0+. The steps to install dj-nexmo are listed below:
+```
+	1.	pip install dj-nexmo
+	
+	2.	Add "djnexmo" to INSTALLED_APPS in your settings.
+	
+	3.	Run python manage.py migrate djnexmo to create the necessary models.
+```
 
-For the packages you want to install, please add to the requirements.txt. ```$ pip install -r requirements.txt``` will install all the packages specified in the requirements.txt.
-### Start the virtual envirment
-#### Unix-like System
+## Facebook
+This project uses facebook sdk to post inforamtion on  Facebook.
+### Installation Guide
 ```
-$ virtualenv --no-site-packages --distribute .env && source .env/bin/activate && pip install -r requirements.txt
+	1.	pip install facebook-sdk
 ```
-#### Windows
+
+## Twitter
+This project uses facebook sdk to post inforamtion on  Twitter.
+### Installation Guide
+twitter libary is used in this project. This library provides a pure Python interface for the Twitter API.
 ```
-$ virtualenv --no-site-packages --distribute .env && .env/Scripts/activate && pip install -r requirements.txt
-```
-## Run Server
-```
-python manage.py runserver 0.0.0.0:8000
+	1.	pip install tweepy
 ```

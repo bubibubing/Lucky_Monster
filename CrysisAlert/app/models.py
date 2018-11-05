@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib import auth
 from django.conf import settings
 from django.db.models.signals import post_save
@@ -76,7 +77,7 @@ class Assistance(models.Model):
 
 class Agency(models.Model):
     name = models.CharField(max_length=50)
-    contact_num = models.CharField(max_length=8)
+    contact_num = models.CharField(max_length=11)
 
     class Meta:
         app_label = "app"
@@ -87,6 +88,8 @@ class Agency(models.Model):
 
 class Facility(Agency):
     location = models.CharField(max_length=50)
+    def __str__(self):
+        return self.location
 
     class Meta:
         app_label = "app"
