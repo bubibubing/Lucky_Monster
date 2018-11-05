@@ -1,6 +1,8 @@
 from rest_framework import permissions
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
+	"""User defined permission class. Permits the owner or read-only operations
+	"""
 
 	def has_object_permission(self, request, view, obj):
 		if request.user.is_superuser:

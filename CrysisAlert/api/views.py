@@ -22,10 +22,20 @@ from api.serializers import (
 
 # Create your views here.
 class ReportViewSet(generics.ListAPIView):
+    """
+    Return a list of all crisis reports
+    """
+
     queryset = CrisisReport.objects.all()
     serializer_class = ReportViewSerializer
 
     def get_queryset(self):
+        """
+        Return a query set
+        
+        Filters are applied to get the query set
+        """
+
         queryset = CrisisReport.objects.all()
         crisis_type = self.request.query_params.get('crisis_type', None)
         crisis_status = self.request.query_params.get('status', None)
@@ -38,12 +48,28 @@ class ReportViewSet(generics.ListAPIView):
         return queryset
 
 
-class CrsiisViewSet(generics.ListAPIView):
+class CrisisViewSet(generics.ListAPIView):
+    """
+    Return a list of all crsis types in the database
+    """
+
     queryset = Crisis.objects.all()
     serializer_class = CrisisSerializer
 
 
 class ReportUpdateCreateView(viewsets.ModelViewSet):
+    """
+    Create or update a report
+
+    get:
+        get a list of all crisis reports
+    
+    post:
+        create a new crisis report, need user login
+    
+    put:
+        update an existing crisis reports. Only admin and creator have the permission.
+    """
     authentication_classes = (TokenAuthentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
@@ -52,27 +78,49 @@ class ReportUpdateCreateView(viewsets.ModelViewSet):
     serializer_class = ReportUpdateCreateSerializer
 
     def perform_create(self, serializer):
+        # print(serializer.validated_data)
         serializer.save(creator=self.request.user)
 
 
 class UserCreateView(views.APIView):
+    """
+    View for creating a new account
+
+    post:
+        create a new user account
+        return a user token if success
+    """
+
+    # allow any
     permission_classes = (permissions.AllowAny, )
     
     def post(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
+            # if valid, save the new account
             user = serializer.save()
             if user:
+                # retrieve the token
                 token, _ = Token.objects.get_or_create(user=user)
                 json = serializer.data
                 json['token'] = token.key
+                # response the user token
                 return Response(json, status=status.HTTP_201_CREATED)
 
+        # fail to create a new accoun
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserPasswordChangeView(generics.UpdateAPIView):
-    authentication_classes = (TokenAuthentication,)
+    """
+    View for changing the password
+
+    put:
+        update the user password.
+        needs token authentication.
+    """
+
+    authentication_classes = (TokenAuthentication, BasicAuthentication, SessionAuthentication)
     permission_classes = (IsAuthenticated,)
     serializer_class = PasswordChangeSerializer
 
@@ -84,6 +132,7 @@ class UserPasswordChangeView(generics.UpdateAPIView):
 
         if serializer.is_valid():
             user = self.get_object()
+            # set the password
             user.set_password(serializer.data['password1'])
             user.save()
             return Response({'Status': 'Password changed', 'username': user.username}, status=status.HTTP_200_OK)
@@ -91,19 +140,27 @@ class UserPasswordChangeView(generics.UpdateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class UserLoginView(views.APIView):
+    """
+    View for user login
+
+    post:
+        login
+    """
+
     permission_classes = (permissions.AllowAny,)
  
     def post(self, request, format="json"):
         data = request.data
         username = data['username']
         password = data['password']
+        # authenticate the user
         user = authenticate(username=username, password=password)
 
         # a backend authenticated the credentials
         if user is not None:
             login(request, user)
+            # retrieve the key
             token = Token.objects.get(user=user)
             json = {"username": username, "token": token.key}
             return Response(json, status=status.HTTP_200_OK)
@@ -113,6 +170,10 @@ class UserLoginView(views.APIView):
 
 
 class UserLogoutView(views.APIView):
+    """
+    View for user logout
+    """
+
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request, format=None):
@@ -120,14 +181,23 @@ class UserLogoutView(views.APIView):
         return Response({'Logout': True}, status=status.HTTP_200_OK)
 
 
-
 class OperatorAccountList(generics.ListAPIView):
+    """
+    List all user accounts
+    """
+
     queryset = User.objects.all()
     serializer_class = OperatorAccountSerializer
 
 
 class AccountDetailView(generics.RetrieveAPIView):
+    """
+    List a user account details
+    """
+
     queryset = User.objects.all()
     serializer_class = OperatorAccountSerializer
-    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-    #                     IsOwnerOrReadOnly,)
+    authentication_classes = (TokenAuthentication, 
+                              BasicAuthentication, 
+                              SessionAuthentication, 
+                              IsOwnerOrReadOnly,)
