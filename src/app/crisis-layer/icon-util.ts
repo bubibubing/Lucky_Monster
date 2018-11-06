@@ -4,7 +4,7 @@ export class Util{
     static icon:Icon = icon({
         iconSize: [ 20, 20 ],
         popupAnchor:[0, -15],
-        iconUrl: 'assets/placeholder.jpg',
+        iconUrl: 'assets/placeholder.png',
       });
     
      static fireIcon:Icon = icon({
