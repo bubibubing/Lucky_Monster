@@ -12,7 +12,7 @@ from django.utils import timezone
 from dateutil import tz
 
 def sms(request):
-	context=locals()
+	context = locals()
 	template = 'sms.html'
 	to_zone = tz.gettz('Asia/Singapore')
 	time = timezone.now().astimezone(to_zone)-timedelta(minutes=30)
