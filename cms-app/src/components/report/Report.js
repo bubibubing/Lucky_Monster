@@ -4,6 +4,8 @@ import { Container, Col,
     Button, } from 'reactstrap';
 import '../../App.css';
 import {ToastStore} from 'react-toasts';
+import DropdownTreeSelect from 'react-dropdown-tree-select'
+import 'react-dropdown-tree-select/dist/styles.css'
 
 
 class Report extends Component {
@@ -37,6 +39,10 @@ class Report extends Component {
         this.preSelectStatus = this.preSelectStatus.bind(this);
         this.preSelectAssistance = this.preSelectAssistance.bind(this);
         this.preSelectCrisisType = this.preSelectCrisisType.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onAction = this.onAction.bind(this);
+        this.onNodeToggle = this.onNodeToggle.bind(this);
+
 
     }
 
@@ -213,9 +219,8 @@ class Report extends Component {
 
     preSelectCrisisType() {
 
-        const crisisType = ["Null", "Fire", "Gas Leak", "Disease", "Explosion", "Water Leakage", "Rainstorm", "Tsunami", "Stampede"
-            , "Typhoon"]
-
+        const crisisType = ["Null", "Fire", "Gas Leak", "Disease", "Explosion", "", "Rainstorm", "", "", "", "Other", "Car Accident"]
+        
         if (this.state.toggleCheckVal == true) {
             return <option value="" selected disabled>{crisisType[this.state.crisisType]}</option>
 
@@ -245,15 +250,43 @@ class Report extends Component {
         }
     }
 
+    onChange = (currentNode, selectedNodes) => {
+        console.log('onChange::', currentNode, selectedNodes)
+    }
+
+    onAction = ({ action, node }) => {
+        console.log(`onAction:: [${action}]`, node)
+    }
+
+    onNodeToggle = currentNode => {
+        console.log('onNodeToggle::', currentNode)
+    }
+
 
 
     render() {
-        
+
         if (window.localStorage.getItem('localsession') === null) {
             this.props.history.push('/')
         }
 
 
+        const data = {
+            label: 'search me',
+            value: 'searchme',
+            children: [
+                {
+                    label: 'search me too',
+                    value: 'searchmetoo',
+                    children: [
+                        {
+                            label: 'No one can get me',
+                            value: 'anonymous'
+                        }
+                    ]
+                }
+            ]
+        }
 
         return (
             <div>
@@ -262,6 +295,7 @@ class Report extends Component {
                         <Col><h2>New Crisis Record</h2></Col>
                     </Row>
                     <br/>
+                    <div></div>
                     <Row>
                         <Col><FormGroup>
                             <Label>Name *</Label>
@@ -328,10 +362,10 @@ class Report extends Component {
                                 <Input onChange={this.handleDropDownAssistance}
                                        type="select" name="select" id="exampleSelect">
                                     {this.preSelectAssistance()}
-                                    <option value={2}>Emergency Ambulance</option>
-                                    <option value={1}>Rescue and Evacuation</option>
-                                    <option value={4}>Fire-Fighting</option>
-                                    <option value={3}>Gas Leak Control</option>
+                                    <option value={3}>Emergency Ambulance</option>
+                                    <option value={4}>Rescue and Evacuation</option>
+                                    <option value={1}>Fire-Fighting</option>
+                                    <option value={2}>Gas Leak Control</option>
                                 </Input>
                             </FormGroup>
                         </Col>

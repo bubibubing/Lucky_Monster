@@ -124,8 +124,7 @@ class Report extends Component {
 
         const assistance = ["Null", "Fire-Fighting", "Gas Leak Control", "Emergency Ambulance", "Rescue and Evacuation"];
 
-        const crisisType = ["Null", "Fire", "Gas Leak", "Disease", "Explosion", "Water Leakage", "Rainstorm", "Tsunami", "Stampede"
-        , "Typhoon"]
+        const crisisType = ["Null", "Fire", "Gas Leak", "Disease", "Explosion", "", "Rainstorm", "", "", "", "Other", "Car Accident"]
 
         return this.state.contacts.map(element =>
             <tr>
