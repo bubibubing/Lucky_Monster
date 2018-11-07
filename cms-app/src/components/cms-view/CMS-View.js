@@ -7,9 +7,10 @@ import { Container, Col,
     Nav,
     NavItem,
     NavLink,
-    Table, Pagination, PaginationItem, PaginationLink,
+    Table,
     Modal, ModalHeader, ModalBody, ModalFooter, Form } from 'reactstrap';
 import './CMS-View.css';
+import {ToastContainer, ToastStore} from 'react-toasts';
 
 
 class Report extends Component {
@@ -23,11 +24,14 @@ class Report extends Component {
             modal: false,
             password: "",
             newPassword: "",
+            crisisValues: ""
         };
 
         this.toggle = this.toggle.bind(this);
         this.logout = this.logout.bind(this);
         this.changePassword = this.changePassword.bind(this);
+        this.sortById = this.sortById.bind(this);
+        this.handleDropDownStatus = this.handleDropDownStatus.bind(this);
     }
 
     toggle() {
@@ -37,9 +41,8 @@ class Report extends Component {
     }
 
     componentDidMount() {
-        this.loadData()
-        console.log("componentDidMount " + this.state.contacts)
-        console.log("cDM" + this.state.name)
+        this.loadCrisisTypes();
+        this.loadData();
     }
 
 
@@ -59,6 +62,7 @@ class Report extends Component {
                 });
                 console.log("loadData " + this.state.contacts[0].name)
 
+
             })
             .catch(error => {
                 console.error(error)
@@ -67,7 +71,135 @@ class Report extends Component {
 
     changePassword() {
 
+
+        fetch('http://172.21.148.165:8000/api/users/changepassword', {
+            method: 'put',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                'Authorization': "Token " + window.localStorage.getItem("authToken")
+            },
+            body: JSON.stringify({
+                old_password: this.state.password,
+                password1: this.state.newPassword,
+                password2: this.state.newPassword,
+            })
+        }).then(res=>res.json()).then(function (data) {
+            console.log(data)
+        });
+
+        ToastStore.success("Password has been changed.")
+        this.toggle()
+
     }
+
+    loadCrisisTypes() {
+        fetch("http://172.21.148.165:8000/api/crisis_type")
+            .then(response => response.json())
+            .then(response => {
+                this.setState({
+                    crisisValues: response,
+                });
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
+    renderItems() {
+
+
+
+        const assistance = ["Null", "Rescue and Evacuation", "Emergency Ambulance", "Gas Leak Control", "Fire-Fighting"];
+
+        return this.state.contacts.map(element =>
+            <tr>
+                <th scope="row">{element.id}</th>
+                <td>{element.name}</td>
+                <td>{element.mobile_number}</td>
+                <td>{element.street_name}</td>
+                <td>{this.state.crisisValues[element.crisis_type-1].crisis_type}</td>
+                <td>{this.renderStatusDropdown(element)}</td>
+                <td>{assistance[element.assistance]}</td>
+                <td>{element.injured_people_num}</td>
+                <td>{element.description}</td>
+                <td>{this.renderButton(element)}</td>
+            </tr>
+        )
+    }
+
+    renderStatusDropdown(element) {
+        const status = ["Unhandled", "In Progress", "Solved"];
+        if (element.creator === window.localStorage.getItem("localsession")) {
+            return <Input onChange={(event) => this.handleDropDownStatus(element, event)}
+                          type="select" name="select" id="exampleSelect">
+                <option value="" selected disabled>{status.filter((val) => val.startsWith(element.status))}</option>
+                <option value={"U"}>Unhandled</option>
+                <option value={"I"}>In Progress</option>
+                <option value={"S"}>Solved</option>
+            </Input>
+        } else {
+            return <div>{status.filter((val) => val.startsWith(element.status))}</div>
+        }
+    }
+
+
+    handleDropDownStatus(element, event) {
+        this.setState({
+            status: event.target.value
+        })
+        console.log(event.target.value)
+        console.log(element)
+
+
+        fetch('http://172.21.148.165:8000/api/crisis_reports/' + element.id + '/', {
+            method: 'patch',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                'Authorization': "Token " + window.localStorage.getItem("authToken")
+            },
+            body: JSON.stringify({
+                status: event.target.value,
+            })
+
+        });
+        ToastStore.success("Status has been updated!")
+
+    }
+
+    renderButton(element) {
+        if (element.creator === window.localStorage.getItem("localsession")) {
+            return <Button component={Report} href={"#/report/" + element.id}>Edit</Button>
+        }
+    }
+
+
+
+
+    sortById(event) {
+
+
+        if (event.target.value === "id") {
+            this.setState(contacts => {
+                this.state.contacts.sort((a, b) => (a.id - b.id))
+            });
+        } else if (event.target.value === "location") {
+            this.setState(contacts => {
+                this.state.contacts.sort((a, b) => (a.street_name.localeCompare(b.street_name)))
+            });
+        } else {
+            this.setState(contacts => {
+                this.state.contacts.sort((a, b) => (a.status.localeCompare(b.status)))
+            });
+        }
+
+        this.forceUpdate();
+
+
+    }
+
+
 
 
     render() {
@@ -75,6 +207,10 @@ class Report extends Component {
         if (window.localStorage.getItem('localsession') === null) {
             this.props.history.push('/')
         }
+
+        console.log("authToken" + window.localStorage.getItem("authToken"))
+
+
 
         return (
             <div>
@@ -85,7 +221,7 @@ class Report extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink onClick={this.toggle}>UserName</NavLink>
+                                <NavLink onClick={this.toggle}>{window.localStorage.getItem("localsession")}</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink onClick={this.logout} href="/">Log out</NavLink>
@@ -101,132 +237,40 @@ class Report extends Component {
                         </Row>
                         <br/>
                         <Row>
-                       <Col> <FormGroup>
-                            <Label for="exampleSelect">Sort By:</Label>
-                            <Input type="select" name="select" id="exampleSelect">
-                                <option>Time</option>
-                                <option>Location</option>
-                                <option>Status</option>
-                            </Input>
-                       </FormGroup>
-
+                       <Col>
                            <FormGroup>
-                               <Label for="exampleSelect">Duration:</Label>
-                           <Input type="select" name="select" id="exampleSelect">
-                               <option>Before Two Weeks</option>
-                               <option>Before One Week</option>
-                               <option>A day ago</option>
-                           </Input>
-                       </FormGroup>
+                            <Label for="exampleSelect">Sort By:</Label>
+                            <Input onChange={this.sortById} type="select" name="select" id="exampleSelect">
+                                <option value={"id"}>ID</option>
+                                <option value={"location"}>Location</option>
+                                <option value={"status"}>Status</option>
+                            </Input>
+                            </FormGroup>
                        </Col>
+                            <br/>
                         </Row>
-                        <hr/>
-
                         <Row>
                             <Table>
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Type of Crisis</th>
-                                    <th>Recorded Time</th>
-                                    <th>Name of Witness</th>
-                                    <th>Location</th>
-                                    <th>Postal Code</th>
+                                    <th>Name</th>
+                                    <th>Mobile number</th>
+                                    <th>Street name</th>
+                                    <th>Crisis Type</th>
                                     <th>Status</th>
+                                    <th>Assistance</th>
+                                    <th>Injured number of people</th>
+                                    <th>Description</th>
+                                    <th></th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Dolor Sit</td>
-                                    <td>Consetetur Sadipscing</td>
-                                    <td>Sed Diam</td>
-                                    <td>Nonumy Eirmod </td>
-                                    <td>tempor invidunt</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Dolor Sit</td>
-                                    <td>Consetetur Sadipscing</td>
-                                    <td>Sed Diam</td>
-                                    <td>Nonumy Eirmod </td>
-                                    <td>tempor invidunt</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Dolor Sit</td>
-                                    <td>Consetetur Sadipscing</td>
-                                    <td>Sed Diam</td>
-                                    <td>Nonumy Eirmod </td>
-                                    <td>tempor invidunt</td>
-                                </tr>
+                                {this.renderItems()}
                                 </tbody>
                             </Table>
-                        </Row>
-                        <Row>
-                            <div className="center">
-                            <Pagination size="sm" aria-label="Page navigation example">
-                                <PaginationItem>
-                                    <PaginationLink previous href="#" />
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        1
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        2
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        3
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        4
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        5
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        6
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        7
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        8
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        9
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink href="#">
-                                        10
-                                    </PaginationLink>
-                                </PaginationItem>
-                                <PaginationItem>
-                                    <PaginationLink next href="#" />
-                                </PaginationItem>
-                            </Pagination>
-                            </div>
+                            <ToastContainer store={ToastStore}/>
                         </Row>
 
                     </Container>
@@ -270,6 +314,7 @@ class Report extends Component {
                         </ModalBody>
                         <ModalFooter>
                             <Button color="primary" onClick={this.changePassword}>Change password</Button>{' '}
+                            <ToastContainer store={ToastStore}/>
                             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                         </ModalFooter>
                     </Modal>

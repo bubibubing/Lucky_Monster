@@ -36,6 +36,9 @@ class App extends Component {
 
     handleChange(event) {
         this.setState({[event.target.id]: event.target.value});
+
+        console.log(this.state.username)
+        console.log(this.state.password)
     }
 
     submitLogin(event) {
@@ -56,12 +59,14 @@ class App extends Component {
                 password: this.state.password
             })
         }).then(res=>res.json()).then(function (data) {
-            if (data.Login === true) {
+            console.log(data)
+            if (data.token != null) {
                 self.setState({
                     loggedIn: true
                 }, () => {
-                    self.props.history.push('/cms')
+                    self.props.history.push('/cms');
                     window.localStorage.setItem('localsession', self.state.username)
+                    window.localStorage.setItem('authToken', data.token)
 
                 })
             } else {
