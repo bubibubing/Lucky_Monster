@@ -27,6 +27,7 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   userLocation:[number,number];
 
   fireMarkers:CustomMarker[] = [];
+  explosionMarkers:CustomMarker[] = [];
   gasLeakMarkers:CustomMarker[] = [];
   diseaseMarkers:CustomMarker[] = [];
   otherMarkers:CustomMarker[] = [];
@@ -38,13 +39,13 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
 
   show=false;
   
-  crisisByType:Crisis[][] = [[],[],[],[]];
-  markers = [{val:this.fireMarkers},{val:this.gasLeakMarkers},{val:this.diseaseMarkers},{val:this.otherMarkers},
+  crisisByType:Crisis[][] = [[],[],[],[],[]];
+  markers = [{val:this.fireMarkers},{val:this.explosionMarkers},{val:this.gasLeakMarkers},{val:this.diseaseMarkers},{val:this.otherMarkers},
     {val:this.tempMarkers}, {val:this.shelterMarkers}, {val:this.psiMarkers}]
 
-  checked_names1 = [['Fire',true], ['Gas Leak', true], ['Disease', true], ['Others', true]];
+  checked_names1 = [['Fire',true],['Explosion', true], ['Gas Leak', true], ['Disease', true], ['Others', true]];
   checked_names2 = [['Temperature',false], ['Shelter', false], ['PSI', false]];
-  checked_layers = [{val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty}, 
+  checked_layers = [{val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty},
     {val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty}];
 
   @Output() selectEvent:EventEmitter<Crisis> = new EventEmitter();
@@ -113,24 +114,28 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
           this.fireMarkers.push(marker.setIcon(Util.fireIcon));
           this.crisisByType[0].push(crisis);
           break;
+        case "Explosion":
+          this.explosionMarkers.push(marker.setIcon(Util.bombIcon));
+          this.crisisByType[1].push(crisis);
         case "Gas Leak":
           this.gasLeakMarkers.push(marker.setIcon(Util.gasLeakIcon));
-          this.crisisByType[1].push(crisis);
+          this.crisisByType[2].push(crisis);
           break;
         case "Disease":
           this.diseaseMarkers.push(marker.setIcon(Util.diseaseIcon));
-          this.crisisByType[2].push(crisis);
+          this.crisisByType[3].push(crisis);
           break;
         default:
           this.otherMarkers.push(marker.setIcon(Util.icon));
-          this.crisisByType[3].push(crisis);
+          this.crisisByType[4].push(crisis);
       };
     });
 
     this.checked_layers[0].val = layerGroup(this.fireMarkers);
-    this.checked_layers[1].val = layerGroup(this.gasLeakMarkers);
-    this.checked_layers[2].val = layerGroup(this.diseaseMarkers);
-    this.checked_layers[3].val = layerGroup(this.otherMarkers);
+    this.checked_layers[1].val = layerGroup(this.explosionMarkers);
+    this.checked_layers[2].val = layerGroup(this.gasLeakMarkers);
+    this.checked_layers[3].val = layerGroup(this.diseaseMarkers);
+    this.checked_layers[4].val = layerGroup(this.otherMarkers);
 
     this.checked = this.crises;
     this.checked.sort((a, b)=> a.type>b.type?1:-1);

@@ -37,4 +37,10 @@ export class Util{
         popupAnchor:[0, -15],
         iconUrl:'assets/circle.png'
       })
+
+      static bombIcon:Icon = icon({
+        iconSize:[20,20],
+        popupAnchor:[0, -15],
+        iconUrl:'assets/bomb.png'
+      })
 }
