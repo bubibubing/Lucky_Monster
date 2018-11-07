@@ -40,6 +40,8 @@ class Report extends Component {
 
     }
 
+
+
     handleChange(event) {
         this.setState({[event.target.id]: event.target.value});
         console.log(event.target.value)
@@ -234,7 +236,7 @@ class Report extends Component {
 
     preSelectAssistance() {
 
-        const assistance = ["Null", "Rescue and Evacuation", "Emergency Ambulance", "Gas Leak Control", "Fire-Fighting"];
+        const assistance = ["Null", "Fire-Fighting", "Gas Leak Control", "Emergency Ambulance", "Rescue and Evacuation"];
 
 
         if (this.state.toggleCheckVal == true) {
@@ -244,9 +246,9 @@ class Report extends Component {
     }
 
 
+
     render() {
-
-
+        
         if (window.localStorage.getItem('localsession') === null) {
             this.props.history.push('/')
         }
