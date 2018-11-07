@@ -122,7 +122,7 @@ class Report extends Component {
     renderItems() {
 
 
-        const assistance = ["Null", "Fire-Fighting", "Gas Leak Control", "Emergency Ambulance", "Rescue and Evacuation"];
+        const assistance = ["Null", "Rescue and Evacuation", "Gas Leak Control", "Emergency Ambulance", "Fire-Fighting"];
 
         const crisisType = ["Null", "Fire", "Gas Leak", "Disease", "Explosion", "Water Leakage", "Rainstorm", "Tsunami", "Stampede"
         , "Typhoon"]
