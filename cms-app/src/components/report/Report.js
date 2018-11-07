@@ -234,7 +234,7 @@ class Report extends Component {
 
     preSelectAssistance() {
 
-        const assistance = ["Null", "Rescue and Evacuation", "Emergency Ambulance", "Gas Leak Control", "Fire-Fighting"];
+        const assistance = ["Null", "Fire-Fighting", "Gas Leak Control", "Emergency Ambulance", "Rescue and Evacuation"];
 
         if (this.state.toggleCheckVal == true) {
             return <option value="" selected disabled>{assistance[this.state.assistance]}</option>
