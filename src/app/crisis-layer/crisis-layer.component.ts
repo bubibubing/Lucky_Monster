@@ -117,6 +117,7 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
         case "Explosion":
           this.explosionMarkers.push(marker.setIcon(Util.bombIcon));
           this.crisisByType[1].push(crisis);
+          break;
         case "Gas Leak":
           this.gasLeakMarkers.push(marker.setIcon(Util.gasLeakIcon));
           this.crisisByType[2].push(crisis);
