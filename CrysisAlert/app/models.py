@@ -13,6 +13,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 # Create your models here.
 class Crisis(models.Model):
     crisis_type = models.CharField(max_length=50, unique=True)
+    notes = models.TextField(default="")
 
     def __str__(self):
         return self.crisis_type

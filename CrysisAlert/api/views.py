@@ -78,7 +78,7 @@ class ReportUpdateCreateView(viewsets.ModelViewSet):
     serializer_class = ReportUpdateCreateSerializer
 
     def perform_create(self, serializer):
-        # print(serializer.validated_data)
+        print(serializer.validated_data)
         serializer.save(creator=self.request.user)
 
 
