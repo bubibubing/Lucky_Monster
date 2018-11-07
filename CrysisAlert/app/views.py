@@ -11,43 +11,36 @@ from datetime import datetime,timedelta
 from django.utils import timezone
 from dateutil import tz
 
-def sms(request):
-	context = locals()
-	template = 'sms.html'
-	to_zone = tz.gettz('Asia/Singapore')
-	time = timezone.now().astimezone(to_zone)-timedelta(minutes=30)
-	
-	# timer = threading.Timer(1, hour_timer)
-	# timer.start()
-	if request.method =='POST':
-		actionType = 'Fire-Fighting'
-		info = getInfo(actionType)
-		report = getCrisis(time)
-		
-		#get crisis report detail
-		no_of_crisis = len(report)
-		print(no_of_crisis)
-		for r in report:
-				print((r.create_date_time).astimezone(to_zone))
-
-		# if info == None:
-		# 	messages.error(request,'Invaild required type.')
-		# else:
-		# 	s = sendSMS(info)
-		# 	f = facebookPost(info)
-		# 	t = twitterPost(info)
-		# 	if s == False:
-		# 		messages.error(request,'Fail to sent SMS to the relevant agency.')
-		# 	elif f == False:
-		# 		messages.error(request,'Fail to psot on Facebook.')
-		# 	elif t == False:
-		# 		messages.error(request,'Fail to psot on Twitter.')
-		# 	else:
-		# 		messages.success(request, 'SMS has sent to relevant agencies. Also, the crisis alert have been put up to Facebook and Twitter.')
-
-		return render(request,template,context)
+def info_dispatch(crisis_report):
+	info = getInfo(crisis_report)
+	if not info:
+		print('Invaild required type.')
 	else:
-		return render(request,template,context)
+		try:
+			sendSMS(info)
+		except Exception:
+			print('Fail to sent SMS to the relevant agency.')
+			pass
+		try:
+			facebookPost(info)
+		except Exception:
+			print('Fail to post on Facebook.')
+			pass
+		try:
+			twitterPost(info)
+		except:
+			print("Fail to post on Twitter")
+			pass
+
+		# if s == False:
+		# 	messages.error(request,'Fail to sent SMS to the relevant agency.')
+		# elif f == False:
+		# 	messages.error(request,'Fail to psot on Facebook.')
+		# elif t == False:
+		# 	messages.error(request,'Fail to psot on Twitter.')
+		# else:
+		# 	messages.success(request, 'SMS has sent to relevant agencies. Also, the crisis alert have been put up to Facebook and Twitter.')
+
 
 def getCrisis(time):
 	'''
@@ -61,7 +54,7 @@ def getCrisis(time):
 	return report
 
 
-def getInfo(actionType):
+def getInfo(crisis_report):
 	'''
 	This method gets the information of crisis event such as relevant agency, contact number of the agency and action to carry
 	Args:
@@ -69,21 +62,39 @@ def getInfo(actionType):
     Returns:
         msg (python object): A python object that contains necessary information needed for sending sms, such as relevant agency, contact number of the agency and action to carry
 	'''
-	assistant = Assistance.objects.get(type_of_assistance=actionType)
-	infoDispatch = InfoDispatch.objects.get(assistance_type=assistant)
-	agent = infoDispatch.agencies
-	note = infoDispatch.notes
-	agency = Agency.objects.get(name=agent)
-	contact = agency.contact_num
+	# assistant = Assistance.objects.get(type_of_assistance=actionType)
+	# infoDispatch = InfoDispatch.objects.get(assistance_type=assistant)
+	# agent = infoDispatch.agencies
+	# note = infoDispatch.notes
+	# agency = Agency.objects.get(name=agent)
+	# contact = agency.contact_num
 
-	if agent != None and note != None and contact != None:
-		info={
-			"agent":agent,
-			"contact":contact,
-			"note":note
-		}
-		return info
-	return None
+
+	crisis = crisis_report["crisis_type"]
+	crisis_type = crisis.crisis_type
+	crisis_notes = crisis.notes
+	witness_name = crisis_report['name']
+	witness_contact = crisis_report['mobile_number']
+	street_name = crisis_report['street_name']
+	description = crisis_report['description']
+	injured_people = crisis_report['injured_people_num']
+	contact = []
+	for assistance in crisis_report['assistance']:
+		for agent in assistance.agencies.all():
+			contact.append("+65"+agent.contact_num)
+	
+	info={
+		"crisis_type": crisis_type,
+		"witness_name": witness_name,
+		"witness_contact": witness_contact,
+		"street": street_name,
+		"contact": contact,
+		"notes": crisis_notes,
+		"description": description,
+		"injured_people": injured_people,	
+	}
+	print(info)
+	return info
 
 def sendSMS(info):
 	'''
@@ -96,10 +107,15 @@ def sendSMS(info):
         True/False (Boolean): Return True if it is successfully send the sms to the relevant agencies. Return False otherwise.
 	'''
 
-	api_key = 'XXX'
-	api_secret = 'XXX'
+	api_key = '584b637b'
+	api_secret = '6SkVXAWV6U0LtPkO'
 	client = nexmo.Client(key=api_key, secret=api_secret)
-	response = client.send_message({'from': 'Crisis Alert', 'to': info['contact'], 'text': info['note']})
+	response = client.send_message({
+		'from': 'Crisis Alert', 
+		'to': info['contact'][0], 
+		'text': "Crisis type: {}\nStreet: {}\nDescription: {}\nWitness name: {}\nWitness Contact: {}".format(
+			info["crisis_type"], info["street"], info["description"], info["witness_name"], info["witness_contact"]) 			
+	})
 
 	response = response['messages'][0]
 
@@ -122,12 +138,14 @@ def facebookPost(info):
 	'''
 
 	fcfg={
-		"page_id":"XXX",
-		"access_token":"XXX"
+		"page_id":"538078229937423",
+		"access_token":"EAAYNHre91MMBADbwqws8GxQZChPFOzDygB11yRo8dTAxOfe4PIAOzkFlywNN1ZAlB4oxjycGFU1F4ZCZB910hpehQ4ZA6rMcK6mFoOY6azo88D1ZCwtrF7hZAZAIvoNGjrBUoZCPb3ZA3NMjMrsXDlXWvXR0YHZBUPWGkG0XrZCSaUGnsXqdHD4KoZCXcZBH9GfJDCZC4ZBbKPdOometbwZDZD",
 	}
-	g=facebook_api(fcfg)
+	g = facebook_api(fcfg)
 	if g != None:
-		status = g.put_object("me", "feed", message=info['note'])
+		message = "Crisis type: {}\nStreet: {}\nDescription: {}\nAdvice: {}\n".format(
+			info["crisis_type"], info["street"], info["description"], info["notes"])
+		status = g.put_object("me", "feed", message=message)
 		# status=g.put_wall_post(info['note'])
 		return True
 	return False
@@ -143,14 +161,16 @@ def twitterPost(info):
         True/False (Boolean): Return True if it is successfully posted on Twitter. Return False otherwise.
 	'''
 	tcfg={
-		"consumer_secret":"XXX",
-		"consumer_key":"XXX",
-		"access_token":"XXX",
-		"access_token_secret":"XXX"
+		"consumer_secret":"xJWTezAVPP1eLW312Wt9NAZWObE1Kr0jpRTX993Y6cewlR0PLU",
+		"consumer_key":"ZGYa8NkRnVcl8QBA0JExYLdkj",
+		"access_token":"1052836226456113152-JtWpiqnr2y6snwxn78pOfTPTtEeHlJ",
+		"access_token_secret":"1bFTkfuGSTxSX7t6iQQmENHKyn3B926ovmFwdQoaO42ao"
 	}
 	tapi = twitter_api(tcfg)
 	if tapi != None:
-		tapi.update_status(info['note'])
+		message = "Crisis type: {}\nStreet: {}\nDescription: {}\nAdvice: {}\n".format(
+			info["crisis_type"], info["street"], info["description"], info["notes"])
+		tapi.update_status(message)
 		return True
 	return False
 

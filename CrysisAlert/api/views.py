@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from api.permissions import IsOwnerOrReadOnly
 from app.models import CrisisReport, Assistance, Agency, Facility, Crisis
+from app.views import getInfo, info_dispatch
 from api.serializers import (
     ReportViewSerializer, 
     CrisisSerializer, 
@@ -79,6 +80,7 @@ class ReportUpdateCreateView(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         print(serializer.validated_data)
+        info_dispatch(serializer.validated_data)
         serializer.save(creator=self.request.user)
 
 
