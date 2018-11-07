@@ -69,3 +69,17 @@
     display: block;
 }
 
+.dropdown-content .checkbox:nth-child(8) {
+    position: relative;
+}
+.dropdown-content .checkbox:nth-child(8)::after {
+    content: '';
+    height: 0;
+    border-bottom: 1px solid #CCC;
+    width: 60%;
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    display: block;
+}
+

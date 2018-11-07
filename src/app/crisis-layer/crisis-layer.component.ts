@@ -34,17 +34,18 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   tempMarkers:Marker[] = [];
   shelterMarkers: Marker[] = [];
   psiMarkers: Marker[] = [];
-
   empty = layerGroup();
 
   show=false;
   
+  status = ['U','I','S'];
   crisisByType:Crisis[][] = [[],[],[],[],[]];
   markers = [{val:this.fireMarkers},{val:this.explosionMarkers},{val:this.gasLeakMarkers},{val:this.diseaseMarkers},{val:this.otherMarkers},
     {val:this.tempMarkers}, {val:this.shelterMarkers}, {val:this.psiMarkers}]
 
   checked_names1 = [['Fire',true],['Explosion', true], ['Gas Leak', true], ['Disease', true], ['Others', true]];
-  checked_names2 = [['Temperature',false], ['Shelter', false], ['PSI', false]];
+  checked_names2 = [['Unhandled',true],['In Progress',true],['Solved',true]];
+  checked_names3 = [['Temperature',false], ['Shelter', false], ['PSI', false]];
   checked_layers = [{val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty},
     {val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty}];
 
@@ -70,6 +71,9 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
     const arrs = await this.dataService.getCrisisAndType();
     const c_ = await this.dataService.parseCrisisAndType(arrs[0],arrs[1]);
     c_.forEach(c => this.crises.push(c));
+    console.log(this.crises);
+    c_.forEach(c => this.checked.push(c));
+    console.log(this.checked);
     this.initCrisisLayers();
     this.checkReadyEvent.emit(true);
   }
@@ -104,11 +108,12 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   }
 
   initCrisisLayers():void{
-    this.crises.forEach( crisis => {
+    this.crisisByType.forEach(c => c.length=0);
+    this.markers.forEach(m=> m.val.length=0);
+
+    this.checked.forEach( crisis => {
       var marker:CustomMarker = new CustomMarker(crisis.location, crisis.id).bindPopup(crisis.description);
       marker.on("click", ()=>{this.onClickMarker(marker)});
-      // marker.on("mouseover", ()=>marker.openPopup());
-      // marker.on("mouseout", ()=>marker.closePopup());
       switch(crisis.type){
         case "Fire":
           this.fireMarkers.push(marker.setIcon(Util.fireIcon));
@@ -132,13 +137,15 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
       };
     });
 
-    this.checked_layers[0].val = layerGroup(this.fireMarkers);
-    this.checked_layers[1].val = layerGroup(this.explosionMarkers);
-    this.checked_layers[2].val = layerGroup(this.gasLeakMarkers);
-    this.checked_layers[3].val = layerGroup(this.diseaseMarkers);
-    this.checked_layers[4].val = layerGroup(this.otherMarkers);
+    this.checked_names1.forEach((n, i) =>{
+      if(n[1]){
+        this.checked_layers[i].val = layerGroup(this.markers[i].val);
+      }
+      else{
+        this.checked_layers[i].val = this.empty;
+      }
+    });
 
-    this.checked = this.crises;
     this.checked.sort((a, b)=> a.type>b.type?1:-1);
     this.checkEvent.emit(this.checked);
   }
@@ -206,12 +213,38 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   }
 
   onClickCheckbox2(index:number){
+    const checked_new = [];
     if(this.checked_names2[index][1]===true){
       this.checked_names2[index][1]=false;
-      this.checked_layers[index+this.checked_names1.length].val = this.empty;
+      this.checked.forEach((c,i)=>{
+        if(c.status != this.status[index]){
+          checked_new.push(c);
+        }
+      });
+      this.checked = checked_new;
     }
     else{
       this.checked_names2[index][1]=true;
+      this.crises.forEach(c =>{
+        var _checked_name = this.checked_names1.find(name => name[0] == c.type);
+        if(!_checked_name){
+          _checked_name = this.checked_names1[this.checked_names1.length-1]
+        }
+        if(c.status == this.status[index] && _checked_name[1]){
+          this.checked.push(c);
+        }
+      })
+    }
+    this.initCrisisLayers();
+  }
+
+  onClickCheckbox3(index:number){
+    if(this.checked_names3[index][1]===true){
+      this.checked_names3[index][1]=false;
+      this.checked_layers[index+this.checked_names1.length].val = this.empty;
+    }
+    else{
+      this.checked_names3[index][1]=true;
       this.checked_layers[index+this.checked_names1.length].val = layerGroup(this.markers[index+this.checked_names1.length].val);
     }
   }
