@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'app',
     'api',
     'CrysisAlert',
-    'social_post',
 ]
 
 MIDDLEWARE = [
@@ -173,3 +172,11 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab()  # execute every minute
     }
 }
+
+CELERY_BEAT_SCHEDULE = {
+    'sendmail': {
+        'task': 'app.tasks.sendmail',
+        'schedule': crontab(minute=10)  # execute every minute
+    }
+}
+
