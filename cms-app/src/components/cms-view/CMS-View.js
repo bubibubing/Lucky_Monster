@@ -32,6 +32,7 @@ class Report extends Component {
         this.changePassword = this.changePassword.bind(this);
         this.sortById = this.sortById.bind(this);
         this.handleDropDownStatus = this.handleDropDownStatus.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     toggle() {
@@ -39,6 +40,11 @@ class Report extends Component {
             modal: !this.state.modal
         });
     }
+
+    handleChange(event) {
+        this.setState({[event.target.id]: event.target.value});
+    }
+
 
     componentDidMount() {
         this.loadCrisisTypes();
@@ -84,11 +90,18 @@ class Report extends Component {
                 password1: this.state.newPassword,
                 password2: this.state.newPassword,
             })
-        }).then(res=>res.json()).then(function (data) {
-            console.log(data)
+        }).then(response => {
+            if (response.status === 400) {
+                ToastStore.error("Password is wrong")
+
+            } else {
+                ToastStore.success("Password has been changed")
+            }
+        }).catch(error => {
+            console.log(error)
         });
 
-        ToastStore.success("Password has been changed.")
+
         this.toggle()
 
     }
@@ -111,6 +124,8 @@ class Report extends Component {
 
 
         const assistance = ["Null", "Rescue and Evacuation", "Emergency Ambulance", "Gas Leak Control", "Fire-Fighting"];
+        const crisisType = ["Null", "Fire", "Gas Leak", "Disease", "Explosion", "Water Leakage", "Rainstorm", "Tsunami", "Stampede"
+        , "Typhoon"]
 
         return this.state.contacts.map(element =>
             <tr>
@@ -118,7 +133,7 @@ class Report extends Component {
                 <td>{element.name}</td>
                 <td>{element.mobile_number}</td>
                 <td>{element.street_name}</td>
-                <td>{this.state.crisisValues[element.crisis_type-1].crisis_type}</td>
+                <td>{crisisType[element.crisis_type]}</td>
                 <td>{this.renderStatusDropdown(element)}</td>
                 <td>{assistance[element.assistance]}</td>
                 <td>{element.injured_people_num}</td>
@@ -130,6 +145,17 @@ class Report extends Component {
 
     renderStatusDropdown(element) {
         const status = ["Unhandled", "In Progress", "Solved"];
+
+        if (window.localStorage.getItem('localsession') == "admin") {
+            return <Input onChange={(event) => this.handleDropDownStatus(element, event)}
+                          type="select" name="select" id="exampleSelect">
+                <option value="" selected disabled>{status.filter((val) => val.startsWith(element.status))}</option>
+                <option value={"U"}>Unhandled</option>
+                <option value={"I"}>In Progress</option>
+                <option value={"S"}>Solved</option>
+            </Input>
+        }
+
         if (element.creator === window.localStorage.getItem("localsession")) {
             return <Input onChange={(event) => this.handleDropDownStatus(element, event)}
                           type="select" name="select" id="exampleSelect">
@@ -169,7 +195,10 @@ class Report extends Component {
     }
 
     renderButton(element) {
-        if (element.creator === window.localStorage.getItem("localsession")) {
+
+        if (window.localStorage.getItem('localsession') == "admin") {
+            return <Button component={Report} href={"#/report/" + element.id}>Edit</Button>
+        } else if (element.creator === window.localStorage.getItem("localsession")) {
             return <Button component={Report} href={"#/report/" + element.id}>Edit</Button>
         }
     }

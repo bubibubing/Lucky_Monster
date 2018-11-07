@@ -16,10 +16,10 @@ class Report extends Component {
             mobilephone: "",
             streetname: "",
             status: "U",
-            crisisType: 1,
+            crisisType: "",
             injuredpeople: "",
             description: "",
-            assistance: 1,
+            assistance: "",
             contacts: "",
             crisisId: [],
             crisisTypes: [],
@@ -117,6 +117,7 @@ class Report extends Component {
             let url = this.props.location.pathname;
             let reportID = url.substr(url.lastIndexOf('/') + 1);
             console.log("False")
+            console.log(this.state.assistance)
             fetch('http://172.21.148.165:8000/api/crisis_reports/' + reportID + "/", {
                 method: 'patch',
                 headers: {
@@ -145,9 +146,6 @@ class Report extends Component {
 
     }
 
-
-
-
     componentDidMount() {
         let url = this.props.location.pathname;
         let reportID = url.substr(url.lastIndexOf('/') + 1);
@@ -162,7 +160,7 @@ class Report extends Component {
             fetch("http://172.21.148.165:8000/api/crisis_reports/" + reportID + "/?format=json")
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response.name)
+                    console.log(response.assistance[0])
                     this.setState({
                         name: response.name,
                         mobilephone: response.mobile_number,
@@ -171,7 +169,7 @@ class Report extends Component {
                         crisisType: response.crisis_type,
                         injuredpeople: response.injured_people_num,
                         description: response.description,
-                        assistance: response.assistance,
+                        assistance: response.assistance[0],
                     })
 
                     this.toggleCheckVal()
@@ -213,8 +211,11 @@ class Report extends Component {
 
     preSelectCrisisType() {
 
+        const crisisType = ["Null", "Fire", "Gas Leak", "Disease", "Explosion", "Water Leakage", "Rainstorm", "Tsunami", "Stampede"
+            , "Typhoon"]
+
         if (this.state.toggleCheckVal == true) {
-            return <option value="" selected disabled>{this.state.crisisType}</option>
+            return <option value="" selected disabled>{crisisType[this.state.crisisType]}</option>
 
         }
     }
