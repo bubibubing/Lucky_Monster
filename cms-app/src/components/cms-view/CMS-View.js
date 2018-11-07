@@ -24,7 +24,8 @@ class Report extends Component {
             modal: false,
             password: "",
             newPassword: "",
-            crisisValues: ""
+            crisisValues: "",
+            changeSort: false
         };
 
         this.toggle = this.toggle.bind(this);
@@ -121,25 +122,43 @@ class Report extends Component {
 
     renderItems() {
 
-
         const assistance = ["Null", "Fire-Fighting", "Gas Leak Control", "Emergency Ambulance", "Rescue and Evacuation"];
 
         const crisisType = ["Null", "Fire", "Gas Leak", "Disease", "Explosion", "", "Rainstorm", "", "", "", "Other", "Car Accident"]
 
-        return this.state.contacts.map(element =>
-            <tr>
-                <th scope="row">{element.id}</th>
-                <td>{element.name}</td>
-                <td>{element.mobile_number}</td>
-                <td>{element.street_name}</td>
-                <td>{crisisType[element.crisis_type]}</td>
-                <td>{this.renderStatusDropdown(element)}</td>
-                <td>{assistance[element.assistance]}</td>
-                <td>{element.injured_people_num}</td>
-                <td>{element.description}</td>
-                <td>{this.renderButton(element)}</td>
-            </tr>
-        )
+
+        if (this.state.changeSort === false) {
+
+            return this.state.contacts.sort((a, b) => (b.id - a.id)).map(element =>
+                <tr>
+                    <th scope="row">{element.id}</th>
+                    <td>{element.name}</td>
+                    <td>{element.mobile_number}</td>
+                    <td>{element.street_name}</td>
+                    <td>{crisisType[element.crisis_type]}</td>
+                    <td>{this.renderStatusDropdown(element)}</td>
+                    <td>{assistance[element.assistance]}</td>
+                    <td>{element.injured_people_num}</td>
+                    <td>{element.description}</td>
+                    <td>{this.renderButton(element)}</td>
+                </tr>
+            )
+        } else {
+            return this.state.contacts.map(element =>
+                <tr>
+                    <th scope="row">{element.id}</th>
+                    <td>{element.name}</td>
+                    <td>{element.mobile_number}</td>
+                    <td>{element.street_name}</td>
+                    <td>{crisisType[element.crisis_type]}</td>
+                    <td>{this.renderStatusDropdown(element)}</td>
+                    <td>{assistance[element.assistance]}</td>
+                    <td>{element.injured_people_num}</td>
+                    <td>{element.description}</td>
+                    <td>{this.renderButton(element)}</td>
+                </tr>
+            )
+        }
     }
 
     renderStatusDropdown(element) {
@@ -207,14 +226,15 @@ class Report extends Component {
 
     sortById(event) {
 
+        if (this.state.changeSort === false) {
+            this.setState({
+                changeSort: true
+            })
+        }
 
         if (event.target.value === "id") {
             this.setState(contacts => {
-                this.state.contacts.sort((a, b) => (a.id - b.id))
-            });
-        } else if (event.target.value === "location") {
-            this.setState(contacts => {
-                this.state.contacts.sort((a, b) => (a.street_name.localeCompare(b.street_name)))
+                this.state.contacts.sort((a, b) => (b.id - a.id))
             });
         } else {
             this.setState(contacts => {
@@ -270,7 +290,6 @@ class Report extends Component {
                             <Label for="exampleSelect">Sort By:</Label>
                             <Input onChange={this.sortById} type="select" name="select" id="exampleSelect">
                                 <option value={"id"}>ID</option>
-                                <option value={"location"}>Location</option>
                                 <option value={"status"}>Status</option>
                             </Input>
                             </FormGroup>
