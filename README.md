@@ -1,21 +1,19 @@
 # Lucky_Monster
-## Django Rest framework
-- [QuickStart](http://www.django-rest-framework.org/#quickstart)
-- [Django Tutorials](https://docs.djangoproject.com/en/2.1/intro/tutorial01/)
-## Virtual Enviroment
-Virtualenv creates an environment that has its own installation directories, that doesn’t share libraries with other virtualenv environments.
 
-For the packages you want to install, please add to the requirements.txt. ```$ pip install -r requirements.txt``` will install all the packages specified in the requirements.txt.
-### Start the virtual envirment
-#### Unix-like System
+## Run the Call Center backend
+Our project is deployed on the school server. Please connect to NTU network and view <http://172.21.148.165:8000/docs/> for backend api documentation.
+
+Check this link for all the crisis reports in the database. <http://172.21.148.165:8000/api/crisis_view>
+Also the filters can be applyed. For example http://172.21.148.165:8000/api/crisis_view/?status=S [S|I|U] or something like crisis_type=["Fire"]
+
+
+To run the system on localhost. First you need to install [docker](https://www.docker.com/get-started). 
+```bash
+cd CrysisAlert
+docker-compose up
 ```
-$ virtualenv --no-site-packages --distribute .env && source .env/bin/activate && pip install -r requirements.txt
-```
-#### Windows
-```
-$ virtualenv --no-site-packages --distribute .env && .env/Scripts/activate && pip install -r requirements.txt
-```
-## Run Server
-```
-python manage.py runserver 0.0.0.0:8000
+
+To load the test data
+```bash
+docker-compose run web load dbexport.json
 ```

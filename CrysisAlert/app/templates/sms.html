@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>	
+</head>
+
+<body>
+	{% if messages %}
+      <div id="snackbar">
+          {% for message in messages %}
+          <p>{% if message.tags %} {% endif %}{{ message }}</p>
+          {% endfor %}
+      </div>
+    {% endif %}
+
+<h2>send sms</h2>
+
+<form method='post'>
+	{% csrf_token %}
+  <input type="submit" value="Submit"">
+</form> 
+</body>
+</html>
