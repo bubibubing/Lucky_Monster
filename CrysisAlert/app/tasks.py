@@ -10,8 +10,7 @@ import string
 import random
 
 # Set up a periodic task to send email automatically every 30 min.
-# @periodic_task(run_every=600)
-@shared_task
+@periodic_task(run_every=3 * 60)
 def sendmail():
 	# Get aimed crisis reports from database
 	to_zone = tz.gettz('Asia/Singapore')

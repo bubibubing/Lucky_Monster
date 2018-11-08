@@ -166,17 +166,17 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 
-CELERY_BEAT_SCHEDULE = {
-    'hello': {
-        'task': 'app.tasks.hello',
-        'schedule': crontab()  # execute every minute
-    }
-}
+#CELERY_BEAT_SCHEDULE = {
+#    'hello': {
+#        'task': 'app.tasks.hello',
+#        'schedule': crontab()  # execute every minute
+#    }
+#}
 
-CELERY_BEAT_SCHEDULE = {
-    'sendmail': {
-        'task': 'app.tasks.sendmail',
-        'schedule': crontab(minute=10)  # execute every minute
-    }
-}
+#CELERY_BEAT_SCHEDULE = {
+#    'sendmail': {
+#        'task': 'app.tasks.sendmail',
+#        'schedule': crontab(minute=10)  # execute every minute
+#    }
+#}
 
