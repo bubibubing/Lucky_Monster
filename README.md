@@ -13,7 +13,7 @@ cd CrysisAlert
 docker-compose up
 ```
 
-To load the text data
+To load the test data
 ```bash
 docker-compose run web load dbexport.json
 ```
