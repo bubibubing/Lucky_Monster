@@ -1,0 +1,2558 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>map-update documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">map-update documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>CrisisLayerComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/crisis-layer/crisis-layer.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-crisis-layer</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./crisis-layer.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./crisis-layer.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checked">checked</a>
+                            </li>
+                            <li>
+                                <a href="#checked_layers">checked_layers</a>
+                            </li>
+                            <li>
+                                <a href="#checked_names1">checked_names1</a>
+                            </li>
+                            <li>
+                                <a href="#checked_names2">checked_names2</a>
+                            </li>
+                            <li>
+                                <a href="#crises">crises</a>
+                            </li>
+                            <li>
+                                <a href="#crisisByType">crisisByType</a>
+                            </li>
+                            <li>
+                                <a href="#diseaseMarkers">diseaseMarkers</a>
+                            </li>
+                            <li>
+                                <a href="#empty">empty</a>
+                            </li>
+                            <li>
+                                <a href="#explosionMarkers">explosionMarkers</a>
+                            </li>
+                            <li>
+                                <a href="#fireMarkers">fireMarkers</a>
+                            </li>
+                            <li>
+                                <a href="#gasLeakMarkers">gasLeakMarkers</a>
+                            </li>
+                            <li>
+                                <a href="#markers">markers</a>
+                            </li>
+                            <li>
+                                <a href="#otherMarkers">otherMarkers</a>
+                            </li>
+                            <li>
+                                <a href="#psiMarkers">psiMarkers</a>
+                            </li>
+                            <li>
+                                <a href="#psis">psis</a>
+                            </li>
+                            <li>
+                                <a href="#shelterMarkers">shelterMarkers</a>
+                            </li>
+                            <li>
+                                <a href="#shelters">shelters</a>
+                            </li>
+                            <li>
+                                <a href="#show">show</a>
+                            </li>
+                            <li>
+                                <a href="#tempMarkers">tempMarkers</a>
+                            </li>
+                            <li>
+                                <a href="#temps">temps</a>
+                            </li>
+                            <li>
+                                <a href="#userLocation">userLocation</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#forceFocus">forceFocus</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCrises">getCrises</a>
+                            </li>
+                            <li>
+                                <a href="#getPsi">getPsi</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getShelters">getShelters</a>
+                            </li>
+                            <li>
+                                <a href="#getTemps">getTemps</a>
+                            </li>
+                            <li>
+                                <a href="#getUserLocation">getUserLocation</a>
+                            </li>
+                            <li>
+                                <a href="#initCrisisLayers">initCrisisLayers</a>
+                            </li>
+                            <li>
+                                <a href="#initPsiLayer">initPsiLayer</a>
+                            </li>
+                            <li>
+                                <a href="#initShelterLayer">initShelterLayer</a>
+                            </li>
+                            <li>
+                                <a href="#initTempLayer">initTempLayer</a>
+                            </li>
+                            <li>
+                                <a href="#initUserLocation">initUserLocation</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onClickCheckbox1">onClickCheckbox1</a>
+                            </li>
+                            <li>
+                                <a href="#onClickCheckbox2">onClickCheckbox2</a>
+                            </li>
+                            <li>
+                                <a href="#onClickMarker">onClickMarker</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#selected">selected</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkEvent">checkEvent</a>
+                            </li>
+                            <li>
+                                <a href="#checkReadyEvent">checkReadyEvent</a>
+                            </li>
+                            <li>
+                                <a href="#locationEvent">locationEvent</a>
+                            </li>
+                            <li>
+                                <a href="#selectEvent">selectEvent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="selected"></a>
+                        <code>selected</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>Selected crisis of the selected marker or from crisis-list component</p>
+</div>
+                            <p>
+                            <em>Type :</em>    <code><a href="../classes/Crisis.html" target="_self" >Crisis</a></code>
+
+                            </p>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:45</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="checkEvent"></a>
+                        <code>checkEvent</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>EventEmitter for checkbox click event, selecting displayed layer of markers</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="../classes/Crisis.html" target="_self" >EventEmitter&lt;Crisis[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:92</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="checkReadyEvent"></a>
+                        <code>checkReadyEvent</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>EventEmitter for crisis fetching finish event</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code>EventEmitter&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:96</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="locationEvent"></a>
+                        <code>locationEvent</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>EventEmitter for user location ready event</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code>EventEmitter&lt;&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:100</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-2">
+                        <a name="selectEvent"></a>
+                        <code>selectEvent</code>
+                    </td>
+                    <td class="col-md-10">
+                        <div><p>EventEmitter for marker click event, selecting the crisis marker</p>
+</div>
+                        <em><code>$event</code> Type:</em>    <code><a href="../classes/Crisis.html" target="_self" >EventEmitter&lt;Crisis&gt;</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:88</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="forceFocus"></a>
+                        <span class="name">
+                            <b>
+                            forceFocus
+                            </b>
+                            <a href="#forceFocus"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>forceFocus()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="305" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:305</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Enforce the display of dropdown menu</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getCrises"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            getCrises
+                            </b>
+                            <a href="#getCrises"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>getCrises()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:124</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>This function makes use of the getCrisisAndType() function, parses the variables returned into the parseCrisisAndType(type, crisis) function and adds each of the Crisis object into an array of Crisis objects named “crises” . Afterwards, the initCrisisLayers() function is called.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getPsi"></a>
+                        <span class="name">
+                            <b>
+                            getPsi
+                            </b>
+                            <a href="#getPsi"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getPsi()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:153</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>This function makes use of the getPsi() function, parses the variable returned into the parseRawPsi(raw) function and adds each of the Psi object into an array of Psi objects named “psis” . Afterwards, initPsiLayer() function is called.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getShelters"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Async</span>
+                            getShelters
+                            </b>
+                            <a href="#getShelters"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>getShelters()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:143</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>This function makes use of the getRawShelter() function, parses the variable returned into the parseRawShelter(raw) function and adds each of the Shelter object into an array of Shelter objects named “shelters” . Afterwards, the initShelterLayer() function is called.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getTemps"></a>
+                        <span class="name">
+                            <b>
+                            getTemps
+                            </b>
+                            <a href="#getTemps"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getTemps()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:134</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>This function makes use of the getTemperature() function, parses the variable returned into the parseRawWeather(raw) function and adds each of the Weather object into an array of Weather objects named “temps” . Afterwards, the initTempLayer() function is called.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getUserLocation"></a>
+                        <span class="name">
+                            <b>
+                            getUserLocation
+                            </b>
+                            <a href="#getUserLocation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>getUserLocation()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:163</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>This function grabs the user’s current location and the position is parsed into the initUserLocation(position) function to carry out the function.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initCrisisLayers"></a>
+                        <span class="name">
+                            <b>
+                            initCrisisLayers
+                            </b>
+                            <a href="#initCrisisLayers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>initCrisisLayers()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:171</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>For each Crisis object in the crisis array, this function creates a marker with the icon for the crisis type of the crisis and place it onto the map based on the location of the crisis and bind a popup to the crisis with the description of the crisis. Each of the markers are then pushed into an array of custom markers named after their crisis type, for example &quot;fireMarkers&quot;.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initPsiLayer"></a>
+                        <span class="name">
+                            <b>
+                            initPsiLayer
+                            </b>
+                            <a href="#initPsiLayer"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>initPsiLayer()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:233</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>For each Psi object in the psi array, this function creates a marker with the reading of the psi as text in replace of an icon and place it onto the map based on the location of the psi. Each of the markers are then pushed into an array of markers named &quot;psiMarkers&quot;.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initShelterLayer"></a>
+                        <span class="name">
+                            <b>
+                            initShelterLayer
+                            </b>
+                            <a href="#initShelterLayer"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>initShelterLayer()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:221</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>For each Shelter object in the shelter array, this function creates a marker with the shelter icon and place it onto the map based on the location of the shelter and bind a popup to the shelter with the shelter name, description and a link directing to the shelter. Each of the markers are then pushed into an array of markers named &quot;shelterMarkers&quot;.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initTempLayer"></a>
+                        <span class="name">
+                            <b>
+                            initTempLayer
+                            </b>
+                            <a href="#initTempLayer"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>initTempLayer()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:213</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>For each Temperature object in the temp array, this function creates a marker with the reading of the temperature as text in replace of an icon and place it onto the map based on the location of the temperature. Each of the markers are then pushed into an array of markers named &quot;tempMarkers&quot;.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initUserLocation"></a>
+                        <span class="name">
+                            <b>
+                            initUserLocation
+                            </b>
+                            <a href="#initUserLocation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>initUserLocation(position: Position)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:242</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>This function takes the position argument, creates a marker with the user icon and places it onto the map based on the position’s location and binds a popup with the text “Your Current Location”.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>position</td>
+                                                        <td>
+                                                                    <code>Position</code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>The user’s current location</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:114</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Initialize the component after Angular first displays the data-bound properties and sets the component&#39;s input properties. Called once</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onClickCheckbox1"></a>
+                        <span class="name">
+                            <b>
+                            onClickCheckbox1
+                            </b>
+                            <a href="#onClickCheckbox1"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onClickCheckbox1(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:269</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Event handler. Triggered when first section of checkbox is clicked. Depending on the checkbox selected, which corresponds to a type of crisis, this function displays only the crisis with the selected crisis type on the map and crisis list.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>index</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Index of checkbox which is clicked</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onClickCheckbox2"></a>
+                        <span class="name">
+                            <b>
+                            onClickCheckbox2
+                            </b>
+                            <a href="#onClickCheckbox2"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onClickCheckbox2(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="291" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:291</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Event handler. Triggered when second section of checkbox is clicked. Depending on the checkbox selected, which corresponds to the other 3 types of data (temperature, shelter, psi), this function displays only the selected type of data on the map.</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>index</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Index of checkbox which is clicked</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onClickMarker"></a>
+                        <span class="name">
+                            <b>
+                            onClickMarker
+                            </b>
+                            <a href="#onClickMarker"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onClickMarker(marker: <a href="../classes/CustomMarker.html">CustomMarker</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="256" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:256</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Event handler. When a marker is clicked on, this function finds the corresponding crisis report, and then emits it as the selected crisis to its parent</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>marker</td>
+                                                        <td>
+                                                                    <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Selected marker</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checked"></a>
+                        <span class="name">
+                            <b>
+                            checked
+                            </b>
+                            <a href="#checked"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>checked:     <code><a href="../classes/Crisis.html" target="_self" >Crisis[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Crisis.html" target="_self" >Crisis[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of crisis of checked crisis types in the checkboxes</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checked_layers"></a>
+                        <span class="name">
+                            <b>
+                            checked_layers
+                            </b>
+                            <a href="#checked_layers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>checked_layers:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[{val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty},
+    {val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty}]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:83</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>All layers to be displayed on map. Its value can be changed to change the markers displayed</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checked_names1"></a>
+                        <span class="name">
+                            <b>
+                            checked_names1
+                            </b>
+                            <a href="#checked_names1"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>checked_names1:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[[&#x27;Fire&#x27;,true],[&#x27;Explosion&#x27;, true], [&#x27;Gas Leak&#x27;, true], [&#x27;Disease&#x27;, true], [&#x27;Others&#x27;, true]]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:75</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>First section of checkbox names and their default value</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checked_names2"></a>
+                        <span class="name">
+                            <b>
+                            checked_names2
+                            </b>
+                            <a href="#checked_names2"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>checked_names2:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[[&#x27;Temperature&#x27;,false], [&#x27;Shelter&#x27;, false], [&#x27;PSI&#x27;, false]]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:79</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Second section of checkbox names and their default value</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="crises"></a>
+                        <span class="name">
+                            <b>
+                            crises
+                            </b>
+                            <a href="#crises"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>crises:     <code><a href="../classes/Crisis.html" target="_self" >Crisis[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Crisis.html" target="_self" >Crisis[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of all crisis reports</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="crisisByType"></a>
+                        <span class="name">
+                            <b>
+                            crisisByType
+                            </b>
+                            <a href="#crisisByType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>crisisByType:     <code><a href="../classes/Crisis.html" target="_self" >Crisis[][]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Crisis.html" target="_self" >Crisis[][]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[[],[],[],[],[]]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:69</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="diseaseMarkers"></a>
+                        <span class="name">
+                            <b>
+                            diseaseMarkers
+                            </b>
+                            <a href="#diseaseMarkers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>diseaseMarkers:     <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="empty"></a>
+                        <span class="name">
+                            <b>
+                            empty
+                            </b>
+                            <a href="#empty"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>empty:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>layerGroup()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:63</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Empty layergroup which can be used to clear a layer of markers</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="explosionMarkers"></a>
+                        <span class="name">
+                            <b>
+                            explosionMarkers
+                            </b>
+                            <a href="#explosionMarkers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>explosionMarkers:     <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fireMarkers"></a>
+                        <span class="name">
+                            <b>
+                            fireMarkers
+                            </b>
+                            <a href="#fireMarkers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>fireMarkers:     <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:52</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="gasLeakMarkers"></a>
+                        <span class="name">
+                            <b>
+                            gasLeakMarkers
+                            </b>
+                            <a href="#gasLeakMarkers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>gasLeakMarkers:     <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="markers"></a>
+                        <span class="name">
+                            <b>
+                            markers
+                            </b>
+                            <a href="#markers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>markers:     <code>[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[{val:this.fireMarkers},{val:this.explosionMarkers},{val:this.gasLeakMarkers},{val:this.diseaseMarkers},{val:this.otherMarkers},
+    {val:this.tempMarkers}, {val:this.shelterMarkers}, {val:this.psiMarkers}]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:70</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="otherMarkers"></a>
+                        <span class="name">
+                            <b>
+                            otherMarkers
+                            </b>
+                            <a href="#otherMarkers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>otherMarkers:     <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/CustomMarker.html" target="_self" >CustomMarker[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:56</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="psiMarkers"></a>
+                        <span class="name">
+                            <b>
+                            psiMarkers
+                            </b>
+                            <a href="#psiMarkers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>psiMarkers:     <code>Marker[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Marker[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:59</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="psis"></a>
+                        <span class="name">
+                            <b>
+                            psis
+                            </b>
+                            <a href="#psis"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>psis:     <code><a href="../classes/Psi.html" target="_self" >Psi[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Psi.html" target="_self" >Psi[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of PSI objects</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="shelterMarkers"></a>
+                        <span class="name">
+                            <b>
+                            shelterMarkers
+                            </b>
+                            <a href="#shelterMarkers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>shelterMarkers:     <code>Marker[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Marker[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:58</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="shelters"></a>
+                        <span class="name">
+                            <b>
+                            shelters
+                            </b>
+                            <a href="#shelters"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>shelters:     <code><a href="../classes/Shelter.html" target="_self" >Shelter[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Shelter.html" target="_self" >Shelter[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of Shelter objects</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="show"></a>
+                        <span class="name">
+                            <b>
+                            show
+                            </b>
+                            <a href="#show"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>show:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:67</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Control the display of dropdown menu where user can check boxes of crisis types and other info </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tempMarkers"></a>
+                        <span class="name">
+                            <b>
+                            tempMarkers
+                            </b>
+                            <a href="#tempMarkers"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>tempMarkers:     <code>Marker[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Marker[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="temps"></a>
+                        <span class="name">
+                            <b>
+                            temps
+                            </b>
+                            <a href="#temps"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>temps:     <code><a href="../classes/Temperature.html" target="_self" >Temperature[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Temperature.html" target="_self" >Temperature[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of Temperature objects</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userLocation"></a>
+                        <span class="name">
+                            <b>
+                            userLocation
+                            </b>
+                            <a href="#userLocation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>userLocation:     <code>[number, number]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[number, number]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/crisis-layer/crisis-layer.component.ts:49</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Coordinates of user location</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, NgZone, Input, OnChanges, Output, EventEmitter, ViewChild, ElementRef } from &#x27;@angular/core&#x27;;
+import {MatCheckboxModule} from &#x27;@angular/material/checkbox&#x27;;
+import {MatCardModule} from &#x27;@angular/material/card&#x27;;
+import { Crisis } from &#x27;../data/crisis&#x27;;
+import { Marker, LayerGroup, icon, Icon, marker, layerGroup, Layer, divIcon, Point } from &#x27;leaflet&#x27;;
+import { CustomMarker } from &#x27;../map/custom-marker&#x27;;
+import { Temperature } from &#x27;../data/weather&#x27;;
+import { Shelter } from &#x27;../data/shelter&#x27;;
+import { Psi } from &#x27;../data/psi&#x27;;
+import { Util } from &#x27;./icon-util&#x27;;
+import { CrisisService } from &#x27;../service/crisis.service&#x27;;
+import { WeatherService } from &#x27;../service/weather.service&#x27;;
+import { PsiService } from &#x27;../service/psi.service&#x27;;
+import { ShelterService } from &#x27;../service/shelter.service&#x27;;
+
+@Component({
+  selector: &#x27;app-crisis-layer&#x27;,
+  templateUrl: &#x27;./crisis-layer.component.html&#x27;,
+  styleUrls: [&#x27;./crisis-layer.component.css&#x27;]
+})
+export class CrisisLayerComponent implements OnInit {
+  /**
+   * Array of all crisis reports
+   */
+  crises:Crisis[] &#x3D; [];
+  /**
+   * Array of Temperature objects
+   */
+  temps:Temperature[] &#x3D; [];
+  /**
+   * Array of Shelter objects
+   */
+  shelters:Shelter[] &#x3D;[];
+  /**
+   * Array of PSI objects
+   */
+  psis:Psi[] &#x3D; [];
+  /**
+   * Array of crisis of checked crisis types in the checkboxes
+   */
+  checked:Crisis[] &#x3D; [];
+  /**
+   * Selected crisis of the selected marker or from crisis-list component
+   */
+  @Input() selected:Crisis;
+  /**
+   * Coordinates of user location
+   */
+  userLocation:[number,number];
+
+
+  fireMarkers:CustomMarker[] &#x3D; [];
+  explosionMarkers:CustomMarker[] &#x3D; [];
+  gasLeakMarkers:CustomMarker[] &#x3D; [];
+  diseaseMarkers:CustomMarker[] &#x3D; [];
+  otherMarkers:CustomMarker[] &#x3D; [];
+  tempMarkers:Marker[] &#x3D; [];
+  shelterMarkers: Marker[] &#x3D; [];
+  psiMarkers: Marker[] &#x3D; [];
+  /**
+   * Empty layergroup which can be used to clear a layer of markers
+   */
+  empty &#x3D; layerGroup();
+  /**
+   * Control the display of dropdown menu where user can check boxes of crisis types and other info 
+   */
+  show&#x3D;false;
+  
+  crisisByType:Crisis[][] &#x3D; [[],[],[],[],[]];
+  markers &#x3D; [{val:this.fireMarkers},{val:this.explosionMarkers},{val:this.gasLeakMarkers},{val:this.diseaseMarkers},{val:this.otherMarkers},
+    {val:this.tempMarkers}, {val:this.shelterMarkers}, {val:this.psiMarkers}]
+  /**
+   * First section of checkbox names and their default value
+   */
+  checked_names1 &#x3D; [[&#x27;Fire&#x27;,true],[&#x27;Explosion&#x27;, true], [&#x27;Gas Leak&#x27;, true], [&#x27;Disease&#x27;, true], [&#x27;Others&#x27;, true]];
+  /**
+   * Second section of checkbox names and their default value
+   */
+  checked_names2 &#x3D; [[&#x27;Temperature&#x27;,false], [&#x27;Shelter&#x27;, false], [&#x27;PSI&#x27;, false]];
+  /**
+   * All layers to be displayed on map. Its value can be changed to change the markers displayed
+   */
+  checked_layers &#x3D; [{val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty},
+    {val:this.empty}, {val:this.empty}, {val:this.empty}, {val:this.empty}];
+  /**
+   * EventEmitter for marker click event, selecting the crisis marker
+   */
+  @Output() selectEvent:EventEmitter&lt;Crisis&gt; &#x3D; new EventEmitter();
+  /**
+   * EventEmitter for checkbox click event, selecting displayed layer of markers
+   */
+  @Output() checkEvent:EventEmitter&lt;Crisis[]&gt; &#x3D; new EventEmitter();
+  /**
+   * EventEmitter for crisis fetching finish event
+   */
+  @Output() checkReadyEvent: EventEmitter&lt;boolean&gt; &#x3D; new EventEmitter();
+  /**
+   * EventEmitter for user location ready event
+   */
+  @Output() locationEvent: EventEmitter&lt;[number,number]&gt; &#x3D; new EventEmitter();
+  
+  /**
+   * @ignore
+   */
+  constructor(private crisisService:CrisisService,
+    private weatherService:WeatherService,
+    private psiService:PsiService,
+    private shelterService:ShelterService,
+    private _ngZone:NgZone) { }
+
+  /**
+   * Initialize the component after Angular first displays the data-bound properties and sets the component&#x27;s input properties. Called once
+   */
+  ngOnInit() {
+    this.getCrises();
+    this.getTemps();
+    // this.getShelters();
+    this.getPsi();
+    this.getUserLocation();
+  }
+  /**
+   * This function makes use of the getCrisisAndType() function, parses the variables returned into the parseCrisisAndType(type, crisis) function and adds each of the Crisis object into an array of Crisis objects named “crises” . Afterwards, the initCrisisLayers() function is called.
+   */
+  async getCrises(){
+    const arrs &#x3D; await this.crisisService.getCrisisAndType();
+    const c_ &#x3D; await this.crisisService.parseCrisisAndType(arrs[0],arrs[1]);
+    c_.forEach(c &#x3D;&gt; this.crises.push(c));
+    this.initCrisisLayers();
+    this.checkReadyEvent.emit(true);
+  }
+  /**
+   * This function makes use of the getTemperature() function, parses the variable returned into the parseRawWeather(raw) function and adds each of the Weather object into an array of Weather objects named “temps” . Afterwards, the initTempLayer() function is called.
+   */
+  getTemps():void{
+    this.weatherService.getTemperature().subscribe(raw &#x3D;&gt; {
+      this.weatherService.parseRawWeather(raw).forEach(t &#x3D;&gt; this.temps.push(t));
+      this.initTempLayer();
+    });
+  }
+  /**
+   * This function makes use of the getRawShelter() function, parses the variable returned into the parseRawShelter(raw) function and adds each of the Shelter object into an array of Shelter objects named “shelters” . Afterwards, the initShelterLayer() function is called.
+   */
+  async getShelters(){
+    this.shelterService.getRawShelter().subscribe(async (raw) &#x3D;&gt; {
+      const shelters &#x3D; await this.shelterService.parseRawShelter(raw);
+      shelters.forEach(s &#x3D;&gt; this.shelters.push(s));
+      this.initShelterLayer();
+    })
+  }
+  /**
+   * This function makes use of the getPsi() function, parses the variable returned into the parseRawPsi(raw) function and adds each of the Psi object into an array of Psi objects named “psis” . Afterwards, initPsiLayer() function is called.
+   */
+  getPsi():void{
+    this.psiService.getPsi().subscribe(raw &#x3D;&gt;{
+      // console.log(raw);
+      this.psiService.parseRawPsi(raw).forEach(p &#x3D;&gt; this.psis.push(p));
+      this.initPsiLayer();
+    });
+  }
+  /**
+   * This function grabs the user’s current location and the position is parsed into the initUserLocation(position) function to carry out the function.
+   */
+  getUserLocation():void{
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(position &#x3D;&gt; {this.initUserLocation(position)});
+    }
+  }
+  /**
+   * For each Crisis object in the crisis array, this function creates a marker with the icon for the crisis type of the crisis and place it onto the map based on the location of the crisis and bind a popup to the crisis with the description of the crisis. Each of the markers are then pushed into an array of custom markers named after their crisis type, for example &quot;fireMarkers&quot;.
+   */
+  initCrisisLayers():void{
+    this.crises.forEach( crisis &#x3D;&gt; {
+      var marker:CustomMarker &#x3D; new CustomMarker(crisis.location, crisis.id).bindPopup(crisis.description);
+      marker.on(&quot;click&quot;, ()&#x3D;&gt;{this.onClickMarker(marker)});
+      // marker.on(&quot;mouseover&quot;, ()&#x3D;&gt;marker.openPopup());
+      // marker.on(&quot;mouseout&quot;, ()&#x3D;&gt;marker.closePopup());
+      switch(crisis.type){
+        case &quot;Fire&quot;:
+          this.fireMarkers.push(marker.setIcon(Util.fireIcon));
+          this.crisisByType[0].push(crisis);
+          break;
+        case &quot;Explosion&quot;:
+          this.explosionMarkers.push(marker.setIcon(Util.bombIcon));
+          this.crisisByType[1].push(crisis);
+          break;
+        case &quot;Gas Leak&quot;:
+          this.gasLeakMarkers.push(marker.setIcon(Util.gasLeakIcon));
+          this.crisisByType[2].push(crisis);
+          break;
+        case &quot;Disease&quot;:
+          this.diseaseMarkers.push(marker.setIcon(Util.diseaseIcon));
+          this.crisisByType[3].push(crisis);
+          break;
+        default:
+          this.otherMarkers.push(marker.setIcon(Util.icon));
+          this.crisisByType[4].push(crisis);
+      };
+    });
+
+    this.checked_layers[0].val &#x3D; layerGroup(this.fireMarkers);
+    this.checked_layers[1].val &#x3D; layerGroup(this.explosionMarkers);
+    this.checked_layers[2].val &#x3D; layerGroup(this.gasLeakMarkers);
+    this.checked_layers[3].val &#x3D; layerGroup(this.diseaseMarkers);
+    this.checked_layers[4].val &#x3D; layerGroup(this.otherMarkers);
+
+    this.checked &#x3D; this.crises;
+    this.checked.sort((a, b)&#x3D;&gt; a.type&gt;b.type?1:-1);
+    this.checkEvent.emit(this.checked);
+  }
+  /**
+   * For each Temperature object in the temp array, this function creates a marker with the reading of the temperature as text in replace of an icon and place it onto the map based on the location of the temperature. Each of the markers are then pushed into an array of markers named &quot;tempMarkers&quot;.
+   */
+  initTempLayer(){
+    this.temps.forEach(temp &#x3D;&gt;{
+      this.tempMarkers.push(marker(temp.location, {icon:divIcon({html:temp.value.toString()+&quot; °C&quot;, className:&quot;temperature&quot;, iconSize:new Point(50,20)})}))
+    });
+  }
+  /**
+   * For each Shelter object in the shelter array, this function creates a marker with the shelter icon and place it onto the map based on the location of the shelter and bind a popup to the shelter with the shelter name, description and a link directing to the shelter. Each of the markers are then pushed into an array of markers named &quot;shelterMarkers&quot;.
+   */
+  initShelterLayer(){
+    this.shelters.forEach(shelter &#x3D;&gt;{
+      const m:Marker &#x3D; marker(shelter.location, {icon:Util.shelterIcon});
+      const display &#x3D; shelter.name + &quot;:&quot;+shelter.description; 
+      const link &#x3D; &#x27;https://www.google.com/maps/dir/?api&#x3D;1&amp;destination&#x3D;&#x27;+shelter.location[0] + &#x27;,&#x27; +shelter.location[1];
+      m.bindPopup(&#x27;&lt;div class&#x3D;&quot;shelter-text&quot;&gt;&#x27;+display+&#x27;&lt;/div&gt;&lt;a href&#x3D;&#x27; + link +&#x27; target&#x3D;&quot;_blank&quot;&gt;Direction&lt;/a&gt;&#x27;);
+      this.shelterMarkers.push(m);
+    });
+  }
+  /**
+   * For each Psi object in the psi array, this function creates a marker with the reading of the psi as text in replace of an icon and place it onto the map based on the location of the psi. Each of the markers are then pushed into an array of markers named &quot;psiMarkers&quot;.
+   */
+  initPsiLayer(){
+    this.psis.forEach(psi &#x3D;&gt;{
+      this.psiMarkers.push(marker(psi.location, {icon:divIcon({html:psi.value.toString(), className:&quot;psi&quot;, iconSize:new Point(30,30)})}));
+    });
+  }
+  /**
+   * This function takes the position argument, creates a marker with the user icon and places it onto the map based on the position’s location and binds a popup with the text “Your Current Location”.
+   * @param position The user’s current location
+   */
+  initUserLocation(position:Position){
+    const lat &#x3D; position.coords.latitude;
+    const lon &#x3D; position.coords.longitude;
+    const m:Marker &#x3D; marker([lat, lon], {icon:Util.userIcon}).bindPopup(&quot;Your Current Location&quot;);
+    m.on(&#x27;mouseover&#x27;, ()&#x3D;&gt; m.openPopup());
+    m.on(&#x27;mouseout&#x27;, ()&#x3D;&gt;m.closePopup());
+    this.checked_layers[this.checked_layers.length-1].val &#x3D; layerGroup([m]);
+    this.userLocation &#x3D; [lat, lon];
+    this.locationEvent.emit([lat,lon]);
+  }
+  /**
+   * Event handler. When a marker is clicked on, this function finds the corresponding crisis report, and then emits it as the selected crisis to its parent
+   * @param marker Selected marker
+   */
+  onClickMarker(marker:CustomMarker){
+    this._ngZone.run(()&#x3D;&gt;{
+        const c &#x3D; this.crises.find(
+        (c)&#x3D;&gt;c.id&#x3D;&#x3D;&#x3D;marker.id
+        );
+        this.selectEvent.emit(c);
+      });
+    // marker.openPopup();
+  }
+  /**
+   * Event handler. Triggered when first section of checkbox is clicked. Depending on the checkbox selected, which corresponds to a type of crisis, this function displays only the crisis with the selected crisis type on the map and crisis list.
+   * @param index Index of checkbox which is clicked
+   */
+  onClickCheckbox1(index:number){
+    if(this.checked_names1[index][1]&#x3D;&#x3D;&#x3D;true){
+      this.checked_names1[index][1]&#x3D;false;
+      this.checked_layers[index].val &#x3D; this.empty;
+    }
+    else{
+      this.checked_names1[index][1]&#x3D;true;
+      this.checked_layers[index].val &#x3D; layerGroup(this.markers[index].val);
+    }
+    this.checked.length &#x3D; 0;
+    this.checked_names1.forEach((item, i)&#x3D;&gt;{
+      if(item[1]){
+        this.crisisByType[i].forEach(c &#x3D;&gt; this.checked.push(c));
+      }
+    })
+    this.checked.sort((a, b)&#x3D;&gt; a.type&gt;b.type?1:-1);
+    this.checkEvent.emit(this.checked);
+  }
+  /**
+   * Event handler. Triggered when second section of checkbox is clicked. Depending on the checkbox selected, which corresponds to the other 3 types of data (temperature, shelter, psi), this function displays only the selected type of data on the map.
+   * @param index Index of checkbox which is clicked
+   */
+  onClickCheckbox2(index:number){
+    if(this.checked_names2[index][1]&#x3D;&#x3D;&#x3D;true){
+      this.checked_names2[index][1]&#x3D;false;
+      this.checked_layers[index+this.checked_names1.length].val &#x3D; this.empty;
+    }
+    else{
+      this.checked_names2[index][1]&#x3D;true;
+      this.checked_layers[index+this.checked_names1.length].val &#x3D; layerGroup(this.markers[index+this.checked_names1.length].val);
+    }
+  }
+
+  /**
+   * Enforce the display of dropdown menu
+   */
+  forceFocus() {
+    setTimeout(()&#x3D;&gt;this.show &#x3D; true, 1);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div *ngFor&#x3D;&quot;let layer of checked_layers&quot; [leafletLayer]&#x3D;&quot;layer.val&quot;&gt;&lt;/div&gt;
+&lt;div class&#x3D;&quot;dropdown&quot; (click)&#x3D;&quot;forceFocus()&quot; (mouseenter)&#x3D;&quot;show&#x3D;true&quot; 
+    (mouseleave)&#x3D;&quot;show&#x3D;false&quot; [ngClass]&#x3D;&quot;{&#x27;expanded&#x27;: show}&quot;&gt;
+    &lt;mat-card class&#x3D;&quot;dropdown-bt&quot;&gt;Layer&lt;/mat-card&gt;
+    &lt;mat-card-content class&#x3D;&quot;dropdown-content&quot;&gt;
+        &lt;mat-checkbox *ngFor&#x3D;&quot;let item of checked_names1; let i &#x3D; index&quot;
+        [ngModel]&#x3D;&quot;item[1]&quot;
+        (ngModelChange)&#x3D;&quot;onClickCheckbox1(i)&quot;
+        class&#x3D;&quot;checkbox&quot;&gt;{{item[0]}}&lt;/mat-checkbox&gt;
+        &lt;mat-checkbox *ngFor&#x3D;&quot;let item of checked_names2; let i &#x3D; index&quot;
+        [ngModel]&#x3D;&quot;item[1]&quot;
+        (ngModelChange)&#x3D;&quot;onClickCheckbox2(i)&quot;
+        class&#x3D;&quot;checkbox&quot;&gt;{{item[0]}}&lt;/mat-checkbox&gt;
+    &lt;/mat-card-content&gt;
+&lt;/div&gt;
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./crisis-layer.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.dropdown-bt{
+    position: absolute;
+    opacity: 0.85;
+    text-align: center;
+    font-size: 1.3em;
+    right: 4.5rem;
+    top: 0.7rem;
+    z-index: 1000;
+    width: 120px;
+    padding: 5px;
+    transition: border-radius .3s ease;
+}
+
+.dropdown {
+    position: relative;
+    float: right;
+}
+
+.expanded .dropdown-bt{
+    border-radius: 4px 4px 0 0;
+}
+
+.dropdown-content {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    top: 2.75rem;
+    right: 4.5rem;
+    width: 129.8px;
+    transition: all .3s ease;
+    transform-origin: 50% 0%;
+    transform: scaleY(0.01);
+    border-radius: 0 0 4px 4px;
+}
+
+.expanded .dropdown-content {
+    transform: scaleY(1);
+    opacity: 0.8;
+    visibility: visible;
+}
+
+.expanded .dropdown-bt{
+    opacity: 0.95;
+}
+
+.dropdown-content mat-checkbox {
+    color: black;
+    padding: 6px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content .checkbox:nth-child(5) {
+    position: relative;
+}
+
+.dropdown-content .checkbox:nth-child(5)::after {
+    content: &#x27;&#x27;;
+    height: 0;
+    border-bottom: 1px solid #CCC;
+    width: 60%;
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    display: block;
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div *ngFor="let layer of checked_layers" [leafletLayer]="layer.val"></div><div class="dropdown" (click)="forceFocus()" (mouseenter)="show=true"     (mouseleave)="show=false" [ngClass]="{\'expanded\': show}">    <mat-card class="dropdown-bt">Layer</mat-card>    <mat-card-content class="dropdown-content">        <mat-checkbox *ngFor="let item of checked_names1; let i = index"        [ngModel]="item[1]"        (ngModelChange)="onClickCheckbox1(i)"        class="checkbox">{{item[0]}}</mat-checkbox>        <mat-checkbox *ngFor="let item of checked_names2; let i = index"        [ngModel]="item[1]"        (ngModelChange)="onClickCheckbox2(i)"        class="checkbox">{{item[0]}}</mat-checkbox>    </mat-card-content></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CrisisDetailComponent', 'selector': 'app-crisis-detail'},{'name': 'CrisisLayerComponent', 'selector': 'app-crisis-layer'},{'name': 'CrisisListComponent', 'selector': 'app-crisis-list'},{'name': 'MapComponent', 'selector': 'app-map'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CrisisLayerComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CrisisLayerComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

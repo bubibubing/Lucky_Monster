@@ -1,5 +1,7 @@
 import { Icon, icon, divIcon } from "leaflet";
-
+/**
+ * This class contains icons that can be used in the crisis marker layer
+ */
 export class Util{
     static icon:Icon = icon({
         iconSize: [ 20, 20 ],

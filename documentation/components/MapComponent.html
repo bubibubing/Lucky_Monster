@@ -1,0 +1,1156 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>map-update documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">map-update documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>MapComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/map/map.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-map</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./map.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./map.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#center">center</a>
+                            </li>
+                            <li>
+                                <a href="#checked">checked</a>
+                            </li>
+                            <li>
+                                <a href="#checkReady">checkReady</a>
+                            </li>
+                            <li>
+                                <a href="#options">options</a>
+                            </li>
+                            <li>
+                                <a href="#selected">selected</a>
+                            </li>
+                            <li>
+                                <a href="#streetMap">streetMap</a>
+                            </li>
+                            <li>
+                                <a href="#zoom">zoom</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#mapClick">mapClick</a>
+                            </li>
+                            <li>
+                                <a href="#onCheckReady">onCheckReady</a>
+                            </li>
+                            <li>
+                                <a href="#receiveCheck">receiveCheck</a>
+                            </li>
+                            <li>
+                                <a href="#receiveListSelect">receiveListSelect</a>
+                            </li>
+                            <li>
+                                <a href="#receiveMapSelect">receiveMapSelect</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mapClick"></a>
+                        <span class="name">
+                            <b>
+                            mapClick
+                            </b>
+                            <a href="#mapClick"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>mapClick()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/map/map.component.ts:64</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Event handler. Clear the selected crisis. Executed when map click event is triggered</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onCheckReady"></a>
+                        <span class="name">
+                            <b>
+                            onCheckReady
+                            </b>
+                            <a href="#onCheckReady"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onCheckReady(ready: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/map/map.component.ts:98</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Event handler. Set the checkReady property</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>ready</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="receiveCheck"></a>
+                        <span class="name">
+                            <b>
+                            receiveCheck
+                            </b>
+                            <a href="#receiveCheck"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>receiveCheck(checked: <a href="../classes/Crisis.html">Crisis[]</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/map/map.component.ts:91</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Event handler. Set the array of checked crisis types which will be displayed in sidebar. Executed when checkbox check event is triggered</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>checked</td>
+                                                        <td>
+                                                                    <code><a href="../classes/Crisis.html" target="_self" >Crisis[]</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Array of checked crisis types</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="receiveListSelect"></a>
+                        <span class="name">
+                            <b>
+                            receiveListSelect
+                            </b>
+                            <a href="#receiveListSelect"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>receiveListSelect(selected: <a href="../classes/Crisis.html">Crisis</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/map/map.component.ts:82</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Event handler. Set the selected crisis and always zoom in to it. Executed when sidebar slide event is triggered</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>selected</td>
+                                                        <td>
+                                                                    <code><a href="../classes/Crisis.html" target="_self" >Crisis</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Selected crisis</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="receiveMapSelect"></a>
+                        <span class="name">
+                            <b>
+                            receiveMapSelect
+                            </b>
+                            <a href="#receiveMapSelect"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>receiveMapSelect(selected: <a href="../classes/Crisis.html">Crisis</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/map/map.component.ts:71</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Event handler. Set the selected crisis and zoom in to it if requied. Executed when marker click event is triggered</p>
+</div>
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>selected</td>
+                                                        <td>
+                                                                    <code><a href="../classes/Crisis.html" target="_self" >Crisis</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                        <td>
+                                                                <code><p>Selected crisis</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="center"></a>
+                        <span class="name">
+                            <b>
+                            center
+                            </b>
+                            <a href="#center"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>center:     <code>LatLng</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>LatLng</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/map/map.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Coordinates of the centre of the map</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checked"></a>
+                        <span class="name">
+                            <b>
+                            checked
+                            </b>
+                            <a href="#checked"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>checked:     <code><a href="../classes/Crisis.html" target="_self" >Crisis[]</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Crisis.html" target="_self" >Crisis[]</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/map/map.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Array of crisis of checked crisis types received from the filter where user will filter the crisis displayed</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkReady"></a>
+                        <span class="name">
+                            <b>
+                            checkReady
+                            </b>
+                            <a href="#checkReady"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>checkReady:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/map/map.component.ts:23</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The value indicates whether crisis report fetching is finished, deciding whether load spinner is displayed</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="options"></a>
+                        <span class="name">
+                            <b>
+                            options
+                            </b>
+                            <a href="#options"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>options:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    layers: [this.streetMap],
+    zoom: 11,
+    center: latLng([1.320, 103.815]),
+    doubleClickZoom: false,
+    zoomControl:false
+    }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/map/map.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Default setting for displaying base map</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selected"></a>
+                        <span class="name">
+                            <b>
+                            selected
+                            </b>
+                            <a href="#selected"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>selected:     <code><a href="../classes/Crisis.html" target="_self" >Crisis</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../classes/Crisis.html" target="_self" >Crisis</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/map/map.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Selected crisis received from clicked marker on the map or clicked crisis report in crisis list </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="streetMap"></a>
+                        <span class="name">
+                            <b>
+                            streetMap
+                            </b>
+                            <a href="#streetMap"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>streetMap:     <code></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>tileLayer(&#x27;https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}&#x27;, {
+    attribution: &#x27;&amp;copy; OpenStreetMap contributors&#x27;,
+    detectRetina: true,
+    zoomOffset:-1,
+    tileSize:512
+  })</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/map/map.component.ts:45</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Default base map</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="zoom"></a>
+                        <span class="name">
+                            <b>
+                            zoom
+                            </b>
+                            <a href="#zoom"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>zoom:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>11</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/map/map.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Zoom level of the map. Default is 11</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, NgZone } from &#x27;@angular/core&#x27;;
+import { tileLayer, latLng, LatLng, Map, control } from &#x27;leaflet&#x27;; 
+import { Crisis } from &#x27;../data/crisis&#x27;;
+
+@Component({
+  selector: &#x27;app-map&#x27;,
+  templateUrl: &#x27;./map.component.html&#x27;,
+  styleUrls: [&#x27;./map.component.css&#x27;]
+})
+export class MapComponent implements OnInit {
+
+  /**
+   * Selected crisis received from clicked marker on the map or clicked crisis report in crisis list 
+   */
+  selected:Crisis;
+  /**
+   * Array of crisis of checked crisis types received from the filter where user will filter the crisis displayed
+   */
+  checked:Crisis[];
+  /**
+   * The value indicates whether crisis report fetching is finished, deciding whether load spinner is displayed
+   */
+  checkReady:boolean;
+  /**
+   * Zoom level of the map. Default is 11
+   */
+  zoom:number &#x3D; 11;
+  /**
+   * Coordinates of the centre of the map
+   */
+  center: LatLng;
+
+  /**
+   * @ignore
+   */
+  constructor(private _ngZone:NgZone) { }
+  /**
+   * @ignore
+   */
+  ngOnInit() {
+  }
+  /**
+   * Default base map
+   */
+  streetMap &#x3D;  tileLayer(&#x27;https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}&#x27;, {
+    attribution: &#x27;&amp;copy; OpenStreetMap contributors&#x27;,
+    detectRetina: true,
+    zoomOffset:-1,
+    tileSize:512
+  })
+  /**
+   * Default setting for displaying base map
+   */
+  options &#x3D; {
+    layers: [this.streetMap],
+    zoom: 11,
+    center: latLng([1.320, 103.815]),
+    doubleClickZoom: false,
+    zoomControl:false
+    };
+  /**
+   * Event handler. Clear the selected crisis. Executed when map click event is triggered
+   */
+  mapClick(){
+    this.selected &#x3D; null;
+  }
+  /**
+   * Event handler. Set the selected crisis and zoom in to it if requied. Executed when marker click event is triggered
+   * @param selected Selected crisis
+   */
+  receiveMapSelect(selected:Crisis){
+    this.selected &#x3D; selected;
+    if(this.zoom&lt;15){
+      this.zoom &#x3D; 15;
+      this.center &#x3D; latLng(selected.location[0], selected.location[1]-0.007);
+    }
+  }
+  /**
+   * Event handler. Set the selected crisis and always zoom in to it. Executed when sidebar slide event is triggered
+   * @param selected Selected crisis
+   */
+  receiveListSelect(selected:Crisis){
+    this.selected &#x3D; selected;
+    this.zoom &#x3D; 15;
+    this.center &#x3D; latLng(selected.location[0], selected.location[1]-0.007);
+  }
+  /**
+   * Event handler. Set the array of checked crisis types which will be displayed in sidebar. Executed when checkbox check event is triggered
+   * @param checked Array of checked crisis types
+   */
+  receiveCheck(checked:Crisis[]){
+    // console.log(checked);
+    this.checked &#x3D; checked;
+  }
+  /**
+   * Event handler. Set the checkReady property
+   */
+  onCheckReady(ready:boolean){
+    this.checkReady &#x3D; ready;
+  }
+  /**
+   * @ignore
+   */
+  onMapReady(map:Map){
+    control.zoom({position:&#x27;topright&#x27;}).addTo(map);
+    console.log(&quot;113&quot;)
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;crisis-list&quot;&gt;
+    &lt;app-crisis-list *ngIf&#x3D;&quot;checkReady&quot;
+    [selected]&#x3D;&quot;selected&quot; [checked]&#x3D;&quot;checked&quot; (clicked)&#x3D;&quot;receiveListSelect($event)&quot;&gt;&lt;/app-crisis-list&gt;
+    &lt;div class&#x3D;&quot;loader&quot; *ngIf&#x3D;&quot;!checkReady&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;map&quot; 
+    leaflet 
+    [leafletOptions]&#x3D;&quot;options&quot; 
+    (leafletClick)&#x3D;&quot;mapClick()&quot;
+    (leafletMapReady)&#x3D;&quot;onMapReady($event)&quot;
+    [(leafletZoom)]&#x3D;&quot;zoom&quot;
+    [(leafletCenter)]&#x3D;&quot;center&quot;&gt;
+    &lt;app-crisis-layer (selectEvent)&#x3D;&quot;receiveMapSelect($event)&quot;
+        (checkEvent)&#x3D;&quot;receiveCheck($event)&quot;
+        (checkReadyEvent)&#x3D;&quot;onCheckReady($event)&quot;
+        [selected]&#x3D;&quot;selected&quot;&gt;&lt;/app-crisis-layer&gt;
+&lt;/div&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./map.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.map {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    float: right;
+    box-sizing: border-box;
+}
+ .crisis-list {
+    background: rgba(194,194,194, 0.9);
+    padding: .5rem .8rem;
+    position:fixed;
+    height: 100%;
+    width: 25%;
+    float: left;
+    overflow: auto;
+    z-index: 2000;
+    box-shadow: 1px 0 4px rgba(0,0,0,0.10), 1px 0 4px rgba(0,0,0,0.20) ;
+    box-sizing: border-box;
+    text-align: center;
+    scroll-behavior: smooth;
+}
+
+@media screen and (max-aspect-ratio: 1/1){
+    .crisis-list{
+        position: absolute;
+        width: 100%;
+        height:50%;
+        bottom: 0;
+        box-shadow: 0 -1px 4px rgba(0,0,0,0.10), 0 -1px 4px rgba(0,0,0,0.20) ;
+    }
+}
+
+.crisis-list::-webkit-scrollbar{
+    width: 6px;
+}
+
+.crisis-list::-webkit-scrollbar-thumb {
+    background-color: #606060;
+    border-radius: 3px;
+}
+
+.loader {
+    position: absolute;
+    top:45%;
+    left:46%;
+    margin: auto;
+    border: 0.15rem solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 0.15rem solid #414141;
+    width: 1.6rem;
+    height: 1.6rem;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="crisis-list">    <app-crisis-list *ngIf="checkReady"    [selected]="selected" [checked]="checked" (clicked)="receiveListSelect($event)"></app-crisis-list>    <div class="loader" *ngIf="!checkReady"></div></div><div class="map"     leaflet     [leafletOptions]="options"     (leafletClick)="mapClick()"    (leafletMapReady)="onMapReady($event)"    [(leafletZoom)]="zoom"    [(leafletCenter)]="center">    <app-crisis-layer (selectEvent)="receiveMapSelect($event)"        (checkEvent)="receiveCheck($event)"        (checkReadyEvent)="onCheckReady($event)"        [selected]="selected"></app-crisis-layer></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CrisisDetailComponent', 'selector': 'app-crisis-detail'},{'name': 'CrisisLayerComponent', 'selector': 'app-crisis-layer'},{'name': 'CrisisListComponent', 'selector': 'app-crisis-list'},{'name': 'MapComponent', 'selector': 'app-map'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'MapComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'MapComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
