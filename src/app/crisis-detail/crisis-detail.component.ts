@@ -1,10 +1,7 @@
 import { Component, OnInit, Input, OnChanges, AfterViewInit, ElementRef, Inject } from '@angular/core';
 import { CustomMarker } from '../map/custom-marker';
-import { DataService } from '../data.service';
-import { CrisisDetail } from '../data/crisis-detail';
 import { Crisis } from '../data/crisis';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -26,7 +23,7 @@ export class CrisisDetailComponent implements OnInit, OnChanges {
 
   @Input() crisis:Crisis;
 
-  constructor(private dataService:DataService, private ref:ElementRef) { }
+  constructor(private ref:ElementRef) { }
 
   ngOnInit() {
   }

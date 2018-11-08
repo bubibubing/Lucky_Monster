@@ -1,9 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { tileLayer, latLng, Marker, marker, icon, Icon, layerGroup, Layer, LayerGroup, map, LatLng, Map, control, ControlOptions } from 'leaflet'; 
-import { DataService } from '../data.service';
+import { tileLayer, latLng, LatLng, Map, control } from 'leaflet'; 
 import { Crisis } from '../data/crisis';
-import { CustomMarker } from './custom-marker';
-import { Temperature } from '../data/weather';
 
 @Component({
   selector: 'app-map',
@@ -18,7 +15,7 @@ export class MapComponent implements OnInit {
   zoom:number = 11;
   center: LatLng;
 
-  constructor(private dataService:DataService, private _ngZone:NgZone) { }
+  constructor(private _ngZone:NgZone) { }
 
   ngOnInit() {
   }

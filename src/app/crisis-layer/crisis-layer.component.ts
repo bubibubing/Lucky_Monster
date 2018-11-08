@@ -1,15 +1,17 @@
 import { Component, OnInit, NgZone, Input, OnChanges, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
 import { Crisis } from '../data/crisis';
 import { Marker, LayerGroup, icon, Icon, marker, layerGroup, Layer, divIcon, Point } from 'leaflet';
-import { DataService } from '../data.service';
 import { CustomMarker } from '../map/custom-marker';
 import { Temperature } from '../data/weather';
 import { Shelter } from '../data/shelter';
 import { Psi } from '../data/psi';
 import { Util } from './icon-util';
+import { CrisisService } from '../service/crisis.service';
+import { WeatherService } from '../service/weather.service';
+import { PsiService } from '../service/psi.service';
+import { ShelterService } from '../service/shelter.service';
 
 @Component({
   selector: 'app-crisis-layer',
@@ -53,7 +55,11 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   @Output() checkReadyEvent: EventEmitter<boolean> = new EventEmitter();
   @Output() locationEvent: EventEmitter<[number,number]> = new EventEmitter();
   
-  constructor(private dataService:DataService, private _ngZone:NgZone) { }
+  constructor(private crisisService:CrisisService,
+    private weatherService:WeatherService,
+    private psiService:PsiService,
+    private shelterService:ShelterService,
+    private _ngZone:NgZone) { }
 
   ngOnInit() {
     this.getCrises();
@@ -67,32 +73,32 @@ export class CrisisLayerComponent implements OnInit, OnChanges {
   }
   
   async getCrises(){
-    const arrs = await this.dataService.getCrisisAndType();
-    const c_ = await this.dataService.parseCrisisAndType(arrs[0],arrs[1]);
+    const arrs = await this.crisisService.getCrisisAndType();
+    const c_ = await this.crisisService.parseCrisisAndType(arrs[0],arrs[1]);
     c_.forEach(c => this.crises.push(c));
     this.initCrisisLayers();
     this.checkReadyEvent.emit(true);
   }
 
   getTemps(){
-    this.dataService.getTemperature().subscribe(raw => {
-      this.dataService.parseRawWeather(raw).forEach(t => this.temps.push(t));
+    this.weatherService.getTemperature().subscribe(raw => {
+      this.weatherService.parseRawWeather(raw).forEach(t => this.temps.push(t));
       this.initTempLayer();
     });
   }
 
   getShelters(){
-    this.dataService.getRawShelter().subscribe(async (raw) => {
-      const shelters = await this.dataService.parseRawShelter(raw);
+    this.shelterService.getRawShelter().subscribe(async (raw) => {
+      const shelters = await this.shelterService.parseRawShelter(raw);
       shelters.forEach(s => this.shelters.push(s));
       this.initShelterLayer();
     })
   }
 
   getPsi(){
-    this.dataService.getPsi().subscribe(raw =>{
+    this.psiService.getPsi().subscribe(raw =>{
       // console.log(raw);
-      this.dataService.parseRawPsi(raw).forEach(p => this.psis.push(p));
+      this.psiService.parseRawPsi(raw).forEach(p => this.psis.push(p));
       this.initPsiLayer();
     });
   }

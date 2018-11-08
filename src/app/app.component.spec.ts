@@ -1,15 +1,39 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { MapComponent } from './map/map.component';
+import { CrisisLayerComponent } from './crisis-layer/crisis-layer.component';
+import { CrisisListComponent } from './crisis-list/crisis-list.component';
+import { CrisisDetailComponent } from './crisis-detail/crisis-detail.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        LeafletModule.forRoot(),
+        BrowserModule,
+        MatCheckboxModule,
+        MatCardModule,
+        MatButtonModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        MapComponent,
+        CrisisLayerComponent,
+        CrisisListComponent,
+        CrisisDetailComponent
       ],
     }).compileComponents();
   }));
@@ -24,12 +48,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('map-update');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to map-update!');
   });
 });
